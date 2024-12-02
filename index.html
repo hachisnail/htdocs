@@ -6,39 +6,44 @@
     
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/static/css/utils.css">
-
     <title>Kosupure</title>
 </head>
 <body>
+    <!-- header -->
+    <div class="w-screen h-16 bg-[#080226] flex justify-between items-center px-4 fixed top-0 left-0 z-30" style="font-family: 'Poppins';">
+        <div class="flex items-center gap-x-2 font-semibold text-white text-xl">
+            <span class="material-symbols--menu-rounded"></span>
+            <p>KOSUPURE.SHOP</p>
+        </div>
+        <div class="flex items-center gap-x-2 font-semibold text-white text-xl">
+            <span class="material-symbols--shopping-bag-outline"></span>
+            <span class="mingcute--user-4-line"></span>
+        </div>
+    </div>
+    <!-- header -->
+
+
+
+    <!-- content -->
     <div class="bg-cover bg-center h-screen justify-center" style="background-image: url('/static/assets/bg.png');">
         
-        <header>
-            <div class="w-screen h-16 bg-[#080226] flex justify-between items-center content-center px-4" style="font-family: 'Poppins';">
-                <div class="flex items-center gap-x-2 font-semibold text-white text-xl">
-                    <span class="material-symbols--menu-rounded"></span>
-                    <p>KOSUPURE.SHOP</p>
-                </div>
-                <div class="flex items-center gap-x-2 font-semibold text-white text-xl">
-                    <span class="material-symbols--shopping-bag-outline"></span>
-                    <span class="mingcute--user-4-line"></span>
-                </div>
-            </div>
-        </header>
-        <div class="flex-grow-1 flex flex-col py-10 items-center h-full w-screen bg-[#ACA2BB] bg-opacity-60">
+        
+        
+        <div class="flex-grow-1 flex flex-col pt-28 md:justify-center md:p-20  items-center h-full w-screen bg-[#ACA2BB] bg-opacity-60">
             <div class="flex flex-col w-[92%]" style="font-family: 'Poppins'">
-                <div class="w-[330px]">
-                    <p class="font-bold text-[40px] leading-9 text-[#080226]">YOUR ULTIMATE<br>COSPLAY<br>DESTINATION</p>
+                <div class="w-[330px] md:w-[500px]">
+                    <p class="font-bold text-[40px] leading-9 text-[#080226] md:text-[60px] md:font-[700] md:leading-[50px]">YOUR ULTIMATE COSPLAY DESTINATION</p>
 
                     <p class="my-4 text-[12px] font-[400]">
                         Browse through our carefully curated collections and find everything you need to bring your favorite characters to life!
                     </p>
                 </div>
-                <button class="w-full h-[47px] bg-[#EFE391] rounded-[20px] text-[12px] font-[500]">
+                <button class="w-full md:w-[196px] h-[47px] bg-[#EFE391] rounded-[20px] text-[12px] font-[500]">
                     Shop Now
                 </button>
             </div>
@@ -46,19 +51,19 @@
         </div> 
        
     </div>
-    <div class="bg-white w-screen h-fit flex flex-col items-center pt-[24px]" style="font-family: 'Poppins';">
-        <p class="mb-[30px] font-[700] text-[30px]">CATEGORIES</p>
+    <div class="bg-white w-screen h-fit flex flex-col items-center pt-[24px] pb-44" style="font-family: 'Poppins';">
+        <p class="mb-[30px] font-[700] text-[30px] md:text-[50px]">CATEGORIES</p>
 
-        <div class="h-fit flex flex-col gap-y-4">
-            <div class="w-[327px] h-[90px] rounded-[20px] bg-[#D9D9D9]">
-
-            </div>
-
-            <div class="w-[327px] h-[90px] rounded-[20px] bg-[#D9D9D9]">
+        <div class="h-fit flex flex-col md:flex-row md:gap-x-4 gap-y-4">
+            <div class="w-[327px] h-[90px] md:w-[264px] md:h-[234px] rounded-[20px] bg-[#D9D9D9]">
 
             </div>
 
-            <div class="w-[327px] h-[90px] rounded-[20px] bg-[#D9D9D9]">
+            <div class="w-[327px] h-[90px] md:w-[264px] md:h-[234px] rounded-[20px] bg-[#D9D9D9]">
+
+            </div>
+
+            <div class="w-[327px] h-[90px] rounded-[20px] md:w-[264px] md:h-[234px] bg-[#D9D9D9]">
 
             </div>
         </div>
@@ -67,9 +72,9 @@
 
 
         <!-- New Arrivals start -->
-        <p class="mb-[30px] font-[700] text-[30px]">NEW ARRIVALS</p>
+        <p class="mb-[30px] font-[700] text-[30px] md:text-[50px]">NEW ARRIVALS</p>
 
-        <div class="h-fit w-full ml-8 flex gap-x-4 overflow-x-auto overflow-y-hidden">
+        <div class="h-fit w-full md:w-[915px] md:flex md:ml-0 ml-8 flex gap-x-4 overflow-x-auto overflow-y-hidden">
             <div id="prodID" class="card w-[216px] h-fit flex-col justify-start">
                 <!-- new arrivals items -->
                 <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
@@ -111,9 +116,9 @@
         <!-- Top Selling start -->
         <div class="my-[30px] w-[90%] border-[1px] border-[#08022680] opacity-50"></div>
 
-        <p class="mb-[30px] font-[700] text-[30px]">TOP SELLING</p>
+        <p class="mb-[30px] font-[700] text-[30px] md:text-[50px]">TOP SELLING</p>
 
-        <div class="h-fit w-full ml-8 mb-8 flex gap-x-4 overflow-x-auto overflow-y-hidden">
+        <div class="h-fit w-full md:w-[915px] md:flex md:ml-0 ml-8 mb-8 flex gap-x-4 overflow-x-auto overflow-y-hidden">
             <div id="topProdID" class="card w-[216px] h-fit flex-col justify-start">
                 <!-- Top Selling items -->
                 <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
@@ -154,51 +159,116 @@
 
         <!-- Top Selling end -->
 
-        <div class="w-[94%] h-[155px] overflow-visible">
-            <div class="relative top-0 left-0 rounded-[20px] w-full h-80 bg-[#EB6B72]" style="font-family: 'Poppins';">
-                <div class="w-full h-fit flex flex-col pt-10 px-8 pb-16">
-                    <p class="text-[35px] font-[800] text-white leading-8 mb-2">STAY UPDATED ON YOUR ORDERS!</p>
-                    <p class="text-[10px] font-[400] mb-4">Sign up now to track your purchases, receive real-time updates, and enjoy a seamless ordering experience. Don’t miss out—order today!</p>
+        
+    </div>
+    <!-- content -->
 
-                    <button class="bg-white w-full h-[45px] rounded-[20px] text-[15px] font-[600] text-[#EB6B72]">
-                        Create an Account!
-                    </button>
+
+    <!-- footer -->
+    <div class="bg-[#080226] w-screen h-[fit] flex flex-col items-center" style="font-family: 'Poppins';">
+        <div class="w-[90%] h-[145px] md:h-[50px] mb-4 overflow-visible">
+            <div class="relative -top-44 md:-top-28 rounded-[20px] w-full h-80 md:h-40 bg-[#EB6B72]" style="font-family: 'Poppins';">
+                <div class="w-full h-fit flex flex-col md:flex-row pt-10 px-8 pb-16">
+                    <div class="w-fit h-fit flex flex-col md:w-[60%] md:pl-10">
+                        <p class="text-[35px] md:text-[38px] font-[800] text-white leading-8 mb-2">STAY UPDATED ON YOUR ORDERS!</p>
+                        <p class="text-[10px] md:text-[14px] font-[400] mb-4">Sign up now to track your purchases, receive real-time updates, and enjoy a seamless ordering experience. Don’t miss out—order today!</p>
+                    </div>
+                    <div class="w-full h-fit md:w-[40%] md:h-[4.5em] md:flex md:justify-center md:items-center">
+                        <button class="bg-white w-full h-[45px] rounded-[20px] md:w-[315px] text-[15px] font-[600] text-[#EB6B72]">
+                            Create an Account!
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        <footer>
-            <div class="bg-[#080226] w-screen h-fit pt-44 flex flex-col items-center" style="font-family: 'Poppins';">
-                <div class="w-fit h-fit flex gap-x-6">
-                    <img class="w-[80px] h-auto" src="/static/assets/shop-logo.png" alt="">
-                    <div class="flex flex-col items-start justify-center">
-                        <p class="text-[24px] text-white font-[600]">KOSUPURE.SHOP</p>
-                        <p class="text-[15px] italic text-white font-[400]">Your Ultimate <br> Cosplay Destination</p>
-                    </div>
+        
+        <div class="flex flex-col items-center md:flex-row md:w-full md:justify-between md:px-20">
+            <div class="w-fit h-fit flex gap-x-6">
+                <img class="w-[80px] h-auto" src="/static/assets/shop-logo.png" alt="">
+                <div class="flex flex-col items-start justify-center">
+                    <p class="text-[24px] text-white font-[600]">KOSUPURE.SHOP</p>
+                    <p class="text-[15px] italic text-white font-[400]">Your Ultimate <br> Cosplay Destination</p>
                 </div>
-                <div class="my-8 w-fit h-full flex gap-x-6">
-                    <div class="w-fit h-fit flex flex-col items-start gap-y-2.5">
-                        <p class="text-white font-[400] text-[12px]">COMPANY</p>
-                        <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">About Us</a>
-                        <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Developers</a>
-                        
-                    </div>
-
-                    <div class="w-fit h-fit flex flex-col items-start gap-y-2.5">
-                        <p class="text-white font-[400] text-[12px]">HELP</p>
-                        <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Customer Support</a>
-                        <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Terms & Conditions</a>
-                        
-                    </div>
-
-
-                    <div class="w-fit h-fit flex flex-col items-start gap-y-2.5">
-                        <p class="text-white font-[400] text-[12px]">FAQ</p>
-                        <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Sizing</a>
-                        <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Orders</a>
-                    </div>
-                </div>  
             </div>
-        </footer>
+            <div class="my-8 w-fit h-full flex gap-x-6 md:gap-x-[10em]">
+                    <div class="w-fit h-fit flex flex-col items-start gap-y-2.5">
+                    <p class="text-white font-[400] text-[12px]">COMPANY</p>
+                    <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">About Us</a>
+                    <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Developers</a>
+                </div>
+
+                <div class="w-fit h-fit flex flex-col items-start gap-y-2.5">
+                    <p class="text-white font-[400] text-[12px]">HELP</p>
+                    <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Customer Support</a>
+                    <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Terms & Conditions</a>
+                        
+                </div>
+
+
+                <div class="w-fit h-fit flex flex-col items-start gap-y-2.5">
+                    <p class="text-white font-[400] text-[12px]">FAQ</p>
+                    <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Sizing</a>
+                    <a href="" class="no-underline text-[12px] font-[275] opacity-65 text-white">Orders</a>
+                </div>
+            </div>  
+        </div>
     </div>
+     <!-- footer -->
+
+
+
+    <!-- Burger Menu -->
+    <div class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 z-50 flex">
+        <!-- Menu container -->
+        <div class="w-[65%] h-full bg-[#080226] rounded-r-[20px] z-50 inline-block">
+            <div class="flex justify-center w-full h-fit items-center">
+                <div class="w-fit h-10 flex pt-5 gap-x-2" style="font-family: 'Poppins';">
+                    <img class="h-6" src="/static/assets/shop-logo.png" alt="">
+                    <p class="align-top font-[18px] text-[700] text-white">KOSUPURE.SHOP</p>
+                </div>
+            </div>
+
+            <ul class="w-full h-fit mt-6 flex flex-col">
+                <li>
+                    <div class="h-[53px] w-full flex justify-start  items-center gap-x-4 px-12">
+                        <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                            <path fill="#fff" d="M6 19h3v-5q0-.42.29-.71T10 13h4q.42 0 .71.29T15 14v5h3v-9l-6-4.5L6 10zm-2 0v-9q0-.47.21-.9t.59-.7l6-4.5q.53-.4 1.2-.4t1.2.4l6 4.5q.38.28.59.7t.21.9v9q0 .82-.59 1.41T18 21h-4q-.42 0-.71-.29T13 20v-5h-2v5q0 .42-.29.71T10 21H6q-.82 0-1.41-.59T4 19m8-6.75"/>
+                          </svg>
+                        <a href="" class="font-[400] text-[13px] text-white"> Home</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="h-[53px] w-full flex justify-start  items-center gap-x-4 px-12">
+                        <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                            <path d="m18.36 9 .6 3H5.04l.6-3zM20 4H4v2h16zm0 3H4l-1 5v2h1v6h10v-6h4v6h2v-6h1v-2zM6 18v-4h6v4z"/>
+                          </svg>
+                     
+                        
+                        <a href="" class="font-[400] text-[13px] text-white"> Shop</a>
+                        <div class="flex-grow-1">
+
+                        </div>
+                        <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                            <path d="M7.41 8.58 12 13.17l4.59-4.59L18 10l-6 6-6-6z"/>
+                          </svg>
+                    </div>
+                    <div class="w-full h-fit flex flex-col items-center mt-2">
+                        <ul class="flex flex-col gap-y-5">
+                            <li>
+                                <a class="text-white text-[12px] font-[500]" href="">Anime Cosplay</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[12px] font-[500]" href="">Movie Cosplay</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[12px] font-[500]" href="">Game Cosplay</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 </body>
-</html>
+</html> 
