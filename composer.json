@@ -1,0 +1,14 @@
+{
+    "name": "hachisnail/kosupure",
+    "description": "Web development final project for 1st semester CNSC BSIS 3A",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hachisnail",
+            "email": "jeffersontalagtag06@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
