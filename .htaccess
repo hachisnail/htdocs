@@ -1,0 +1,12 @@
+# Enable the rewrite engine
+RewriteEngine On
+
+# Force HTTPS for all requests
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Redirect all requests to the root if the page is not found
+ErrorDocument 404 /
+
+# Disallow directory browsing
+Options -Indexes

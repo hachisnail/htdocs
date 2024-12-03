@@ -8,161 +8,69 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/static/css/utils.css">
     <title>Kosupure</title>
     <link rel="icon" type="image/x-icon" href="/static/assets/shop-logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 <body>
     <!-- header -->
-    <div class="w-screen h-16 bg-[#080226] flex justify-between items-center px-4 fixed top-0 left-0 z-30" style="font-family: 'Poppins';">
-        <div class="flex items-center gap-x-2 font-semibold text-white text-xl">
-            <span class="material-symbols--menu-rounded"></span>
+    <div class="w-screen h-16 bg-[#080226] flex justify-between items-center px-4 md:px-36 fixed top-0 left-0 z-30" style="font-family: 'Poppins';">
+        <div class="flex items-center gap-x-2 md:gap-x-4 font-semibold text-white text-xl">
+            <img class="w-8 hidden sm:block" src="/static/assets/shop-logo.png" alt="">
+            <svg id="toggleMenu" onclick="toggleBurgerMenu()" class="fill-white md:hidden hover:fill-[#EFE391]" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                <path d="M4 18q-.42 0-.71-.29T3 17t.29-.71T4 16h16q.42 0 .71.29T21 17t-.29.71T20 18zm0-5q-.42 0-.71-.29T3 12t.29-.71T4 11h16q.42 0 .71.29T21 12t-.29.71T20 13zm0-5q-.42 0-.71-.29T3 7t.29-.71T4 6h16q.42 0 .71.29T21 7t-.29.71T20 8z"/>
+              </svg>
+              
+              
             <p>KOSUPURE.SHOP</p>
         </div>
-        <div class="flex items-center gap-x-2 font-semibold text-white text-xl">
-            <span class="material-symbols--shopping-bag-outline"></span>
-            <span class="mingcute--user-4-line"></span>
+        <div class="flex items-center gap-x-2 md:gap-x-16  font-semibold text-white text-xl">
+            <a class="font-[400] text-[14px] hover:text-[#EFE391] hidden sm:block" href="/" data-navigo>Home</a>
+            <div class="relative inline-block text-left hidden sm:block">
+                
+                <button id="dropdownButton" class="flex items-center  py-2 text-white rounded-md font-[400] text-[14px] hover:text-[#EFE391]" onclick="toggleDropdown()">
+                    Shop
+                    <svg id="arrowIcon" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+              
+                <div id="dropdownMenu" class="absolute -right-24 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
+                    <a href="/anime-cosplay" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]" data-navigo>Anime Cosplay</a>
+                    <a href="/movie-cosplay" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]" data-navigo>Movie Cosplay</a>
+                    <a href="/game-cosplay" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#080226] hover:bg-[#EB6B72]" data-navigo>Game Cosplay</a>
+                </div>
+            </div>
+
+            <svg class="fill-white hover:fill-[#EFE391]" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                  <path  d="M12 2a4 4 0 0 1 4 4h2.04a2 2 0 0 1 2 1.93l.42 12a2 2 0 0 1-2 2.07H5.54a2 2 0 0 1-2-2.07l.43-12a2 2 0 0 1 2-1.93H8a4 4 0 0 1 4-4M8 8H5.96l-.42 12h12.92l-.43-12H16v1a1 1 0 0 1-2 .12V8h-4v1a1 1 0 0 1-2 .12V9zm4-4a2 2 0 0 0-2 1.85V6h4a2 2 0 0 0-2-2"/>
+              </svg>
+              
+              <div class="relative inline-block text-left">
+                
+                <button id="profileButton" class="flex items-center  py-2 text-white rounded-md font-[400] text-[14px] hover:text-[#EFE391]" onclick="toggleProfile()">
+                    <svg class="fill-white hover:fill-[#EFE391]" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                        <path d="M12 2a10 10 0 0 1 10 10 9.96 9.96 0 0 1-2.26 6.33l.02.02-.13.11A9.98 9.98 0 0 1 12 22a9.97 9.97 0 0 1-7.43-3.3l-.2-.24-.13-.1.02-.03A9.96 9.96 0 0 1 2 12 10 10 0 0 1 12 2m0 15c-1.86 0-3.54.6-4.8 1.4A7.97 7.97 0 0 0 12 20a7.97 7.97 0 0 0 4.8-1.6A8.9 8.9 0 0 0 12 17m0-13a8 8 0 0 0-6.26 12.98 10.86 10.86 0 0 1 12.52 0A8 8 0 0 0 12 4m0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8m0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+                    </svg>
+                </button>
+              
+                <div id="profileMenu" class="absolute -right-5 md:-right-32 mt-3 w-48 bg-white rounded-md shadow-lg hidden">
+                    <a href="/anime-cosplay" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]" data-navigo>Anime Cosplay</a>
+                    <a href="/movie-cosplay" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]" data-navigo>Movie Cosplay</a>
+                    <a href="/game-cosplay" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#080226] hover:bg-[#EB6B72]" data-navigo>Game Cosplay</a>
+                </div>
+            </div>
+
+
+              
+              
         </div>
     </div>
     <!-- header -->
-
-
-
-    <!-- content -->
-    <div class="bg-cover bg-center h-screen justify-center" style="background-image: url('/static/assets/bg.png');">
-        
-        
-        
-        <div class="flex-grow-1 flex flex-col pt-28 md:justify-center md:p-20  items-center h-full w-screen bg-[#ACA2BB] bg-opacity-60">
-            <div class="flex flex-col w-[92%]" style="font-family: 'Poppins'">
-                <div class="w-[330px] md:w-[500px]">
-                    <p class="font-bold text-[40px] leading-9 text-[#080226] md:text-[60px] md:font-[700] md:leading-[50px]">YOUR ULTIMATE COSPLAY DESTINATION</p>
-
-                    <p class="my-4 text-[12px] font-[400]">
-                        Browse through our carefully curated collections and find everything you need to bring your favorite characters to life!
-                    </p>
-                </div>
-                <button class="w-full md:w-[196px] h-[47px] bg-[#EFE391] rounded-[20px] text-[12px] font-[500]">
-                    Shop Now
-                </button>
-            </div>
-
-        </div> 
-       
-    </div>
-    <div class="bg-white w-screen h-fit flex flex-col items-center pt-[24px] pb-44" style="font-family: 'Poppins';">
-        <p class="mb-[30px] font-[700] text-[30px] md:text-[50px]">CATEGORIES</p>
-
-        <div class="h-fit flex flex-col md:flex-row md:gap-x-4 gap-y-4">
-            <div class="w-[327px] h-[90px] md:w-[264px] md:h-[234px] rounded-[20px] bg-[#D9D9D9]">
-
-            </div>
-
-            <div class="w-[327px] h-[90px] md:w-[264px] md:h-[234px] rounded-[20px] bg-[#D9D9D9]">
-
-            </div>
-
-            <div class="w-[327px] h-[90px] rounded-[20px] md:w-[264px] md:h-[234px] bg-[#D9D9D9]">
-
-            </div>
-        </div>
-
-        <div class="my-[30px] w-[90%] border-[1px] border-[#08022680] opacity-50"></div>
-
-
-        <!-- New Arrivals start -->
-        <p class="mb-[30px] font-[700] text-[30px] md:text-[50px]">NEW ARRIVALS</p>
-
-        <div class="h-fit w-full md:w-[915px] md:flex md:ml-0 ml-8 flex gap-x-4 overflow-x-auto overflow-y-hidden">
-            <div id="prodID" class="card w-[216px] h-fit flex-col justify-start">
-                <!-- new arrivals items -->
-                <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
-                    <!-- change later to img -->
-                </div>
-                <p id="prodName" class="my-[2px] text-[16px] font-[600]">Product Name</p>
-                <p class="text-[24px] font-[600] text-[#C83E71]">₱<span id="prodPrice">500</span></p>
-            </div>
-
-            <div id="prodID" class="card w-[216px] h-fit flex-col justify-start">
-                <!-- new arrivals items -->
-                <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
-                    <!-- change later to img -->
-                </div>
-                <p id="prodName" class="my-[2px] text-[16px] font-[600]">Product Name</p>
-                <p class="text-[24px] font-[600] text-[#C83E71]">₱<span id="prodPrice">500</span></p>
-            </div>
-        
-            <div id="prodID" class="card w-[216px] h-fit flex-col justify-start">
-                <!-- new arrivals items -->
-                <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
-                    <!-- change later to img -->
-                </div>
-                <p id="prodName" class="my-[2px] text-[16px] font-[600]">Product Name</p>
-                <p class="text-[24px] font-[600] text-[#C83E71]">₱<span id="prodPrice">500</span></p>
-            </div>
-        
-            <div id="prodID" class="card w-[216px] h-fit flex-col justify-start">
-                <!-- new arrivals items -->
-                <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
-                    <!-- change later to img -->
-                </div>
-                <p id="prodName" class="my-[2px] text-[16px] font-[600]">Product Name</p>
-                <p class="text-[24px] font-[600] text-[#C83E71]">₱<span id="prodPrice">500</span></p>
-            </div>
-        </div>
-        <!-- New Arrivals end -->
-
-        <!-- Top Selling start -->
-        <div class="my-[30px] w-[90%] border-[1px] border-[#08022680] opacity-50"></div>
-
-        <p class="mb-[30px] font-[700] text-[30px] md:text-[50px]">TOP SELLING</p>
-
-        <div class="h-fit w-full md:w-[915px] md:flex md:ml-0 ml-8 mb-8 flex gap-x-4 overflow-x-auto overflow-y-hidden">
-            <div id="topProdID" class="card w-[216px] h-fit flex-col justify-start">
-                <!-- Top Selling items -->
-                <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
-                    <!-- change later to img -->
-                </div>
-                <p id="topProdName" class="my-[2px] text-[16px] font-[600]">Product Name</p>
-                <p class="text-[24px] font-[600] text-[#C83E71]">₱<span id="topProdPrice">500</span></p>
-            </div>
-            
-            <div id="topProdID" class="card w-[216px] h-fit flex-col justify-start">
-                <!-- Top Selling items -->
-                <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
-                    <!-- change later to img -->
-                </div>
-                <p id="topProdName" class="my-[2px] text-[16px] font-[600]">Product Name</p>
-                <p class="text-[24px] font-[600] text-[#C83E71]">₱<span id="topProdPrice">500</span></p>
-            </div>
-
-            <div id="topProdID" class="card w-[216px] h-fit flex-col justify-start">
-                <!-- Top Selling items -->
-                <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
-                    <!-- change later to img -->
-                </div>
-                <p id="topProdName" class="my-[2px] text-[16px] font-[600]">Product Name</p>
-                <p class="text-[24px] font-[600] text-[#C83E71]">₱<span id="topProdPrice">500</span></p>
-            </div>
-
-            <div id="topProdID" class="card w-[216px] h-fit flex-col justify-start">
-                <!-- Top Selling items -->
-                <div class="w-[216px] h-[224px] rounded-[20px] bg-[#D9D9D9]">
-                    <!-- change later to img -->
-                </div>
-                <p id="topProdName" class="my-[2px] text-[16px] font-[600]">Product Name</p>
-                <p class="text-[24px] font-[600] text-[#C83E71]">₱<span id="topProdPrice">500</span></p>
-            </div>
-           
-        </div>
-
-        <!-- Top Selling end -->
-
-        
-    </div>
-    <!-- content -->
+    
+    
+    <div id="shopContent"></div>
 
 
     <!-- footer -->
@@ -219,9 +127,9 @@
 
 
     <!-- Burger Menu -->
-    <div class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 z-50 flex">
+    <div id="burgerMenu" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 z-50 flex">
         <!-- Menu container -->
-        <div class="w-[65%] h-full bg-[#080226] rounded-r-[20px] z-50 inline-block">
+        <div id="content" class="w-[65%] h-full bg-[#080226] rounded-r-[20px] z-50 inline-block">
             <div class="flex justify-center w-full h-fit items-center">
                 <div class="w-fit h-10 flex pt-5 gap-x-2" style="font-family: 'Poppins';">
                     <img class="h-6" src="/static/assets/shop-logo.png" alt="">
@@ -231,11 +139,11 @@
 
             <ul class="w-full h-fit mt-6 flex flex-col">
                 <li>
-                    <div class="h-[53px] w-full flex justify-start  items-center gap-x-4 px-12">
-                        <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-                            <path fill="#fff" d="M6 19h3v-5q0-.42.29-.71T10 13h4q.42 0 .71.29T15 14v5h3v-9l-6-4.5L6 10zm-2 0v-9q0-.47.21-.9t.59-.7l6-4.5q.53-.4 1.2-.4t1.2.4l6 4.5q.38.28.59.7t.21.9v9q0 .82-.59 1.41T18 21h-4q-.42 0-.71-.29T13 20v-5h-2v5q0 .42-.29.71T10 21H6q-.82 0-1.41-.59T4 19m8-6.75"/>
+                    <div class="h-[53px] w-full flex justify-start  items-center gap-x-4 px-12 fill-white hover:fill-[#080226] hover:text-[#080226] text-white hover:bg-[#EB6B72]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                            <path  d="M6 19h3v-5q0-.42.29-.71T10 13h4q.42 0 .71.29T15 14v5h3v-9l-6-4.5L6 10zm-2 0v-9q0-.47.21-.9t.59-.7l6-4.5q.53-.4 1.2-.4t1.2.4l6 4.5q.38.28.59.7t.21.9v9q0 .82-.59 1.41T18 21h-4q-.42 0-.71-.29T13 20v-5h-2v5q0 .42-.29.71T10 21H6q-.82 0-1.41-.59T4 19m8-6.75"/>
                           </svg>
-                        <a href="" class="font-[400] text-[13px] text-white"> Home</a>
+                        <a href="/" class="font-[400] text-[13px]" data-navigo> Home</a>
                     </div>
                 </li>
                 <li>
@@ -251,25 +159,76 @@
                         </div>
                         <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                             <path d="M7.41 8.58 12 13.17l4.59-4.59L18 10l-6 6-6-6z"/>
-                          </svg>
+                        </svg>
                     </div>
-                    <div class="w-full h-fit flex flex-col items-center mt-2">
-                        <ul class="flex flex-col gap-y-5">
-                            <li>
-                                <a class="text-white text-[12px] font-[500]" href="">Anime Cosplay</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[12px] font-[500]" href="">Movie Cosplay</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[12px] font-[500]" href="">Game Cosplay</a>
-                            </li>
-                        </ul>
+                </li>
+                <li>
+                    <div class="h-[53px] w-full flex items-center pl-[88px] text-white text-[12px] font-[500] hover:text-[#080226] hover:bg-[#EB6B72]">
+                        <a href="/anime-cosplay" data-navigo>Anime Cosplay</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="h-[53px] w-full flex items-center pl-[88px] text-white text-[12px] font-[500] hover:text-[#080226] hover:bg-[#EB6B72]">
+                        <a href="/movie-cosplay" data-navigo>Movie Cosplay</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="h-[53px] w-full flex items-center pl-[88px] text-white text-[12px] font-[500] hover:text-[#080226] hover:bg-[#EB6B72]">
+                        <a href="/game-cosplay" data-navigo>Game Cosplay</a>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 
+    <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
+    <script src="/static/js/router.js"></script>
+
+    <script>
+
+        function toggleProfile() {
+            const profileMenu = document.getElementById("profileMenu");
+
+            profileMenu.classList.toggle("hidden");
+
+        }
+
+
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById("dropdownMenu");
+            const arrowIcon = document.getElementById("arrowIcon");
+
+            dropdownMenu.classList.toggle("hidden");
+
+            if (dropdownMenu.classList.contains("hidden")) {
+                arrowIcon.style.transform = "rotate(0deg)"; 
+            } else {
+                arrowIcon.style.transform = "rotate(180deg)"; 
+            }
+        }
+
+        function toggleBurgerMenu() {
+            const menu = document.getElementById("burgerMenu");
+      
+            menu.classList.toggle("hidden");
+            if (menu.classList.contains("hidden")) {
+                document.removeEventListener("click", closeMenuOnOutsideClick);
+            } else {
+                document.addEventListener("click", closeMenuOnOutsideClick);
+            }
+
+        }
+
+        function closeMenuOnOutsideClick(event) {
+            const menu = document.getElementById("burgerMenu");
+            const content = document.getElementById("content");
+
+            if (menu.contains(event.target) && !content.contains(event.target)) {
+                menu.classList.add("hidden");
+                document.removeEventListener("click", closeMenuOnOutsideClick); 
+            }
+        }
+    
+    </script>
 </body>
 </html> 
