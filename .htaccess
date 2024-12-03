@@ -1,12 +1,9 @@
-# Enable the rewrite engine
-RewriteEngine On
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
 
-# Force HTTPS for all requests
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-
-# Redirect all requests to the root if the page is not found
-ErrorDocument 404 /
-
-# Disallow directory browsing
-Options -Indexes
+    # Redirect all requests to index.html
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.html [L]
+</IfModule>
