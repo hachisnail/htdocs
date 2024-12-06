@@ -1,13 +1,11 @@
-// Create a new Navigo router instance
-const router = new Navigo('/');
 
-// Load the page content dynamically
-async function loadPage(view) {
-  // Remove any previously loaded scripts
+const router = new Navigo('/', { hash: true});
+
+
+async function loadPage(view, id = null) {
   const existingScripts = document.querySelectorAll(`script[data-view]`);
   existingScripts.forEach(script => script.remove());
 
-  // Fetch the HTML content of the view
   fetch(`/static/views/${view}.html`)
     .then(response => {
       if (response.ok) {
@@ -17,17 +15,22 @@ async function loadPage(view) {
       }
     })
     .then(htmlContent => {
-      document.getElementById('shopContent').innerHTML = htmlContent;  // Insert HTML into the shopContent div
+      document.getElementById('shopContent').innerHTML = htmlContent;
+
+      // Call the data-loading function if it's the products view
+      if (view === 'products' && id) {
+        
+        loadProductDetails(id); // Fetch product data after view is loaded
+      }
     })
     .catch(error => {
       console.error(`${view} failed to load:`, error);
-      load404Page(); // Show the 404 page if loading fails
+      load404Page();
     });
 
-  // Optionally load the associated JavaScript file
   const script = document.createElement('script');
-  script.src = `/static/js/views/${view}.js`;  // Ensure corresponding JS exists in /static/js/views/
-  script.dataset.view = view;  // Add a custom data attribute to identify the script
+  script.src = `/static/js/views/${view}.js`;
+  script.dataset.view = view;
   script.onload = () => {
     console.log(`${view}.js loaded successfully.`);
   };
@@ -36,6 +39,7 @@ async function loadPage(view) {
   };
   document.body.appendChild(script);
 }
+
 
 // Function to load the 404.html page
 function load404Page() {
@@ -54,11 +58,46 @@ function load404Page() {
       console.error(`Failed to load 404.html:`, error);
     //   document.getElementById('shopContent').innerHTML = `
     //     <h1>404 - Page Not Found</h1>
-    //     <p>The page you are looking for does not exist.</p>
+    //     <p>The page you are looking for does not exist.</p >
     //     <a href="/">Go back to Home</a>
     //   `; // Fallback if 404.html fails to load
     });
 }
+
+function loadProductDetails(id) {
+  console.log("product with id:"+id+" has been loaded");
+  //to do fetch specific products api
+  // fetch(`/api/products/${id}`) // Replace with your actual API endpoint
+  //   .then(response => {
+  //     if (response.ok) {
+  //       return response.json();
+  //     } else {
+  //       throw new Error('Product not found');
+  //     }
+  //   })
+  //   .then(product => {
+  //     // Populate the data into the loaded products view
+  //     console.log("product with id:"+id+" has been loaded");
+  //     const productContainer = document.getElementById('productDetails'); // Ensure products.html has this container
+  //     if (productContainer) {
+  //       productContainer.innerHTML = `
+  //         <h1>${product.name}</h1>
+  //         <img src="${product.image}" alt="${product.name}" />
+  //         <p>${product.description}</p>
+  //         <p>Price: $${product.price}</p>
+  //       `;
+  //     }
+  //   })
+  //   .catch(error => {
+  //     console.error(`Failed to load product details:`, error);
+  //     const productContainer = document.getElementById('productDetails');
+  //     if (productContainer) {
+  //       productContainer.innerHTML = `<p>Product not found</p>`;
+  //     }
+  //   });
+}
+
+
 
 // Define routes
 router.on({
@@ -73,13 +112,24 @@ router.on({
   },
   '/game-cosplay': function () {
     loadPage('game-cosplay');  // Load the game-cosplay view
+  },
+  '/products/:id': function ({ data }) {
+
+    if (data && data.id) {
+      loadPage('products', data.id); // Pass the id to loadPage
+    } else {
+      console.error('ID not found in route data');
+      load404Page(); // Optionally handle the error
+    }
   }
+
 });
 
-// Handle undefined routes (404)
 router.notFound(() => {
-  load404Page(); // Load the 404.html file for undefined routes
+  load404Page();
 });
 
-// Initialize the router
 router.resolve();
+
+
+

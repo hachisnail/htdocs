@@ -55,10 +55,15 @@
                     </svg>
                 </button>
               
-                <div id="profileMenu" class="absolute -right-5 md:-right-32 mt-3 w-48 bg-white rounded-md shadow-lg hidden">
+                <div id="profileMenu" class=" absolute -right-5 md:-right-32 mt-3 w-48 bg-white rounded-md shadow-lg hidden">
                     <a href="#" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]">My Account</a>
                     <a href="#" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]" >My Orders</a>
                     <a href="#" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#080226] hover:bg-[#EB6B72]" >Logout</a>
+                </div>
+
+                <div id="profileLogin" class=" absolute -right-5 md:-right-32 mt-3 w-48 bg-white rounded-md shadow-lg hidden">
+                    <a href="#" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]">Login</a>
+                    <a href="#" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]" >Sign Up</a>
                 </div>
             </div>
 
@@ -181,17 +186,19 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/@spreadtheweb/multi-range-slider@1.0.2/dist/range-slider.main.min.js"></script>
-    <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
-    <script src="/static/js/router.js"></script>
+    
 
     <script>
 
         function toggleProfile() {
-            const profileMenu = document.getElementById("profileMenu");
 
-            profileMenu.classList.toggle("hidden");
+            //todo write a simple check to see if a user is login and handle menu accordingly
 
+            //const profileMenu = document.getElementById("profileMenu");
+            const profileLogin = document.getElementById("profileLogin");
+
+            //profileMenu.classList.toggle("hidden");
+            profileLogin.classList.toggle("hidden");
         }
 
 
@@ -207,6 +214,7 @@
                 arrowIcon.style.transform = "rotate(180deg)"; 
             }
         }
+    
 
         function toggleBurgerMenu() {
             const menu = document.getElementById("burgerMenu");
@@ -231,5 +239,8 @@
         }
     
     </script>
+    <!-- <script src="https://unpkg.com/@spreadtheweb/multi-range-slider@1.0.2/dist/range-slider.main.min.js"></script> -->
+    <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
+    <script src="/static/js/router.js"></script>
 </body>
 </html> 
