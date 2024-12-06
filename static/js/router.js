@@ -21,11 +21,15 @@ async function loadPage(view, id = null) {
       if (view === 'products' && id) {
         
         loadProductDetails(id); // Fetch product data after view is loaded
+        resetURL(`/products/${id}`); // Keep the URL with the product ID
+      } else {
+        resetURL(`/${view}`); // Reset the URL for non-product views
       }
+      
     })
     .catch(error => {
       console.error(`${view} failed to load:`, error);
-      load404Page();
+      load404Page(`${view}`);
     });
 
   const script = document.createElement('script');
@@ -40,6 +44,10 @@ async function loadPage(view, id = null) {
   document.body.appendChild(script);
 }
 
+function resetURL(path) {
+  //console.log(path); // Log for debugging
+  history.replaceState(null, '', path); // Replace current history entry with the new path
+}
 
 // Function to load the 404.html page
 function load404Page() {
