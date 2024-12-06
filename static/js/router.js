@@ -45,7 +45,7 @@ async function loadPage(view, id = null) {
 }
 
 function resetURL(path) {
-  //console.log(path); // Log for debugging
+  console.log(path); // Log for debugging
   history.replaceState(null, '', path); // Replace current history entry with the new path
 }
 
@@ -110,6 +110,9 @@ function loadProductDetails(id) {
 // Define routes
 router.on({
   '/': function () {
+    loadPage('home');  // Load the home view
+  },
+  '/home': function () {
     loadPage('home');  // Load the home view
   },
   '/anime-cosplay': function () {
