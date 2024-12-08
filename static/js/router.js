@@ -36,7 +36,7 @@ async function loadPage(view, id = null) {
   script.src = `/static/js/views/${view}.js`;
   script.dataset.view = view;
   script.onload = () => {
-    //console.log(`${view}.js loaded successfully.`);
+    console.log(`${view}.js loaded successfully.`);
   };
   script.onerror = () => {
     console.error(`${view}.js failed to load.`);
@@ -118,6 +118,9 @@ router.on({
   },
   '/game-cosplay': function () {
     loadPage('game-cosplay');  
+  },
+  '/checkout': function () {
+    loadPage('checkout'); 
   },
   '/products/:id': function ({ data }) {
 

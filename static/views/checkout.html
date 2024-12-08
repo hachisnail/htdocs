@@ -1,0 +1,111 @@
+<div class="w-screen h-fit px-4 md:px-20 flex justify-center md:flex-row pt-24 pb-48 bg-[#E4E4E5]">
+    <div class="w-full flex flex-col md:flex-row h-fit md:gap-x-4 rounded-[20px] pt-[25px] pb-3 px-3 md:px-7 md:pb-7 bg-[#FFFFFF]">
+        <div class="w-full flex flex-col items-start">
+            <!-- shipping text -->
+             <div class="flex flex-col w-full h-fit items-start">
+                <p class="text-[#080226] text-[20px] font-[700]">CHECKOUT</p>
+                <p class="text-[#080226] text-[10px] font-[400] mt-[10px]">You are currently checking out as a <span class="font-[700]">guest.</span> Please provide your details.  Keep in mind that checking out as a guest means you won't be able to track or receive updates about your order. To stay informed, consider  <span onclick="showLogin(false)" class="cursor-pointer underline font-[700]">creating an account</span> or <span onclick="showLogin(true)" class="cursor-pointer underline font-[700]">logging in</span> if you're already a member.</p>
+            </div>
+
+            <div class="w-full md:w-[90%] h-fit my-4 flex flex-col items-center gap-y-4">
+                <div class="w-full flex justify-start">
+                    <p class="text-[#080226] text-[17px] font-[700] ">Shipping Information</p>
+                </div>
+                <textarea class="resize-none w-full h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Full Name"></textarea>
+
+                <textarea class="resize-none w-full h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Full Address"></textarea>
+
+                <div class="flex w-full h-fit justify-between">
+                    <textarea class="resize-none w-[32%] h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="City/Municipality"></textarea>
+
+                    <textarea class="resize-none w-[32%] h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Province"></textarea>
+
+                    <textarea class="resize-none w-[32%] h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Zip Code"></textarea>
+                </div>
+
+                <textarea class="resize-none w-full h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Phone Number"></textarea>
+
+                <div class="resize-none w-full flex justify-start">
+                    <p class="text-[#080226] text-[13px] font-[700]">Delivery Instructions</p>
+                </div>
+
+                <textarea class="resize-none w-full h-[75px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text"></textarea>
+                
+                <div class="hidden sm:block w-full flex justify-start">
+                    <button class="w-fit h-fit py-2 px-20 text-[18px] font-[500] rounded-[20px] bg-[#EFE391]">
+                        Confirm Order
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+
+            <div class="bg-[#E4E4E5] w-full md:w-[550px] h-fit flex flex-col items-center rounded-[20px] pt-[20px]">
+                <div class="w-[90%] h-fit flex justify-between items-center">
+                    <!-- Header -->
+                    <p class="text-[20px] font-[700]">Order Summary</p>
+                    <svg class="hidden hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z" />
+                    </svg>
+                </div>
+                <div class="w-[90%] h-full my-8 flex flex-col gap-y-2">
+                    <!-- Shopping bag content -->
+                    <div class="rounded-[20px] p-2 w-full h-fit flex justify-between bg-white  border-solid border-[2px] border-[#D9D9D9]">
+                        <!-- product in bag -->
+                        <div class="flex">
+                            <div class="rounded-[20px] w-[83px] h-[89px] flex bg-[#D9D9D9]">
+                                <!--prod imgage -->
+                            </div>
+    
+                            <div class="w-fit ml-2 h-[89px] flex flex-col justify-start">
+                                <!-- prod info -->
+                                <p class="font-[700] text-[16px] text-[#080226]">PRODUCT NAME</p>
+                                <p class="text-[12px] text-[#828282] font-[400]">Size: <span id="size" class="font-[500] text-[#080226]">Large</span></p>
+                                <div class="h-full w-fit flex flex-col justify-end">
+                                    <p class="text-[#C83E71] text-[18px] font-[600]">₱500</p>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="flex flex-col items-end">
+                            <div class="h-full w-full flex justify-end">
+                                <svg class="fill-[#FF0000]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zM9 17h2V8H9zm4 0h2V8h-2zM7 6v13z" />
+                                </svg>
+                            </div>
+    
+                            <div class="flex gap-x-6 px-3 py-1 rounded-[20px] bg-[#D9D9D9]">
+                                <p class="text-[15px] font-[500]">+</p>
+                                <p class="text-[15px] font-[500]">1</p>
+                                <p class="text-[15px] font-[500]">-</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    
+    
+                </div>
+    
+                <div class="w-[90%] flex flex-col items-center">
+                    <!-- Footer -->
+                     <div class="w-full h-[1px] bg-[#08022630] ">
+                        <!-- Line -->
+                     </div>
+    
+                     <div class="w-full my-6 px-1 flex justify-between">
+                        <p class="text-[25px] text-[#080226] font-[700]">Total</p>
+                        <p id="totalPrice" class="text-[25px] text-[#C83E71] font-[600]">₱500</p>
+                     </div>
+                    
+                </div>
+                
+                
+        </div>
+
+        <div class="md:hidden mt-4 w-full flex justify-start">
+            <button class="w-full h-fit py-2 flex justify-center text-[18px] font-[500] rounded-[20px] bg-[#EFE391]">
+                Confirm Order
+            </button>
+        </div>
+    </div>
+</div>

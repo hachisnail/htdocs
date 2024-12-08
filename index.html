@@ -62,8 +62,8 @@
                 </div>
 
                 <div id="profileLogin" class=" absolute -right-5 md:-right-32 mt-3 w-48 bg-white rounded-md shadow-lg hidden">
-                    <a href="#" onclick="showLogin()" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]">Login</a>
-                    <a href="#" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]" >Sign Up</a>
+                    <a href="#" onclick="showLogin(true)" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]">Login</a>
+                    <a href="#" onclick="showLogin(false)" class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]" >Sign Up</a>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
                         <p class="text-[10px] md:text-[14px] font-[400] mb-4">Sign up now to track your purchases, receive real-time updates, and enjoy a seamless ordering experience. Don’t miss out—order today!</p>
                     </div>
                     <div class="w-full h-fit md:w-[40%] md:h-[4.5em] md:flex md:justify-center md:items-center">
-                        <button class="bg-white w-full h-[45px] rounded-[20px] md:w-[315px] text-[15px] font-[600] text-[#EB6B72]">
+                        <button onclick="showLogin(false)" class="bg-white w-full h-[45px] rounded-[20px] md:w-[315px] text-[15px] font-[600] text-[#EB6B72]">
                             Create an Account!
                         </button>
                     </div>
@@ -183,6 +183,8 @@
     </div>
 
      <!-- Burger Menu -->
+
+     
     
     <!-- Shopping Bag -->
     <div id="shoppingBag" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 z-50 flex items-end md:justify-end">
@@ -243,10 +245,11 @@
                     <p class="text-[25px] text-[#080226] font-[700]">Total</p>
                     <p id="totalPrice" class="text-[25px] text-[#C83E71] font-[600]">₱500</p>
                  </div>
-
-                 <button class="w-full py-2 rounded-[20px] bg-[#EFE391] text-[18px] font-[500]">
-                    Checkout
-                 </button>
+                 <a class="w-full" href="/checkout" data-navigo>
+                    <button class="w-full py-2 rounded-[20px] bg-[#EFE391] text-[18px] font-[500]">
+                        Checkout
+                    </button>
+                </a>
             </div>
         </div>
             
@@ -259,36 +262,89 @@
         <div id="content" class="w-full md:w-[50%] md:h-[45%] relative h-[40rem] md:rounded-[20px] bg-white rounded-t-[30px] z-50 py-[30px] flex flex-col items-center">
             <div class="w-[90%] h-fit flex justify-between items-center">
                 <!-- Header -->
-                <p class="text-[20px] md:text-[25px] font-[700]">Login</p>
+                <p id="loginBanner" class="hidden text-[20px] md:text-[25px] font-[700]">Login</p>
+                <p id="signupBanner" class="hidden text-[20px] md:text-[25px] font-[700]">Sign Up</p>
                 <svg onclick="showLogin()" class="hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z" />
                 </svg>
             </div>
 
             <div class="w-[90%] h-fit pt-3 flex flex-col items-center">
-                <input type="text" placeholder="Email Address / Username" class="w-full px-2 py-3  text-[12px] font-[500] bg-gray-200 text-gray-600 rounded-lg border border-gray-300 focus:outline-none "/>
+                <div id="loginArea" class="hidden w-full h-fit flex flex-col items-center">
+                    <input type="text" placeholder="Email Address / Username" class="w-full px-2 py-3  text-[12px] font-[500] bg-gray-200 text-gray-600 rounded-lg border border-gray-300 focus:outline-none "/>
 
-                <div class="w-full mt-3  flex items-center justify-center text-[12px] focus:outline-none font-[500] bg-gray-200 text-gray-600 rounded-lg border border-gray-300 ">
-                    <input type="text" placeholder="Password" class="bg-transparent focus:outline-none w-full px-2 py-3 rounded-lg"/>
-                    <svg class="mx-2 fill-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path  fill-rule="evenodd" d="M20.5 4.5a.8.8 0 0 0-1-1l-16 16a.8.8 0 1 0 1 1l2.9-2.8c1.3.6 3 1 4.6 1a11.4 11.4 0 0 0 9-4.5c.4-.7.8-1.5.8-2.2s-.4-1.5-.9-2.2a9.9 9.9 0 0 0-2-2.1l-1-.6zM17 8.2l-1.8 1.7a3.8 3.8 0 0 1-5.2 5.2l-1.4 1.4a9.3 9.3 0 0 0 3.5.8 9.9 9.9 0 0 0 7.7-4c.4-.6.6-1 .6-1.3s-.2-.8-.6-1.4c-.4-.5-1-1.2-1.8-1.8l-1-.6M11 14a2.3 2.3 0 0 0 3-3z" clip-rule="evenodd"/>
-                        <path  d="M12 5.3c1 0 2 .1 3 .4a.2.2 0 0 1 0 .4l-.8.8a.3.3 0 0 1-.2 0 9 9 0 0 0-2-.2 9.9 9.9 0 0 0-7.7 4c-.4.6-.5 1-.5 1.3s.1.8.5 1.4l1.5 1.5c.1.1.1.3 0 .4l-.7.7a.2.2 0 0 1-.3 0A9.5 9.5 0 0 1 3 14.2c-.5-.7-.9-1.5-.9-2.2s.4-1.5.9-2.2a11.4 11.4 0 0 1 9-4.5"/>
-                        <path  d="M12 8.3h.4c.1 0 .2.2 0 .4l-1.1 1.2a2.3 2.3 0 0 0-1.4 1.4l-1.2 1.2c-.2.1-.4 0-.4-.1A3.8 3.8 0 0 1 12 8.2"/>
-                    </svg>
-                </div> 
+                    <div class="w-full mt-3  flex items-center justify-center text-[12px] focus:outline-none font-[500] bg-gray-200 text-gray-600 rounded-lg border border-gray-300 ">
+                        <input id="passwordLG" type="password" placeholder="Password" class="bg-transparent focus:outline-none w-full px-2 py-3 rounded-lg"/>
+                        <svg onclick="toggleVisiblity('passwordLG', 'openLG', 'closeLG')" id="closeLG" class="mx-2 fill-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path  fill-rule="evenodd" d="M20.5 4.5a.8.8 0 0 0-1-1l-16 16a.8.8 0 1 0 1 1l2.9-2.8c1.3.6 3 1 4.6 1a11.4 11.4 0 0 0 9-4.5c.4-.7.8-1.5.8-2.2s-.4-1.5-.9-2.2a9.9 9.9 0 0 0-2-2.1l-1-.6zM17 8.2l-1.8 1.7a3.8 3.8 0 0 1-5.2 5.2l-1.4 1.4a9.3 9.3 0 0 0 3.5.8 9.9 9.9 0 0 0 7.7-4c.4-.6.6-1 .6-1.3s-.2-.8-.6-1.4c-.4-.5-1-1.2-1.8-1.8l-1-.6M11 14a2.3 2.3 0 0 0 3-3z" clip-rule="evenodd"/>
+                            <path  d="M12 5.3c1 0 2 .1 3 .4a.2.2 0 0 1 0 .4l-.8.8a.3.3 0 0 1-.2 0 9 9 0 0 0-2-.2 9.9 9.9 0 0 0-7.7 4c-.4.6-.5 1-.5 1.3s.1.8.5 1.4l1.5 1.5c.1.1.1.3 0 .4l-.7.7a.2.2 0 0 1-.3 0A9.5 9.5 0 0 1 3 14.2c-.5-.7-.9-1.5-.9-2.2s.4-1.5.9-2.2a11.4 11.4 0 0 1 9-4.5"/>
+                            <path  d="M12 8.3h.4c.1 0 .2.2 0 .4l-1.1 1.2a2.3 2.3 0 0 0-1.4 1.4l-1.2 1.2c-.2.1-.4 0-.4-.1A3.8 3.8 0 0 1 12 8.2"/>
+                        </svg>
+                        <svg onclick="toggleVisiblity('passwordLG', 'openLG', 'closeLG')" id="openLG" class="hidden mx-2 fill-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <g fill-rule="evenodd" clip-rule="evenodd">
+                              <path d="M8.3 12a3.8 3.8 0 1 1 7.4 0 3.8 3.8 0 0 1-7.4 0M12 9.7a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 0 0 0-4.6"/>
+                              <path d="M4.3 10.6c-.4.7-.5 1.1-.5 1.4s.1.8.5 1.4a9.9 9.9 0 0 0 7.7 3.9 9.9 9.9 0 0 0 7.7-4c.4-.6.6-1 .6-1.3s-.2-.8-.6-1.4A9.9 9.9 0 0 0 12 6.7a9.9 9.9 0 0 0-7.7 4m.9-3C6.9 6.3 9.3 5.2 12 5.2a11.3 11.3 0 0 1 9 4.6c.4.7.7 1.5.7 2.2s-.3 1.5-.8 2.2a11.4 11.4 0 0 1-9 4.5 11.4 11.4 0 0 1-8.8-4.5c-.5-.7-.9-1.5-.9-2.2s.4-1.5.9-2.2c.5-.7 1.2-1.5 2-2.1"/>
+                            </g>
+                          </svg>
+                    </div> 
 
-                <div class="w-full mt-2 mb-3 h-fit flex justify-end">
-                    <a class="text-[#C83E71] text-[12px] md:text-[15px] font-[500]" href="#">Forgot Password</a>
+                    <div class="w-full mt-2 mb-3 h-fit flex justify-end">
+                        <a class="text-[#C83E71] text-[12px] md:text-[15px] font-[500]" href="#">Forgot Password</a>
+                    </div>
+                    
+                    <button class="py-2 mt-7 text-[18px] text-white font-[500] w-[96%] bg-[#080226] rounded-[10px]">
+                        Login
+                    </button>
+
+                    <div class="w-full h-fit mt-3 flex justify-center">
+                        <p class="text-[12px] md:text-[15px] font-[500]">New to Kosupure? <span onclick="loginType(false)" class="cursor-pointer text-[#C83E71]">Create an account</span></p>
+                    </div>
                 </div>
-                
-                <button class="py-2 mt-7 text-[18px] text-white font-[500] w-[96%] bg-[#080226] rounded-[10px]">
-                    Login
-                </button>
 
-                <div class="w-full h-fit mt-3 flex justify-center">
-                    <p class="text-[12px] md:text-[15px] font-[500]">New to Kosupure? <span class="text-[#C83E71]">Create an account</span></p>
+                <div id="signupArea" class="hidden w-full h-fit flex flex-col items-center">
+                    <input type="text" placeholder="Email Address / Username" class="w-full px-2 py-3  text-[12px] font-[500] bg-gray-200 text-gray-600 rounded-lg border border-gray-300 focus:outline-none "/>
+
+                    <div class="w-full mt-3  flex items-center justify-center text-[12px] focus:outline-none font-[500] bg-gray-200 text-gray-600 rounded-lg border border-gray-300 ">
+                        <input id="passwordPS" type="password" placeholder="Password" class="bg-transparent focus:outline-none w-full px-2 py-3 rounded-lg"/>
+                        
+                        <svg onclick="toggleVisiblity('passwordPS', 'openPS', 'closePS')" id="closePS" class="mx-2 fill-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path  fill-rule="evenodd" d="M20.5 4.5a.8.8 0 0 0-1-1l-16 16a.8.8 0 1 0 1 1l2.9-2.8c1.3.6 3 1 4.6 1a11.4 11.4 0 0 0 9-4.5c.4-.7.8-1.5.8-2.2s-.4-1.5-.9-2.2a9.9 9.9 0 0 0-2-2.1l-1-.6zM17 8.2l-1.8 1.7a3.8 3.8 0 0 1-5.2 5.2l-1.4 1.4a9.3 9.3 0 0 0 3.5.8 9.9 9.9 0 0 0 7.7-4c.4-.6.6-1 .6-1.3s-.2-.8-.6-1.4c-.4-.5-1-1.2-1.8-1.8l-1-.6M11 14a2.3 2.3 0 0 0 3-3z" clip-rule="evenodd"/>
+                            <path  d="M12 5.3c1 0 2 .1 3 .4a.2.2 0 0 1 0 .4l-.8.8a.3.3 0 0 1-.2 0 9 9 0 0 0-2-.2 9.9 9.9 0 0 0-7.7 4c-.4.6-.5 1-.5 1.3s.1.8.5 1.4l1.5 1.5c.1.1.1.3 0 .4l-.7.7a.2.2 0 0 1-.3 0A9.5 9.5 0 0 1 3 14.2c-.5-.7-.9-1.5-.9-2.2s.4-1.5.9-2.2a11.4 11.4 0 0 1 9-4.5"/>
+                            <path  d="M12 8.3h.4c.1 0 .2.2 0 .4l-1.1 1.2a2.3 2.3 0 0 0-1.4 1.4l-1.2 1.2c-.2.1-.4 0-.4-.1A3.8 3.8 0 0 1 12 8.2"/>
+                        </svg>
+
+                        <svg onclick="toggleVisiblity('passwordPS', 'openPS', 'closePS')" id="openPS" class="hidden mx-2 fill-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <g fill-rule="evenodd" clip-rule="evenodd">
+                              <path d="M8.3 12a3.8 3.8 0 1 1 7.4 0 3.8 3.8 0 0 1-7.4 0M12 9.7a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 0 0 0-4.6"/>
+                              <path d="M4.3 10.6c-.4.7-.5 1.1-.5 1.4s.1.8.5 1.4a9.9 9.9 0 0 0 7.7 3.9 9.9 9.9 0 0 0 7.7-4c.4-.6.6-1 .6-1.3s-.2-.8-.6-1.4A9.9 9.9 0 0 0 12 6.7a9.9 9.9 0 0 0-7.7 4m.9-3C6.9 6.3 9.3 5.2 12 5.2a11.3 11.3 0 0 1 9 4.6c.4.7.7 1.5.7 2.2s-.3 1.5-.8 2.2a11.4 11.4 0 0 1-9 4.5 11.4 11.4 0 0 1-8.8-4.5c-.5-.7-.9-1.5-.9-2.2s.4-1.5.9-2.2c.5-.7 1.2-1.5 2-2.1"/>
+                            </g>
+                          </svg>
+                    </div> 
+
+                    <div class="w-full mt-3  flex items-center justify-center text-[12px] focus:outline-none font-[500] bg-gray-200 text-gray-600 rounded-lg border border-gray-300 ">
+                        <input id="passwordRS" type="password" placeholder="Re-type Password" class="bg-transparent focus:outline-none w-full px-2 py-3 rounded-lg"/>
+                        <svg onclick="toggleVisiblity('passwordRS', 'openRS', 'closeRS')" id="openRS" class=" mx-2 fill-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path  fill-rule="evenodd" d="M20.5 4.5a.8.8 0 0 0-1-1l-16 16a.8.8 0 1 0 1 1l2.9-2.8c1.3.6 3 1 4.6 1a11.4 11.4 0 0 0 9-4.5c.4-.7.8-1.5.8-2.2s-.4-1.5-.9-2.2a9.9 9.9 0 0 0-2-2.1l-1-.6zM17 8.2l-1.8 1.7a3.8 3.8 0 0 1-5.2 5.2l-1.4 1.4a9.3 9.3 0 0 0 3.5.8 9.9 9.9 0 0 0 7.7-4c.4-.6.6-1 .6-1.3s-.2-.8-.6-1.4c-.4-.5-1-1.2-1.8-1.8l-1-.6M11 14a2.3 2.3 0 0 0 3-3z" clip-rule="evenodd"/>
+                            <path  d="M12 5.3c1 0 2 .1 3 .4a.2.2 0 0 1 0 .4l-.8.8a.3.3 0 0 1-.2 0 9 9 0 0 0-2-.2 9.9 9.9 0 0 0-7.7 4c-.4.6-.5 1-.5 1.3s.1.8.5 1.4l1.5 1.5c.1.1.1.3 0 .4l-.7.7a.2.2 0 0 1-.3 0A9.5 9.5 0 0 1 3 14.2c-.5-.7-.9-1.5-.9-2.2s.4-1.5.9-2.2a11.4 11.4 0 0 1 9-4.5"/>
+                            <path  d="M12 8.3h.4c.1 0 .2.2 0 .4l-1.1 1.2a2.3 2.3 0 0 0-1.4 1.4l-1.2 1.2c-.2.1-.4 0-.4-.1A3.8 3.8 0 0 1 12 8.2"/>
+                        </svg>
+                        <svg onclick="toggleVisiblity('passwordRS', 'openRS', 'closeRS')" id="closeRS" class="hidden mx-2 fill-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <g fill-rule="evenodd" clip-rule="evenodd">
+                              <path d="M8.3 12a3.8 3.8 0 1 1 7.4 0 3.8 3.8 0 0 1-7.4 0M12 9.7a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 0 0 0-4.6"/>
+                              <path d="M4.3 10.6c-.4.7-.5 1.1-.5 1.4s.1.8.5 1.4a9.9 9.9 0 0 0 7.7 3.9 9.9 9.9 0 0 0 7.7-4c.4-.6.6-1 .6-1.3s-.2-.8-.6-1.4A9.9 9.9 0 0 0 12 6.7a9.9 9.9 0 0 0-7.7 4m.9-3C6.9 6.3 9.3 5.2 12 5.2a11.3 11.3 0 0 1 9 4.6c.4.7.7 1.5.7 2.2s-.3 1.5-.8 2.2a11.4 11.4 0 0 1-9 4.5 11.4 11.4 0 0 1-8.8-4.5c-.5-.7-.9-1.5-.9-2.2s.4-1.5.9-2.2c.5-.7 1.2-1.5 2-2.1"/>
+                            </g>
+                          </svg>
+                    </div> 
+                   
+                    
+                    <button class="py-2 mt-7 text-[18px] text-white font-[500] w-[96%] bg-[#080226] rounded-[10px]">
+                        Signup
+                    </button>
+
+                    <div class="w-full h-fit mt-3 flex justify-center">
+                        <p class="text-[12px] md:text-[15px] font-[500]">Already Have an Account? <span onclick="loginType(true)" class="cursor-pointer text-[#C83E71]">Login</span></p>
+                    </div>
                 </div>
-                
             </div>
         </div>
             
@@ -298,7 +354,7 @@
     <script>
 
         
-        const loggedIn = false;
+        const loggedIn = true;
 
         function toggleProfile() {
             const profileMenu = document.getElementById("profileMenu");
@@ -363,17 +419,69 @@
             bag.classList.toggle("hidden");
         }
 
-        function showLogin(){
+        function showLogin(type){
             const login = document.getElementById("login");
             const profileLogin = document.getElementById("profileLogin");
 
             login.classList.toggle("hidden");
             if(!profileLogin.classList.contains("hidden")){
                 toggleProfile();
+                if(type){
+                    loginType(true)
+                }
+                else{
+                    loginType(false)
+                }
+            }
+            else{
+                if(type){
+                    loginType(true)
+                }
+                else{
+                    loginType(false)
+                }
             }
         }
 
+
+        function loginType(isLogin) {
+            const loginBanner = document.getElementById("loginBanner");
+            const signupBanner = document.getElementById("signupBanner");
+            const login = document.getElementById("loginArea");
+            const signup = document.getElementById("signupArea");
+
+            //console.log(isLogin);
+
+            if (isLogin) {
+                loginBanner.classList.remove("hidden");
+                login.classList.remove("hidden");
+                signupBanner.classList.add("hidden");
+                signup.classList.add("hidden");
+            } else {
+                signupBanner.classList.remove("hidden");
+                signup.classList.remove("hidden");
+                loginBanner.classList.add("hidden");
+                login.classList.add("hidden");
+            }
         
+            
+         
+        }
+
+            function toggleVisiblity(field, open, close){
+                const passwordInput = document.getElementById(field);
+                const eyeIcon = document.getElementById(open);
+                const eyeSlashIcon = document.getElementById(close);
+    
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                } else {
+                    passwordInput.type = "password";
+                }
+    
+                eyeIcon.classList.toggle("hidden");
+                eyeSlashIcon.classList.toggle("hidden");
+            }
     
     </script>
     <!-- <script src="https://unpkg.com/@spreadtheweb/multi-range-slider@1.0.2/dist/range-slider.main.min.js"></script> -->
