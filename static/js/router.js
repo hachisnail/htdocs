@@ -17,13 +17,13 @@ async function loadPage(view, id = null) {
     .then(htmlContent => {
       document.getElementById('shopContent').innerHTML = htmlContent;
 
-      // Call the data-loading function if it's the products view
+      
       if (view === 'products' && id) {
         
-        loadProductDetails(id); // Fetch product data after view is loaded
-        resetURL(`/products/${id}`); // Keep the URL with the product ID
+        loadProductDetails(id); 
+        resetURL(`/products/${id}`); 
       } else {
-        resetURL(`/${view}`); // Reset the URL for non-product views
+        resetURL(`/${view}`); 
       }
       
     })
@@ -36,7 +36,7 @@ async function loadPage(view, id = null) {
   script.src = `/static/js/views/${view}.js`;
   script.dataset.view = view;
   script.onload = () => {
-    console.log(`${view}.js loaded successfully.`);
+    //console.log(`${view}.js loaded successfully.`);
   };
   script.onerror = () => {
     console.error(`${view}.js failed to load.`);
@@ -45,7 +45,7 @@ async function loadPage(view, id = null) {
 }
 
 function resetURL(path) {
-  console.log(path); // Log for debugging
+  //console.log(path); 
   history.replaceState(null, '', path); // Replace current history entry with the new path
 }
 
@@ -64,11 +64,6 @@ function load404Page() {
     })
     .catch(error => {
       console.error(`Failed to load 404.html:`, error);
-    //   document.getElementById('shopContent').innerHTML = `
-    //     <h1>404 - Page Not Found</h1>
-    //     <p>The page you are looking for does not exist.</p >
-    //     <a href="/">Go back to Home</a>
-    //   `; // Fallback if 404.html fails to load
     });
 }
 
@@ -110,27 +105,27 @@ function loadProductDetails(id) {
 // Define routes
 router.on({
   '/': function () {
-    loadPage('home');  // Load the home view
+    loadPage('home');  
   },
   '/home': function () {
-    loadPage('home');  // Load the home view
+    loadPage('home');  
   },
   '/anime-cosplay': function () {
-    loadPage('anime-cosplay');  // Load the anime-cosplay view
+    loadPage('anime-cosplay');  
   },
   '/movie-cosplay': function () {
-    loadPage('movie-cosplay');  // Load the movie-cosplay view
+    loadPage('movie-cosplay');  
   },
   '/game-cosplay': function () {
-    loadPage('game-cosplay');  // Load the game-cosplay view
+    loadPage('game-cosplay');  
   },
   '/products/:id': function ({ data }) {
 
     if (data && data.id) {
-      loadPage('products', data.id); // Pass the id to loadPage
+      loadPage('products', data.id); 
     } else {
       console.error('ID not found in route data');
-      load404Page(); // Optionally handle the error
+      load404Page(); 
     }
   }
 
