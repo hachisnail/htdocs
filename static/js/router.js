@@ -122,6 +122,15 @@ router.on({
   '/checkout': function () {
     loadPage('checkout'); 
   },
+  '/account': function () {
+    loadPage('account'); 
+  },
+  '/orders': function () {
+    loadPage('orders'); 
+  },
+  '/admin': function () {
+    loadPage('admin'); 
+  },
   '/products/:id': function ({ data }) {
 
     if (data && data.id) {
