@@ -1,38 +1,36 @@
-
-const router = new Navigo('/', { hash: true});
-
+const router = new Navigo("/", { hash: true });
 
 async function loadPage(view, id = null) {
   const existingScripts = document.querySelectorAll(`script[data-view]`);
-  existingScripts.forEach(script => script.remove());
+  existingScripts.forEach((script) => script.remove());
 
   fetch(`/static/views/${view}.html`)
-    .then(response => {
+    .then((response) => {
       if (response.ok) {
         return response.text();
       } else {
         throw new Error(`${view}.html not found`);
       }
     })
-    .then(htmlContent => {
-      document.getElementById('shopContent').innerHTML = htmlContent;
+    .then((htmlContent) => {
+      document.getElementById("shopContent").innerHTML = htmlContent;
+
+
+      if (view === "products" && id) {
+        loadProductDetails(id);
+        resetURL(`/products/${id}`);
+      } else {
+        resetURL(`/${view}`);
+      }
 
       
-      if (view === 'products' && id) {
-        
-        loadProductDetails(id); 
-        resetURL(`/products/${id}`); 
-      } else {
-        resetURL(`/${view}`); 
-      }
-      
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(`${view} failed to load:`, error);
       load404Page(`${view}`);
     });
 
-  const script = document.createElement('script');
+  const script = document.createElement("script");
   script.src = `/static/js/views/${view}.js`;
   script.dataset.view = view;
   script.onload = () => {
@@ -45,30 +43,49 @@ async function loadPage(view, id = null) {
 }
 
 function resetURL(path) {
-  //console.log(path); 
-  history.replaceState(null, '', path); // Replace current history entry with the new path
+  getCurrentLocation();
+  history.replaceState(null, "", path);
 }
 
-// Function to load the 404.html page
 function load404Page() {
   fetch(`/static/views/404.html`)
-    .then(response => {
+    .then((response) => {
       if (response.ok) {
         return response.text();
       } else {
         throw new Error(`404.html not found`);
       }
     })
-    .then(htmlContent => {
-      document.getElementById('shopContent').innerHTML = htmlContent;  // Display 404.html content
+    .then((htmlContent) => {
+      document.getElementById("shopContent").innerHTML = htmlContent; // Display 404.html content
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(`Failed to load 404.html:`, error);
     });
 }
 
+function getCurrentLocation() {
+  const currentPath = window.location.hash
+    ? window.location.hash.replace("#", "")
+    : window.location.pathname;
+
+  const footerBanner = document.getElementById("footerBanner");
+  if (!footerBanner) {
+    console.warn("Footer banner element not found.");
+    return;
+  }
+
+  const shouldHideBanner =
+    currentPath === "/account" || currentPath === "/orders";
+
+  //console.log("Current Path:", currentPath);
+  //console.log("Should Hide Banner:", shouldHideBanner);
+
+  footerBanner.classList.toggle("hidden", shouldHideBanner);
+}
+
 function loadProductDetails(id) {
-  console.log("product with id:"+id+" has been loaded");
+  console.log("product with id:" + id + " has been loaded");
   //to do fetch specific products api
   // fetch(`/api/products/${id}`) // Replace with your actual API endpoint
   //   .then(response => {
@@ -100,54 +117,49 @@ function loadProductDetails(id) {
   //   });
 }
 
-
-
 // Define routes
 router.on({
-  '/': function () {
-    loadPage('home');  
+  "/": function () {
+    loadPage("home");
   },
-  '/home': function () {
-    loadPage('home');  
+  "/home": function () {
+    loadPage("home");
   },
-  '/anime-cosplay': function () {
-    loadPage('anime-cosplay');  
+  "/anime-cosplay": function () {
+    loadPage("anime-cosplay");
   },
-  '/movie-cosplay': function () {
-    loadPage('movie-cosplay');  
+  "/movie-cosplay": function () {
+    loadPage("movie-cosplay");
   },
-  '/game-cosplay': function () {
-    loadPage('game-cosplay');  
+  "/game-cosplay": function () {
+    loadPage("game-cosplay");
   },
-  '/checkout': function () {
-    loadPage('checkout'); 
+  "/checkout": function () {
+    loadPage("checkout");
   },
-  '/account': function () {
-    loadPage('account'); 
+  "/account": function () {
+    loadPage("account");
   },
-  '/orders': function () {
-    loadPage('orders'); 
+  "/orders": function () {
+    loadPage("orders");
   },
-  '/admin': function () {
-    loadPage('admin'); 
-  },
-  '/products/:id': function ({ data }) {
-
+  "/products/:id": function ({ data }) {
     if (data && data.id) {
-      loadPage('products', data.id); 
+      loadPage("products", data.id);
     } else {
-      console.error('ID not found in route data');
-      load404Page(); 
+      console.error("ID not found in route data");
+      load404Page();
     }
-  }
-
+  },
 });
+
+router.on('/orders', () => {
+  //initializeOrder();
+});
+
 
 router.notFound(() => {
   load404Page();
 });
 
 router.resolve();
-
-
-

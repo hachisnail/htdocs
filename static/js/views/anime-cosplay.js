@@ -1,5 +1,5 @@
-function toggleFilter(filter, arrow){
-    
+function toggleFilter(filter, arrow) {
+
 
     const dropdownMenu = document.getElementById(filter);
     const arrowIcon = document.getElementById(arrow);
@@ -7,13 +7,13 @@ function toggleFilter(filter, arrow){
     dropdownMenu.classList.toggle("hidden");
 
     if (dropdownMenu.classList.contains("hidden")) {
-                arrowIcon.style.transform = "rotate(0deg)"; 
+        arrowIcon.style.transform = "rotate(0deg)";
     } else {
-                arrowIcon.style.transform = "rotate(180deg)"; 
+        arrowIcon.style.transform = "rotate(180deg)";
     }
 }
 
-function hide(){
+function hide() {
     const menu = document.getElementById("filters");
 
     menu.classList.toggle("hidden");
@@ -37,6 +37,6 @@ function closeMenuOutsideClick(event) {
 
     if (filter.contains(event.target) && !content.contains(event.target)) {
         filter.classList.add("hidden");
-        document.removeEventListener("click", closeMenuOutsideClick); 
+        document.removeEventListener("click", closeMenuOutsideClick);
     }
 }

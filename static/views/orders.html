@@ -1,3 +1,358 @@
-<div class="h-fit w-screen flex flex-col">
+<div class="h-fit w-screen flex flex-col md:gap-x-4 md:flex-row md:justify-center  md:px-32 bg-[#e4e4e5] pt-14 md:pt-20 pb-10">
+    <div
+        class="w-full md:w-[500px] md:pt-5 h-fit my-3 md:mt-10 md:pb-10 flex flex-col items items-center justify-center gap-y-3">
+        <!-- nav -->
+        <svg class="hidden sm:block fill-[#080226]" xmlns="http://www.w3.org/2000/svg" width="65px" height="65px"
+            viewBox="0 0 24 24">
+            <path
+                d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7 18.3c.5-1 3.1-1.8 5-1.8s4.5.9 5 1.8a7.9 7.9 0 0 1-5 1.7 8 8 0 0 1-5-1.7m11.4-1.5c-1.5-1.7-5-2.3-6.4-2.3s-5 .6-6.4 2.3A8 8 0 0 1 4 12a8 8 0 1 1 14.4 4.8M12 6c-2 0-3.5 1.6-3.5 3.5S10.1 13 12 13s3.5-1.6 3.5-3.5S13.9 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11" />
+        </svg>
+        <div class="hidden sm:block flex flex-col items-center">
+            <p class="text-black text-[12px] font-[700]">Name</p>
+            <p class="text-black text-opacity-[47%] text-[12px] font-[400]">
+                username
+            </p>
+        </div>
 
+        <div class="hidden sm:block w-full border-[1px] my-4 border-solid border-[#08022630] border-opacity-[19%]">
+            <!-- line -->
+        </div>
+
+        <div class="w-fit h-fit hidden sm:block">
+            <div class="flex w-[155px] h-[32px] items-center gap-x-4 justify-center">
+                <svg class="fill-[#C83E71]" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px"
+                    viewBox="0 0 24 24">
+                    <path
+                        d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-2.5 13.3c0-1.6-3-2.3-4.5-2.3s-4.5.8-4.5 2.3v.7h9M12 12.2a2.3 2.3 0 0 0 2.3-2.2A2.3 2.3 0 0 0 12 7.7 2.3 2.3 0 0 0 9.7 10a2.3 2.3 0 0 0 2.3 2.3" />
+                </svg>
+                <a class="text-black text-[18px] font-[500]" href="/account" data-navigo>My Account</a>
+            </div>
+
+            <div class="flex w-[155px] h-[32px] items-center mt-4 gap-x-4 justify-start">
+                <svg class="fill-[#C83E71]" width="32px" height="32px" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24">
+                    <g>
+                        <path d="M12.6 23.3h-.2v.5h.2v-.5m.3-.2-.2.1v.5l.2.1v-.6m-.8 0v.6h.2v-.5z" />
+                        <path
+                            d="M20 3a2 2 0 0 1 2 1.9V9h-1v10a2 2 0 0 1-1.9 2H5a2 2 0 0 1-2-1.9V9H2V5a2 2 0 0 1 1.9-2H4zm-1 6H5v10h14zm-5 4a1 1 0 1 1 0 2h-4a1 1 0 1 1 0-2zm6-8H4v2h16z" />
+                    </g>
+                </svg>
+                <a class="text-black text-[18px] font-[500]" href="/orders" data-navigo>My Orders</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col md:mt-10 w-screen h-fit md:bg-white">
+        <!-- buttons -->
+        <div class="md:w-[950px] w-full h-fit flex items-center md:items-start  bg-white">
+            <button id="allButton" onclick="handleTabClick('allButton')"
+                class="tab-button border-b-[5px] border-[#EB6B72] text-[11px] text-black font-[500] h-fit py-5 flex basis-[20%] items-center justify-center">
+                All
+            </button>
+            <button id="pendingButton" onclick="handleTabClick('pendingButton')"
+                class="tab-button text-[11px] text-black font-[500] h-fit py-5 flex basis-[20%] items-center justify-center">
+                Pending
+            </button>
+            <button id="processButton" onclick="handleTabClick('processButton')"
+                class="tab-button text-[11px] text-black font-[500] h-fit py-5 flex basis-[20%] items-center justify-center">
+                Process
+            </button>
+            <button id="completedButton" onclick="handleTabClick('completedButton')"
+                class="tab-button text-[11px] text-black font-[500] h-fit py-5 flex basis-[20%] items-center justify-center">
+                Completed
+            </button>
+            <button id="cancelledButton" onclick="handleTabClick('cancelledButton')"
+                class="tab-button text-[11px] text-black font-[500] h-fit py-5 flex basis-[20%] items-center justify-center">
+                Cancelled
+            </button>
+        </div>
+        <div class="hidden px-3 mt-5 sm:block w-full h-fit">
+
+        
+            <div class=" flex items-center w-full  bg-gray-200 rounded-full px-3 py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <input type="text" placeholder="Search for products..." class="bg-gray-200 outline-none ml-2 text-gray-700 placeholder-gray-500 w-full"
+                />
+            </div>
+        </div>
+        <!-- Tables -->
+        <div class="md:w-[950px] w-full h-screen flex flex-col items-center py-4">
+            <div id="allTable" class="allTable table-content items-center w-full h-full flex flex-col gap-y-2">
+                <!-- all table -->
+
+
+                <!-- pending card -->
+                <div class="pl-3 w-[395px] md:w-full pr-3 pb-3 pt-4 flex justify-between bg-white">
+                    <!-- card -->
+                    <div class="flex w-fit h-fit">
+                        <div class="mt-2 rounded-[20px] bg-[#D9D9D9] w-[95px] h-[92px] md:w-[150px] md:h-[141px]">
+                            <!-- card image -->
+                        </div>
+
+                        <div class="w-fit h-fit mt-3  pb-2pt-3 px-2 flex flex-col">
+                            <p class="text-[#080226] md:text-[16px] text-[13px] font-[600]">Product Name</p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Size: <span class="text-[#080226]">Large</span>
+                            </p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Quantity: <span class="text-[#080226]">1</span>
+                            </p>
+                            <p class="text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        </div>
+                    </div>
+
+                    <div class="w-fit h-fit flex flex-col items-end">
+                        <p class="mb-6 text-[#FF8A01] md:text-[15px] text-[12px] font-[600]">PENDING</p>
+                        <p class="text-black md:text-[12px] text-[8px] font-[700]">ORDER TOTAL</p>
+                        <p class="mb-6 text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        <button class="text-black md:text-[12px] text-[10px] font-[600] border-[1px] border-black border-solid px-10 md:px-12 py-2">
+                            Cancel Order
+                        </button>
+                    </div>
+                </div>
+                <!-- pending card -->   
+
+
+                <!-- on process card -->
+                <div class="pl-3 w-[395px] md:w-full pr-3 pb-3 pt-4 flex justify-between bg-white">
+                    <!-- card -->
+                    <div class="flex w-fit h-fit">
+                        <div class="mt-2 rounded-[20px] bg-[#D9D9D9] w-[95px] h-[92px] md:w-[150px] md:h-[141px]">
+                            <!-- card image -->
+                        </div>
+
+                        <div class="w-fit h-fit mt-3 pt-3 pb-2 px-2 flex flex-col">
+                            <p class="text-[#080226] md:text-[16px] text-[13px] font-[600]">Product Name</p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Size: <span class="text-[#080226]">Large</span>
+                            </p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Quantity: <span class="text-[#080226]">1</span>
+                            </p>
+                            <p class="text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        </div>
+                    </div>
+
+                    <div class="w-fit h-fit flex flex-col items-end">
+                        <p class="mb-6 text-[#4A69E2] md:text-[15px] text-[12px] font-[600]">ON PROCESS</p>
+                        <p class="text-black md:text-[12px] text-[8px] font-[700]">ORDER TOTAL</p>
+                        <p class="mb-6 text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        <button class="text-black md:text-[12px] text-[10px] font-[600] bg-[#EFE391] px-10  py-2">
+                            Confirm Delivery
+                        </button>
+                    </div>
+                </div>
+                <!-- on process card -->
+
+                <!-- completed card -->
+                <div class="pl-3 w-[395px] md:w-full pr-3 pb-3 pt-4 flex justify-between bg-white">
+                    <!-- card -->
+                    <div class="flex w-fit h-fit">
+                        <div class="mt-2 rounded-[20px] bg-[#D9D9D9] w-[95px] h-[92px] md:w-[150px] md:h-[141px]">
+                            <!-- card image -->
+                        </div>
+
+                        <div class="w-fit h-fit mt-3 pt-3 pb-2 px-2 flex flex-col">
+                            <p class="text-[#080226] md:text-[16px] text-[13px] font-[600]">Product Name</p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Size: <span class="text-[#080226]">Large</span>
+                            </p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Quantity: <span class="text-[#080226]">1</span>
+                            </p>
+                            <p class="text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        </div>
+                    </div>
+
+                    <div class="w-fit h-fit flex flex-col items-end">
+                        <p class="mb-6 text-[#01FF48] md:text-[15px] text-[12px] font-[600]">COMPLETED</p>
+                        <p class="text-black md:text-[12px] text-[8px] font-[700]">ORDER TOTAL</p>
+                        <p class="mb-14 text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                    </div>
+                </div>
+                <!-- completed card -->
+
+                <!-- cancelled card -->
+                <div class="pl-3 w-[395px] md:w-full pr-3 pb-3 pt-4 flex justify-between bg-white">
+                    <!-- card -->
+                    <div class="flex w-fit h-fit">
+                        <div class="mt-2 rounded-[20px] bg-[#D9D9D9] w-[95px] h-[92px] md:w-[150px] md:h-[141px]">
+                            <!-- card image -->
+                        </div>
+
+                        <div class="w-fit h-fit mt-3 pt-3 pb-2 px-2 flex flex-col">
+                            <p class="text-[#080226] md:text-[16px] text-[13px] font-[600]">Product Name</p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Size: <span class="text-[#080226]">Large</span>
+                            </p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Quantity: <span class="text-[#080226]">1</span>
+                            </p>
+                            <p class="text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        </div>
+                    </div>
+
+                    <div class="w-fit h-fit flex flex-col items-end">
+                        <p class="mb-6 text-[#FF0000] md:text-[15px] text-[12px] font-[600]">CANCELLED</p>
+                        <p class="text-black md:text-[12px] text-[8px] font-[700]">ORDER TOTAL</p>
+                        <p class="mb-14 text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                    </div>
+                </div>
+                <!-- cancelled card -->
+
+            </div>
+            
+            <div id="pendingTable" class="pndTable table-content items-center hidden w-full h-full flex flex-col gap-y-2">
+                <!-- all table -->
+
+                <!-- pending card -->
+                <div class="pl-3 w-[395px] md:w-full pr-3 pb-3 pt-4 flex justify-between bg-white">
+                    <!-- card -->
+                    <div class="flex w-fit h-fit">
+                        <div class="mt-2 rounded-[20px] bg-[#D9D9D9] w-[95px] h-[92px] md:w-[150px] md:h-[141px]">
+                            <!-- card image -->
+                        </div>
+
+                        <div class="w-fit h-fit mt-3 pt-3 pb-2 px-2 flex flex-col">
+                            <p class="text-[#080226] md:text-[16px] text-[13px] font-[600]">Product Name</p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Size: <span class="text-[#080226]">Large</span>
+                            </p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Quantity: <span class="text-[#080226]">1</span>
+                            </p>
+                            <p class="text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        </div>
+                    </div>
+
+                    <div class="w-fit h-fit flex flex-col items-end">
+                        <p class="mb-6 text-[#FF8A01] md:text-[15px] text-[12px] font-[600]">PENDING</p>
+                        <p class="text-black md:text-[12px] text-[8px] font-[700]">ORDER TOTAL</p>
+                        <p class="mb-6 text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        <button class="text-black md:text-[12px] text-[10px] font-[600] border-[1px] border-black border-solid px-10 md:px-12 py-2">
+                            Cancel Order
+                        </button>
+                    </div>
+                </div>
+                <!-- pending card -->   
+                
+            </div>
+
+            <div id="onprocessTable" class="opTable table-content items-center hidden w-full h-full flex flex-col gap-y-2">
+                <!-- all table -->
+
+
+                <!-- on process card -->
+                <div class="pl-3 w-[395px] md:w-full pr-3 pb-3 pt-4 flex justify-between bg-white">
+                    <!-- card -->
+                    <div class="flex w-fit h-fit">
+                        <div class="mt-2 rounded-[20px] bg-[#D9D9D9] w-[95px] h-[92px] md:w-[150px] md:h-[141px]">
+                            <!-- card image -->
+                        </div>
+
+                        <div class="w-fit h-fit mt-3 pt-3 pb-2 px-2 flex flex-col">
+                            <p class="text-[#080226] md:text-[16px] text-[13px] font-[600]">Product Name</p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Size: <span class="text-[#080226]">Large</span>
+                            </p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Quantity: <span class="text-[#080226]">1</span>
+                            </p>
+                            <p class="text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        </div>
+                    </div>
+
+                    <div class="w-fit h-fit flex flex-col items-end">
+                        <p class="mb-6 text-[#4A69E2] md:text-[15px] text-[12px] font-[600]">ON PROCESS</p>
+                        <p class="text-black md:text-[12px] text-[8px] font-[700]">ORDER TOTAL</p>
+                        <p class="mb-6 text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        <button class="text-black md:text-[12px] text-[10px] font-[600] bg-[#EFE391] px-10 py-2">
+                            Confirm Delivery
+                        </button>
+                    </div>
+                </div>
+                <!-- on process card -->
+
+                
+            </div>
+
+            <div id="completedTable" class="compTable table-content items-center hidden w-full h-full flex flex-col gap-y-2">
+                <!-- completed table -->
+
+                <!-- completed card -->
+                <div class="pl-3 w-[395px] md:w-full pr-3 pb-3 pt-4 flex justify-between bg-white">
+                    <!-- card -->
+                    <div class="flex w-fit h-fit">
+                        <div class="mt-2 rounded-[20px] bg-[#D9D9D9] w-[95px] h-[92px] md:w-[150px] md:h-[141px]">
+                            <!-- card image -->
+                        </div>
+
+                        <div class="w-fit h-fit mt-3 pt-3 pb-2 px-2 flex flex-col">
+                            <p class="text-[#080226] md:text-[16px] text-[13px] font-[600]">Product Name</p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Size: <span class="text-[#080226]">Large</span>
+                            </p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Quantity: <span class="text-[#080226]">1</span>
+                            </p>
+                            <p class="text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        </div>
+                    </div>
+
+                    <div class="w-fit h-fit flex flex-col items-end">
+                        <p class="mb-6 text-[#01FF48] md:text-[15px] text-[12px] font-[600]">COMPLETED</p>
+                        <p class="text-black md:text-[12px] text-[8px] font-[700]">ORDER TOTAL</p>
+                        <p class="mb-14 text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                    </div>
+                </div>
+                <!-- completed card -->
+
+            </div>
+
+            <div id="cancelledTable" class="cnclTable table-content items-center hidden w-full h-full flex flex-col gap-y-2">
+                <!-- cancelled table -->
+
+
+                <!-- cancelled card -->
+                <div class="pl-3 w-[395px] md:w-full pr-3 pb-3 pt-4 flex justify-between bg-white">
+                    <!-- card -->
+                    <div class="flex w-fit h-fit">
+                        <div class="mt-2 rounded-[20px] bg-[#D9D9D9] w-[95px] h-[92px] md:w-[150px] md:h-[141px]">
+                            <!-- card image -->
+                        </div>
+
+                        <div class="w-fit h-fit mt-3 pt-3 pb-2 px-2 flex flex-col">
+                            <p class="text-[#080226] md:text-[16px] text-[13px] font-[600]">Product Name</p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Size: <span class="text-[#080226]">Large</span>
+                            </p>
+                            <p class="text-[#828282] md:text-[12px] text-[8px] font-[400]">
+                                Quantity: <span class="text-[#080226]">1</span>
+                            </p>
+                            <p class="text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                        </div>
+                    </div>
+
+                    <div class="w-fit h-fit flex flex-col items-end">
+                        <p class="mb-6 text-[#FF0000] md:text-[15px] text-[12px] font-[600]">CANCELLED</p>
+                        <p class="text-black md:text-[12px] text-[8px] font-[700]">ORDER TOTAL</p>
+                        <p class="mb-14 text-[#C83E71] md:text-[24px] text-[18px] font-[600]">₱500</p>
+                    </div>
+                </div>
+                <!-- cancelled card -->
+
+
+
+            </div>
+
+    </div>
+
+
+
+
+
+
+    </div>
 </div>
