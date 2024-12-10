@@ -1,20 +1,28 @@
 const router = new Navigo("/", { hash: true });
+const viewCache = {}; // Cache for loaded views
+let cached404 = null; // Cache for 404.html
 
+// Function to load a page dynamically
 async function loadPage(view, id = null) {
+  // Remove any existing scripts for views
   const existingScripts = document.querySelectorAll(`script[data-view]`);
   existingScripts.forEach((script) => script.remove());
 
-  fetch(`/static/views/${view}.html`)
-    .then((response) => {
-      if (response.ok) {
-        return response.text();
-      } else {
-        throw new Error(`${view}.html not found`);
-      }
-    })
-    .then((htmlContent) => {
-      document.getElementById("shopContent").innerHTML = htmlContent;
+  // Check if the view is already cached
+  if (viewCache[view]) {
+    document.getElementById("shopContent").innerHTML = viewCache[view];
+    if (view === "products" && id) loadProductDetails(id);
+    resetURL(view === "products" && id ? `/products/${id}` : `/${view}`);
+    return;
+  }
 
+  // Fetch the view
+  try {
+    const response = await fetch(`/static/views/${view}.html`);
+    if (response.ok) {
+      const htmlContent = await response.text();
+      viewCache[view] = htmlContent; // Cache the view
+      document.getElementById("shopContent").innerHTML = htmlContent;
 
       if (view === "products" && id) {
         loadProductDetails(id);
@@ -22,32 +30,43 @@ async function loadPage(view, id = null) {
       } else {
         resetURL(`/${view}`);
       }
+    } else {
+      throw new Error(`${view}.html not found`);
+    }
+  } catch (error) {
+    console.error(`${view} failed to load:`, error);
+    load404Page();
+  }
 
-      
-    })
-    .catch((error) => {
-      console.error(`${view} failed to load:`, error);
-      load404Page(`${view}`);
+  // Dynamically load the corresponding script
+  fetch(`/static/js/views/${view}.js`, { method: 'HEAD' })
+    .then((response) => {
+      if (response.ok) {
+        const script = document.createElement("script");
+        script.src = `/static/js/views/${view}.js`;
+        script.dataset.view = view;
+        script.onload = () => console.log(`${view}.js loaded successfully.`);
+        script.onerror = () => console.error(`${view}.js failed to load.`);
+        document.body.appendChild(script);
+      } else {
+        console.warn(`${view}.js not found.`);
+      }
     });
-
-  const script = document.createElement("script");
-  script.src = `/static/js/views/${view}.js`;
-  script.dataset.view = view;
-  script.onload = () => {
-    console.log(`${view}.js loaded successfully.`);
-  };
-  script.onerror = () => {
-    console.error(`${view}.js failed to load.`);
-  };
-  document.body.appendChild(script);
 }
 
+// Function to reset the URL
 function resetURL(path) {
-  getCurrentLocation();
   history.replaceState(null, "", path);
+  router.resolve(); // Ensure the router re-evaluates the current route
 }
 
+// Function to load the 404 page
 function load404Page() {
+  if (cached404) {
+    document.getElementById("shopContent").innerHTML = cached404;
+    return;
+  }
+
   fetch(`/static/views/404.html`)
     .then((response) => {
       if (response.ok) {
@@ -57,93 +76,58 @@ function load404Page() {
       }
     })
     .then((htmlContent) => {
-      document.getElementById("shopContent").innerHTML = htmlContent; // Display 404.html content
+      cached404 = htmlContent; // Cache the 404 page
+      document.getElementById("shopContent").innerHTML = htmlContent;
     })
     .catch((error) => {
       console.error(`Failed to load 404.html:`, error);
     });
 }
 
+// Function to load product details
+function loadProductDetails(id) {
+  console.log("Product with ID:" + id + " has been loaded.");
+  // Example for API fetching (optional to implement):
+  // fetch(`/api/products/${id}`)
+  //   .then(response => response.json())
+  //   .then(product => {
+  //     const productContainer = document.getElementById('productDetails');
+  //     productContainer.innerHTML = `
+  //       <h1>${product.name}</h1>
+  //       <img src="${product.image}" alt="${product.name}" />
+  //       <p>${product.description}</p>
+  //       <p>Price: $${product.price}</p>
+  //     `;
+  //   })
+  //   .catch(error => console.error("Failed to load product details:", error));
+}
+
+// Function to toggle footer visibility based on the route
 function getCurrentLocation() {
   const currentPath = window.location.hash
     ? window.location.hash.replace("#", "")
     : window.location.pathname;
 
   const footerBanner = document.getElementById("footerBanner");
-  if (!footerBanner) {
-    console.warn("Footer banner element not found.");
-    return;
-  }
+  if (!footerBanner) return;
 
-  const shouldHideBanner =
-    currentPath === "/account" || currentPath === "/orders";
-
-  //console.log("Current Path:", currentPath);
-  //console.log("Should Hide Banner:", shouldHideBanner);
-
-  footerBanner.classList.toggle("hidden", shouldHideBanner);
+  const routesWithoutFooter = new Set(["/account", "/orders"]);
+  footerBanner.classList.toggle("hidden", routesWithoutFooter.has(currentPath));
 }
 
-function loadProductDetails(id) {
-  console.log("product with id:" + id + " has been loaded");
-  //to do fetch specific products api
-  // fetch(`/api/products/${id}`) // Replace with your actual API endpoint
-  //   .then(response => {
-  //     if (response.ok) {
-  //       return response.json();
-  //     } else {
-  //       throw new Error('Product not found');
-  //     }
-  //   })
-  //   .then(product => {
-  //     // Populate the data into the loaded products view
-  //     console.log("product with id:"+id+" has been loaded");
-  //     const productContainer = document.getElementById('productDetails'); // Ensure products.html has this container
-  //     if (productContainer) {
-  //       productContainer.innerHTML = `
-  //         <h1>${product.name}</h1>
-  //         <img src="${product.image}" alt="${product.name}" />
-  //         <p>${product.description}</p>
-  //         <p>Price: $${product.price}</p>
-  //       `;
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.error(`Failed to load product details:`, error);
-  //     const productContainer = document.getElementById('productDetails');
-  //     if (productContainer) {
-  //       productContainer.innerHTML = `<p>Product not found</p>`;
-  //     }
-  //   });
-}
+
 
 // Define routes
 router.on({
-  "/": function () {
-    loadPage("home");
-  },
-  "/home": function () {
-    loadPage("home");
-  },
-  "/anime-cosplay": function () {
-    loadPage("anime-cosplay");
-  },
-  "/movie-cosplay": function () {
-    loadPage("movie-cosplay");
-  },
-  "/game-cosplay": function () {
-    loadPage("game-cosplay");
-  },
-  "/checkout": function () {
-    loadPage("checkout");
-  },
-  "/account": function () {
-    loadPage("account");
-  },
-  "/orders": function () {
-    loadPage("orders");
-  },
-  "/products/:id": function ({ data }) {
+  "/": () => loadPage("home"),
+  "/home": () => loadPage("home"),
+  "/anime-cosplay": () => loadPage("anime-cosplay"),
+  "/movie-cosplay": () => loadPage("movie-cosplay"),
+  "/game-cosplay": () => loadPage("game-cosplay"),
+  "/checkout": () => loadPage("checkout"),
+  "/account": () => loadPage("account"),
+  "/orders": () => loadPage("orders"),
+  "/products/:id": ({ data }) => {
     if (data && data.id) {
       loadPage("products", data.id);
     } else {
@@ -153,13 +137,8 @@ router.on({
   },
 });
 
-router.on('/orders', () => {
-  //initializeOrder();
-});
+// Handle not found routes
+router.notFound(() => load404Page());
 
-
-router.notFound(() => {
-  load404Page();
-});
-
+// Resolve the router
 router.resolve();

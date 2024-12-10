@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins';
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="w-screen h-16 bg-[#080226] flex justify-between items-center px-4 md:px-24">
+        <div class="flex items-center gap-x-2 md:gap-x-4 font-semibold text-white text-xl">
+            <img class="w-8 hidden sm:block" src="/static/assets/shop-logo.png" alt="">
+            <svg id="toggleMenu" onclick="toggleBurgerMenu()" class="fill-white md:hidden hover:fill-[#EFE391]"
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                <path
+                    d="M4 18q-.42 0-.71-.29T3 17t.29-.71T4 16h16q.42 0 .71.29T21 17t-.29.71T20 18zm0-5q-.42 0-.71-.29T3 12t.29-.71T4 11h16q.42 0 .71.29T21 12t-.29.71T20 13zm0-5q-.42 0-.71-.29T3 7t.29-.71T4 6h16q.42 0 .71.29T21 7t-.29.71T20 8z" />
+            </svg>
+
+
+            <p class="cursor-pointer">KOSUPURE.SHOP</[a]>
+        </div>
+
+        <div class="flex items-center gap-x-2 md:gap-x-5  font-semibold text-white text-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M5 19q-.425 0-.712-.288T4 18t.288-.712T5 17h1v-7q0-2.075 1.25-3.687T10.5 4.2v-.7q0-.625.438-1.062T12 2t1.063.438T13.5 3.5v.7q2 .5 3.25 2.113T18 10v7h1q.425 0 .713.288T20 18t-.288.713T19 19zm7 3q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22" />
+            </svg>
+
+            <div class="relative inline-block text-left hidden sm:block">
+
+                <button id="dropdownButton"
+                    class="flex items-center pl-4 pr-1 gap-x-3 py-0 rounded-[5px] border-solid border-[2px] border-white text-white  font-[400] text-[10px] hover:text-[#EFE391]">
+                    ADMIN
+                    <svg id="arrowIcon" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+
+                <div id="dropdownMenu" class=" absolute -right-24 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
+                    <a href="/anime-cosplay"
+                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]"
+                        data-navigo>Anime Cosplay</a>
+                    <a href="/movie-cosplay"
+                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]"
+                        data-navigo>Movie Cosplay</a>
+                    <a href="/game-cosplay"
+                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#080226] hover:bg-[#EB6B72]"
+                        data-navigo>Game Cosplay</a>
+                </div>
+            </div>
+
+
+            <button id="profileButton"
+                class="md:hidden flex items-center  py-2 text-white rounded-md font-[400] text-[14px] hover:text-[#EFE391]">
+                <svg class="fill-white hover:fill-[#EFE391]" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                    <path
+                        d="M12 2a10 10 0 0 1 10 10 9.96 9.96 0 0 1-2.26 6.33l.02.02-.13.11A9.98 9.98 0 0 1 12 22a9.97 9.97 0 0 1-7.43-3.3l-.2-.24-.13-.1.02-.03A9.96 9.96 0 0 1 2 12 10 10 0 0 1 12 2m0 15c-1.86 0-3.54.6-4.8 1.4A7.97 7.97 0 0 0 12 20a7.97 7.97 0 0 0 4.8-1.6A8.9 8.9 0 0 0 12 17m0-13a8 8 0 0 0-6.26 12.98 10.86 10.86 0 0 1 12.52 0A8 8 0 0 0 12 4m0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8m0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                </svg>
+            </button>
+        </div>
+
+    </div>
+    <!-- header -->
+
+    <!-- body -->
+    <div class="w-screen h-full flex flex-col md:flex-row  bg-[#d1d1d1]">
+
+        <div name="left" class="hidden sm:block w-[400px] flex flex-col max-h-full bg-[#080226]">
+            <a href="/admin/admin.html">
+                <button class="w-full h-fit flex justify-center py-4 text-[15px] hover:bg-transparent hover:text-white bg-[#EB6B72] text-[#080226] font-[500]">
+                    Dashboard
+                </button>
+            </a>
+            <a href="/admin/products.html">
+                <button class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
+                    Products
+                </button>
+            </a>
+            <button class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
+                Orders List
+            </button>
+            <button class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
+                Users
+            </button>
+
+        </div>
+
+
+
+
+        <div name="right" class="w-screen flex md:w-full flex-col h-fit items-center p-3 md:px-6">
+            <div class="mb-3 md:w-[1172px] flex w-full h-fit justify-start">
+                <p class="font-[600] text-[14px] text-black">DASHBOARD</p>
+            </div>
+            <div class="w-full gap-y-4 md:w-fit flex flex-col md:flex-row items-center md:justify-between gap-x-6">
+
+                <!-- Total Orders Card -->
+                <div class="md:flex-col md:items-start md:justify-center md:gap-y-3 md:w-[275px] w-full flex h-fit md:h-[150px] rounded-[20px] items-center justify-between bg-white p-4">
+                    <div class="md:md:md:order-2 w-fit h-fit flex gap-x-2 items-center">
+                        <div class="w-[80px] md:w-[50px] md:h-[50px] h-[80px] rounded-[10px] flex justify-center items-center bg-[#080226]">
+                            <svg class="fill-white stroke-none w-7 h-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g>
+                                    <path d="M6 11.7c0-.9 0-1.3.2-1.6.1-.4.4-.7 1-1.3l.6-.6c.6-.6.9-.9 1.3-1l1.6-.2h2.6c.9 0 1.3 0 1.6.2l1.3 1 .6.6c.6.6.9.9 1 1.3.2.3.2.7.2 1.6V16c0 1.9 0 2.8-.6 3.4S16 20 14 20h-4c-1.9 0-2.8 0-3.4-.6S6 18 6 16z" />
+                                    <path d="M9 7 6.1 5A.3.3 0 0 0 6 5L3.3 6.9a.3.3 0 0 0 0 .4l2.5 2.6a.7.7 0 0 1 .2.5v0c0 .4.3.7.7.7h10.6c.4 0 .7-.3.7-.7v0a.7.7 0 0 1 .2-.5l2.6-2.6a.3.3 0 0 0 0-.4L18 5.1a.3.3 0 0 0-.2 0L15 7" />
+                                </g>
+                            </svg>
+                        </div>
+            
+                        <p class="text-[#080226] text-[30px] font-[600]">100</p>
+                    </div>
+            
+                    <p class="md:order-1 text-[16px] text-[#080226] font-[600]">Total Orders</p>
+                </div>
+            
+                <!-- Total Products Card -->
+                <div class="md:flex-col md:items-start md:justify-center md:gap-y-3 md:w-[275px] w-full flex h-fit md:h-[150px] rounded-[20px] items-center justify-between bg-white p-4">
+                    <div class="md:order-2 w-fit h-fit flex gap-x-2 items-center">
+                        <div class="w-[80px] md:w-[50px] md:h-[50px] h-[80px] rounded-[10px] flex justify-center items-center bg-[#6c9cc9]">
+                            <svg class="w-14 h-auto fill-[#080226]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                <path d="M5 5V3a2 2 0 0 1 3-1.7A2 2 0 0 1 11 3v2h.5A1.5 1.5 0 0 1 13 6.5v7a1.5 1.5 0 0 1-3 0V3a1 1 0 0 0-1.3-1c.2.3.3.6.3 1v10.5c0 .6.2 1 .5 1.5H5a2 2 0 0 1-2-2V6.5A1.5 1.5 0 0 1 4.5 5zm2-3a1 1 0 0 0-1 1v2h2V3a1 1 0 0 0-1-1" />
+                            </svg>
+                        </div>
+            
+                        <p class="text-[#080226] text-[30px] font-[600]">100</p>
+                    </div>
+            
+                    <p class="md:order-1 text-[16px] text-[#080226] font-[600]">Total Products</p>
+                </div>
+            
+                <!-- Total Customers Card -->
+                <div class="md:flex-col md:items-start md:justify-center md:gap-y-3 md:w-[275px] w-full flex h-fit md:h-[150px] rounded-[20px] items-center justify-between bg-white p-4">
+                    <div class="md:order-2 w-fit h-fit flex gap-x-2 items-center">
+                        <div class="w-[80px] md:w-[50px] md:h-[50px] h-[80px] rounded-[10px] flex justify-center items-center bg-[#6beba6]">
+                            <svg class="w-9 h-auto fill-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
+                                <path d="M5.5 0a3.5 3.5 0 1 0 0 7 3.5 3.5 0 1 0 0-7m-2 9A3.5 3.5 0 0 0 0 12.5V15h11v-2.5A3.5 3.5 0 0 0 7.5 9zm9 1H12v5h3v-2.5a2.5 2.5 0 0 0-2.5-2.5" />
+                                <path d="M11.5 4a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5" />
+                            </svg>
+                        </div>
+            
+                        <p class="text-[#080226] text-[30px] font-[600]">100</p>
+                    </div>
+            
+                    <p class="md:order-1 text-[16px] text-[#080226] font-[600]">Total Customers</p>
+                </div>
+            
+                <!-- Total Guests Card -->
+                <div class="md:flex-col md:items-start md:justify-center md:gap-y-3 md:w-[275px] w-full flex h-fit md:h-[150px] rounded-[20px] items-center justify-between bg-white p-4">
+                    <div class="md:order-2 w-fit h-fit flex gap-x-2 items-center">
+                        <div class="w-[80px] md:w-[50px] md:h-[50px] h-[80px] rounded-[10px] flex justify-center items-center bg-[#ff2f3a]">
+                            <svg class="w-11 h-auto fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+                                <path d="M8 2h.5A1.5 1.5 0 0 1 10 3.5v6A1.5 1.5 0 0 1 8.5 11h-5A1.5 1.5 0 0 1 2 9.5v-6A1.5 1.5 0 0 1 3.5 2h.6a1.5 1.5 0 0 1 1.4-1h1a1.5 1.5 0 0 1 1.4 1M5 2.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0-.5.5M7 5a1 1 0 1 0-2 0 1 1 0 0 0 2 0M4 7.5v.3l.3.5c.3.4.8.7 1.7.7s1.4-.3 1.7-.7a1.5 1.5 0 0 0 .3-.7 1 1 0 0 0 0-.1.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5" />
+                            </svg>
+                        </div>
+            
+                        <p class="text-[#080226] text-[30px] font-[600]">100</p>
+                    </div>
+            
+                    <p class="md:order-1 text-[16px] text-[#080226] font-[600]">Total Guest</p>
+                </div>
+            
+            </div>
+            
+
+            <div class="w-full md:w-[1172px] h-fit flex flex-col md:flex-row md:justify-center md:gap-y-4 md:gap-x-6">
+                <div class="flex w-full md:w-[750px] h-[500px] mt-4 justify-center ">
+                    <div class="bg-white rounded-[20px] shadow-md p-6 w-full border ">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-bold">Sale Graph</h2>
+                            <div class="flex space-x-2">
+                                <button
+                                    class="px-3 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-100">W</button>
+                                <button class="px-3 py-1 text-sm font-medium text-white bg-blue-600 rounded-md">M</button>
+                                <button
+                                    class="px-3 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-100">Y</button>
+                            </div>
+                        </div>
+                        <canvas id="salesChart" class="my-4"></canvas>
+                    </div>
+                </div>
+
+
+                <div class="w-full md:w-[400px] mx-auto mt-4 bg-white rounded-[20px] shadow-md p-4 ">
+                    <!-- Header -->
+                    <h2 class="text-lg font-semibold mb-4">Top Selling</h2>
+                    <hr class="border-gray-300 mb-4" />
+
+                    <!-- Product List -->
+                    <div class="space-y-4">
+                        <!-- Product Item -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <!-- Product Image -->
+                                <div class="w-[69px] h-[69px] bg-gray-300 rounded"></div>
+                                <!-- Product Details -->
+                                <div>
+                                    <p class="font-semibold">Product Name</p>
+                                    <p class="text-gray-500">₱500</p>
+                                </div>
+                            </div>
+                            <!-- Product Price and Sales -->
+                            <div class="text-right">
+                                <p class="text-pink-500 font-semibold">₱500</p>
+                                <p class="text-gray-500 text-sm">999 Sales</p>
+                            </div>
+                        </div>
+
+                        <!-- Repeat Product Item -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-[69px] h-[69px] bg-gray-300 rounded"></div>
+                                <div>
+                                    <p class="font-semibold">Product Name</p>
+                                    <p class="text-gray-500">₱500</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-pink-500 font-semibold">₱500</p>
+                                <p class="text-gray-500 text-sm">999 Sales</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-[69px] h-[69px] bg-gray-300 rounded"></div>
+                                <div>
+                                    <p class="font-semibold">Product Name</p>
+                                    <p class="text-gray-500">₱500</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-pink-500 font-semibold">₱500</p>
+                                <p class="text-gray-500 text-sm">999 Sales</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Button -->
+                    <div class="mt-6">
+                        <button class="w-full bg-black text-white py-2 rounded-lg font-semibold hover:bg-gray-800">
+                            REPORT
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="rounded-[20px] md:w-[1172px] w-full h-fit p-4 flex flex-col justify-center bg-white mt-4 shadow-md">
+                <!-- Header -->
+                <div class="w-full h-fit flex justify-between mt-4 px-2">
+                <p class="text-[16px] font-[600] text-black">Orders</p>
+                <svg class="w-[20px] h-auto fill-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0" />
+                </svg>
+                </div>
+            
+                <!-- Divider -->
+                <div class="w-full mt-4 h-[1px] bg-[#c1bfc8]"></div>
+            
+                <!-- Table Header -->
+                <div class="w-full h-fit flex p-4 justify-between">
+                <div class="w-[10%]">
+                    <input type="checkbox" class="form-checkbox h-4 w-4 text-gray-600">
+                </div>
+                <p class="text-[#727271] text-[14px] font-[600] w-[60%]">Product</p>
+                <p class="text-[#727271] text-[14px] font-[600] w-[30%] text-right">Order ID</p>
+                </div>
+            
+                <!-- Table Rows -->
+                <div class="w-full h-fit flex flex-col">
+                <!-- Row 1 -->
+                <div class="w-full h-fit flex items-center p-4 justify-between border-t">
+                    <div class="w-[10%]">
+                    <input type="checkbox" class="form-checkbox h-4 w-4 text-gray-600">
+                    </div>
+                    <p class="text-black text-[14px] font-[600] w-[60%]">Product/s Name...</p>
+                    <p class="text-black text-[14px] font-[600] w-[30%] text-right">#25425</p>
+                </div>
+            
+                <!-- Row 2 -->
+                <div class="w-full h-fit flex items-center p-4 justify-between border-t">
+                    <div class="w-[10%]">
+                    <input type="checkbox" class="form-checkbox h-4 w-4 text-gray-600">
+                    </div>
+                    <p class="text-black text-[14px] font-[600] w-[60%]">Product/s Name...</p>
+                    <p class="text-black text-[14px] font-[600] w-[30%] text-right">#25424</p>
+                </div>
+            
+                <!-- Row 3 -->
+                <div class="w-full h-fit flex items-center p-4 justify-between border-t">
+                    <div class="w-[10%]">
+                    <input type="checkbox" class="form-checkbox h-4 w-4 text-gray-600">
+                    </div>
+                    <p class="text-black text-[14px] font-[600] w-[60%]">Product/s Name...</p>
+                    <p class="text-black text-[14px] font-[600] w-[30%] text-right">#25423</p>
+                </div>
+            
+                <!-- Row 4 -->
+                <div class="w-full h-fit flex items-center p-4 justify-between border-t">
+                    <div class="w-[10%]">
+                    <input type="checkbox" class="form-checkbox h-4 w-4 text-gray-600">
+                    </div>
+                    <p class="text-black text-[14px] font-[600] w-[60%]">Product/s Name...</p>
+                    <p class="text-black text-[14px] font-[600] w-[30%] text-right">#25422</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../admin/js/dashboard.js"></script>
+</body>
+
+</html>

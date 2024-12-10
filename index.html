@@ -15,11 +15,6 @@
     <title>Kosupure</title>
     <link rel="icon" type="image/x-icon" href="/static/assets/shop-logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        input.md\:hidden:placeholder-shown {
-            display: none;
-        }
-    </style>
 
 </head>
 
@@ -454,40 +449,40 @@
     <div id="admin"
         class="hidden fixed top-0 left-0 w-full h-full px-4 bg-black bg-opacity-30 z-50 flex items-center md:justify-center">
 
-        <div id="contentAdmin"
+        <form id="contentAdmin"
             class="w-full md:w-[25%] md:h-fit relative h-fit px-10 md:rounded-[20px] gap-y-5 bg-[#080226] rounded-[30px] z-50 py-14 flex flex-col items-center justify-center">
             <img class="w-24" src="/static/assets/shop-logo.png" alt="">
             <div class="flex flex-col items-center justify-center gap-y-1">
                 <p class="text-white text-[20px] font-[700]">Admin Panel</p>
                 <p class="text-[#A1A1A1] text-[12px] font-[400]">Control Panel Login</p>
             </div>
-            <div class="w-fit flex items-center space-x-2">
-                <svg class="fill-[#EB6B72]" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24">
-                    <g fill-rule="evenodd" clip-rule="evenodd">
-                        <path d="M16 9a4 4 0 1 1-8 0 4 4 0 0 1 8 0m-2 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0" />
-                        <path
-                            d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22M3 12c0 2 .7 4 2 5.5a9 9 0 0 1 7-3.5 9 9 0 0 1 7.2 3.5A9 9 0 1 0 3 12m9 9a9 9 0 0 1-5.7-2 7 7 0 0 1 5.8-3 7 7 0 0 1 5.7 3 9 9 0 0 1-5.8 2" />
-                    </g>
-                </svg>
-                <input type="text" class="px-2 border-b-2 bg-transparent text-white">
-            </div>
+                <div class="w-fit flex items-center space-x-2">
+                    <svg class="fill-[#EB6B72]" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24">
+                        <g fill-rule="evenodd" clip-rule="evenodd">
+                            <path d="M16 9a4 4 0 1 1-8 0 4 4 0 0 1 8 0m-2 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0" />
+                            <path
+                                d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22M3 12c0 2 .7 4 2 5.5a9 9 0 0 1 7-3.5 9 9 0 0 1 7.2 3.5A9 9 0 1 0 3 12m9 9a9 9 0 0 1-5.7-2 7 7 0 0 1 5.8-3 7 7 0 0 1 5.7 3 9 9 0 0 1-5.8 2" />
+                        </g>
+                    </svg>
+                    <input id="username" type="text" class="px-2 border-b-2 bg-transparent text-white">
+                </div>
 
-            <div class="w-fit flex items-center space-x-2">
-                <svg class="fill-[#EB6B72]" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24">
-                    <path fill-rule="evenodd"
-                        d="M22 8.3a6.3 6.3 0 0 1-9.1 5.6l-.9.8c-.5.6-.4.7-.1 1l.3.4s.7 1 0 2c-.5.6-1.7 1.4-3.1 0l-.3.3s.9 1 .1 2c-.4.6-1.6 1.2-2.6.2l-1 1c-.8.7-1.6.3-2 0l-.8-.9c-.9-.8-.4-1.7 0-2L10 11s-.7-1.2-.7-2.8a6.3 6.3 0 0 1 12.6 0m-6.3 2.2a2.2 2.2 0 0 0 2.2-2.2A2.2 2.2 0 0 0 15.7 6a2.2 2.2 0 0 0-2.2 2.2 2.2 2.2 0 0 0 2.2 2.2"
-                        clip-rule="evenodd" />
-                </svg>
-                <input type="password" class="px-2 border-b-2 bg-transparent text-white">
-            </div>
+                <div class="w-fit flex items-center space-x-2">
+                    <svg class="fill-[#EB6B72]" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M22 8.3a6.3 6.3 0 0 1-9.1 5.6l-.9.8c-.5.6-.4.7-.1 1l.3.4s.7 1 0 2c-.5.6-1.7 1.4-3.1 0l-.3.3s.9 1 .1 2c-.4.6-1.6 1.2-2.6.2l-1 1c-.8.7-1.6.3-2 0l-.8-.9c-.9-.8-.4-1.7 0-2L10 11s-.7-1.2-.7-2.8a6.3 6.3 0 0 1 12.6 0m-6.3 2.2a2.2 2.2 0 0 0 2.2-2.2A2.2 2.2 0 0 0 15.7 6a2.2 2.2 0 0 0-2.2 2.2 2.2 2.2 0 0 0 2.2 2.2"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <input id="password" type="password" class="px-2 border-b-2 bg-transparent text-white">
+                </div>
 
-            <button class="rounded-[10px] text-[#080226] text-[12px] font-[500] px-12 py-2 bg-[#EFE391]">
+            <button type="submit" class="rounded-[10px] text-[#080226] text-[12px] font-[500] px-12 py-2 bg-[#EFE391]">
                 Login
             </button>
-
-        </div>
+            <div class="text-white text-[20px] font-[700]" id="message"></div>
+        </form>
     </div>
     <script>
 
@@ -644,6 +639,55 @@
             eyeIcon.classList.toggle("hidden");
             eyeSlashIcon.classList.toggle("hidden");
         }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('contentAdmin');
+    const messageDiv = document.getElementById('message');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!username || !password) {
+                messageDiv.textContent = 'Please enter both username and password.';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://192.168.2.0/static/api/adminLogin.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password }),
+                    credentials: 'include' // Include cookies in the request
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    messageDiv.textContent = result.message;
+                    messageDiv.style.color = 'green';
+                    setTimeout(() => {
+                        window.location.href = '/admin/admin.html';
+                    }, 1000);
+                } else {
+                    messageDiv.textContent = result.message;
+                    messageDiv.style.color = 'red';
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                messageDiv.textContent = 'An error occurred. Please try again later.';
+                messageDiv.style.color = 'red';
+            }
+        });
+    }
+});
+
+
+
 
     </script>
     <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>

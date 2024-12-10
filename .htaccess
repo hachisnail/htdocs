@@ -1,11 +1,21 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
+# Enable Rewrite Engine
+RewriteEngine On
 
-  # Allow access to existing files and directories
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
+# Allow access to the adminLogin.php script
+RewriteCond %{REQUEST_URI} ^/static/api/adminLogin\.php$ [NC]
+RewriteRule ^ - [L]
 
-  # Redirect all other requests to index.html
-  RewriteRule ^ index.html [L]
-</IfModule>
+# Restrict access to the /admin directory unless a valid session exists
+RewriteCond %{REQUEST_URI} ^/admin/ [NC]
+RewriteCond %{HTTP_COOKIE} !PHPSESSID= [NC]
+RewriteRule ^ - [F,L]
+
+# Custom Forbidden Page
+ErrorDocument 403 /static/errors/403.html
+ErrorDocument 404 /static/errors/404.html
+
+# Rewrite all other requests to index.html for SPA routing
+RewriteCond %{REQUEST_URI} !^/admin/ [NC]  # Exclude /admin directory
+RewriteCond %{REQUEST_URI} !^/static/ [NC] # Exclude /static directory
+RewriteCond %{REQUEST_URI} !^/index\.html$ [NC] # Avoid rewriting index.html itself
+RewriteRule ^ /index.html [L]
