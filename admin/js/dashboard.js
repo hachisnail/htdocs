@@ -5,7 +5,7 @@ const ctx = document.getElementById('salesChart').getContext('2d');
         labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
         datasets: [{
           label: 'Sales',
-          data: [50, 60, 70, 90, 150, 400],
+          data: [50, 60, 70, 90, 350, 400],
           borderColor: '#3b82f6',
           backgroundColor: 'rgba(59, 130, 246, 0.2)',
           borderWidth: 2,

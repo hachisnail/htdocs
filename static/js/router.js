@@ -56,6 +56,7 @@ async function loadPage(view, id = null) {
 
 // Function to reset the URL
 function resetURL(path) {
+  getCurrentLocation();
   history.replaceState(null, "", path);
   router.resolve(); // Ensure the router re-evaluates the current route
 }
@@ -104,6 +105,7 @@ function loadProductDetails(id) {
 
 // Function to toggle footer visibility based on the route
 function getCurrentLocation() {
+  
   const currentPath = window.location.hash
     ? window.location.hash.replace("#", "")
     : window.location.pathname;
