@@ -14,7 +14,7 @@ if (ini_get("session.use_cookies")) {
     setcookie(
         session_name(),
         '',
-        time() - 42000, // Set the cookie to expire in the past
+        time() - 42000, // Expiry in the past
         $params["path"],
         $params["domain"],
         $params["secure"],
@@ -22,7 +22,7 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-// Redirect to the login page or homepage
-header("Location: /index.html");
+// Return a message instead of redirecting
+echo "Successfully logged out!";
 exit();
 ?>

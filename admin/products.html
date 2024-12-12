@@ -45,7 +45,8 @@
 
             <div class="relative inline-block text-left hidden sm:block">
 
-                <button id="dropdownButton"
+                <button 
+                    onclick="toggleDropdown('dropdownMenu')"
                     class="flex items-center pl-4 pr-1 gap-x-3 py-0 rounded-[5px] border-solid border-[2px] border-white text-white  font-[400] text-[10px] hover:text-[#EFE391]">
                     ADMIN
                     <svg id="arrowIcon" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor"
@@ -56,27 +57,44 @@
                     </svg>
                 </button>
 
-                <div id="dropdownMenu" class=" absolute -right-24 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
-                    <a href="/anime-cosplay"
-                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]"
-                        data-navigo>Anime Cosplay</a>
-                    <a href="/movie-cosplay"
-                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]"
-                        data-navigo>Movie Cosplay</a>
-                    <a href="/game-cosplay"
-                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#080226] hover:bg-[#EB6B72]"
-                        data-navigo>Game Cosplay</a>
+                <div id="dropdownMenu" class=" absolute -right-12 mt-2 w-36 bg-white rounded-md shadow-lg hidden">
+                    <button 
+                        class="block w-full px-4 py-2 text-start font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]"
+                        >Change Password</button>
+                    <button 
+                        onclick="logout();"
+                        class="block w-full px-4 py-2 text-start font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]"
+                        >Logout</button>
+
                 </div>
             </div>
 
-
-            <button id="profileButton"
+            <div class="relative inline-block text-left md:hidden">
+                
+                <button 
+                onclick="toggleDropdown('mobileDropdown')"
                 class="md:hidden flex items-center  py-2 text-white rounded-md font-[400] text-[14px] hover:text-[#EFE391]">
                 <svg class="fill-white hover:fill-[#EFE391]" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                     <path
                         d="M12 2a10 10 0 0 1 10 10 9.96 9.96 0 0 1-2.26 6.33l.02.02-.13.11A9.98 9.98 0 0 1 12 22a9.97 9.97 0 0 1-7.43-3.3l-.2-.24-.13-.1.02-.03A9.96 9.96 0 0 1 2 12 10 10 0 0 1 12 2m0 15c-1.86 0-3.54.6-4.8 1.4A7.97 7.97 0 0 0 12 20a7.97 7.97 0 0 0 4.8-1.6A8.9 8.9 0 0 0 12 17m0-13a8 8 0 0 0-6.26 12.98 10.86 10.86 0 0 1 12.52 0A8 8 0 0 0 12 4m0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8m0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
                 </svg>
             </button>
+
+            <div id="mobileDropdown" class=" absolute -right-4 mt-2 w-36 bg-white rounded-md shadow-lg hidden">
+                <button 
+                
+                    class="block w-full px-4 py-2 text-start font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]"
+                    >Change Password</button>
+                <button 
+                    onclick="logout();"
+                    class="block w-full px-4 py-2 text-start font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]"
+                    >Logout</button>
+
+            </div>
+            </div>
+
+
+            
         </div>
 
     </div>
@@ -164,7 +182,7 @@
                         <option value="">All Categories</option>  <!-- Option to reset -->
                         <option value="Anime Cosplay">Anime Cosplay</option>
                         <option value="Game Cosplay">Game Cosplay</option>
-                        <option value="Movies Cosplay">Movies Cosplay</option>
+                        <option value="Movie Cosplay">Movie Cosplay</option>
                     </select>
                 </div>
                 
@@ -174,9 +192,13 @@
                     <label for="sortProducts" class="text-gray-500 text-[10px] font-[500] md:text-sm">Sort by:</label>
                     <select id="sortProducts"
                         class="text-black font-semibold text-[10px]  md:text-sm bg-transparent focus:outline-none">
-                        <option value="all-products">All Products</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="clothing">Clothing</option>
+                        <option value="">All Products</option>
+                        <option value="priceHigh">Price Highest to Lowest</option>
+                        <option value="priceLow">Price Lowest to Highest</option>
+                        <option value="stockHigh">Stock Highest to Lowest</option>
+                        <option value="stockLow">Stock Lowest to Highest</option>
+                        <option value="nameAZ">Name A to Z</option>
+                        <option value="nameXS">Stock Z to A</option>
                     </select>
                 </div>
             </div>

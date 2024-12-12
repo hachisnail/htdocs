@@ -12,6 +12,20 @@ document.getElementById("dropzone-file").addEventListener("change", function(eve
     const fileLimit = 4;
     const filesToPreview = Array.from(files).slice(0, fileLimit); // Only preview the first 4 files
 
+    const previewCont = document.getElementById("productImagePrev");
+
+// Check if filesToPreview is not empty
+    if (filesToPreview.length > 0) {
+        // Set the background image to the first file in the array
+        const firstFile = filesToPreview[0];
+        const fileUrl = URL.createObjectURL(firstFile); // Generate URL for the file
+
+        // Set the background image style
+        previewCont.style.backgroundImage = `url(${fileUrl})`;
+        previewCont.style.backgroundSize = "cover";  // Optionally add other background styles
+        previewCont.style.backgroundPosition = "center";
+    }
+
     // Loop through the selected files (limited to 4)
     filesToPreview.forEach((file) => {
         const existingPreviews = previewContainer.getElementsByTagName("img");
@@ -72,26 +86,116 @@ document.getElementById("dropzone-file").addEventListener("change", function(eve
 });
 
 // Handle product form submission
-document.getElementById("submit-btn").addEventListener("click", function(e) {
+document.getElementById("submit-btn").addEventListener("click", async function(e) {
     e.preventDefault();
 
     // Show loading spinner
     const loadingSpinner = document.getElementById("loading-spinner");
     loadingSpinner.classList.remove("hidden"); // Show the spinner
 
+    // Get input fields
+    const prodNameField = document.getElementById("prodName");
+    const prodPriceField = document.getElementById("prodPrice");
+    const prodDescField = document.getElementById("prodDescription");
+    const prodTagsField = document.getElementById("prodTags");
+    const prodQuantField = document.getElementById("prodQuantity");
+    const prodCatField = document.getElementById("prodCategory");
+    const imagesField = document.getElementById("dropzone-file");
+    const imagesFieldLabel = document.querySelector(".imageFieldLabel");
+    //console.log(imagesField);
+    // Original border color (you can adjust if you want a different color)
+    const originalBorderClass = "border-[#242424]";
+    const originalBgClass = "bg-white";
+
+    // Function to reset background and border when input is clicked/focused
+    const resetInputStyles = (inputField) => {
+        inputField.classList.remove("border-2", "border-red-500");
+        inputField.classList.add(originalBorderClass, originalBgClass); // Reset to original styles
+    };
+
+    // Attach event listeners for each input field to reset the background and border on focus
+    prodNameField.addEventListener("focus", () => resetInputStyles(prodNameField));
+    prodPriceField.addEventListener("focus", () => resetInputStyles(prodPriceField));
+    prodDescField.addEventListener("focus", () => resetInputStyles(prodDescField));
+    prodTagsField.addEventListener("focus", () => resetInputStyles(prodTagsField));
+    prodQuantField.addEventListener("focus", () => resetInputStyles(prodQuantField));
+    prodCatField.addEventListener("focus", () => resetInputStyles(prodCatField));
+    //imagesField.addEventListener("focus", () => resetInputStyles(imagesField));
+    imagesFieldLabel.addEventListener("click", () => 
+        imagesFieldLabel.classList.remove("border-red-500"),
+        imagesFieldLabel.classList.add("border-[#242424]")
+    );
+
+
+    // Get input values for validation (same as previous)
+    const prodName = prodNameField.value.trim();
+    const prodPrice = prodPriceField.value.trim();
+    const prodDesc = prodDescField.value.trim();
+    const prodTags = prodTagsField.value.trim();
+    const prodQuant = prodQuantField.value.trim();
+    const prodCat = prodCatField.value.trim();
+    const images = imagesField.files;
+
+    // Validation check for empty or invalid fields
+    if (
+        prodName === "" || 
+        prodPrice === "" || 
+        prodDesc === "" || 
+        prodTags === "" || 
+        prodQuant === "" || 
+        prodCat === "" || 
+        images.length === 0 || 
+        parseFloat(prodQuant) < 1 || 
+        parseFloat(prodPrice) < 1
+    ) {
+        // Hide the loading spinner if validation fails
+        loadingSpinner.classList.add("hidden");
+
+        const isConfirmed = await createConfirmationModal("Please fill out all the necessary fields?", "Alert!",2);
+    
+        if (isConfirmed) {
+
+        }
+
+        // Add red border if the field is invalid
+        if (prodName === "") prodNameField.classList.add("border-2", "border-red-500");
+        else prodNameField.classList.remove("border-2", "border-red-500");
+
+        if (prodPrice === "" || parseFloat(prodPrice) < 1) prodPriceField.classList.add("border-2", "border-red-500");
+        else prodPriceField.classList.remove("border-2", "border-red-500");
+
+        if (prodDesc === "") prodDescField.classList.add("border-2", "border-red-500");
+        else prodDescField.classList.remove("border-2", "border-red-500");
+
+        if (prodTags === "") prodTagsField.classList.add("border-2", "border-red-500");
+        else prodTagsField.classList.remove("border-2", "border-red-500");
+
+        if (prodQuant === "" || parseFloat(prodQuant) < 1) prodQuantField.classList.add("border-2", "border-red-500");
+        else prodQuantField.classList.remove("border-2", "border-red-500");
+
+        if (prodCat === "") prodCatField.classList.add("border-2", "border-red-500");
+        else prodCatField.classList.remove("border-2", "border-red-500");
+
+        if (images.length === 0) imagesFieldLabel.classList.add("border-2", "border-red-500");
+        else imagesField.classList.remove("border-2", "border-red-500");
+        
+
+        return; // Exit to prevent further execution
+    }
+
+    // Proceed if all inputs are valid
     const productData = {
-        Name: document.getElementById("prodName").value,
-        Price: document.getElementById("prodPrice").value,
-        Details: document.getElementById("prodDescription").value,
-        Tags: document.getElementById("prodTags").value,
-        Stock: document.getElementById("prodQuantity").value,
-        CategoryID: document.getElementById("prodCategory").value,
+        Name: prodName,
+        Price: prodPrice,
+        Details: prodDesc,
+        Tags: prodTags,
+        Stock: prodQuant,
+        CategoryID: prodCat,
     };
 
     const formData = new FormData();
 
     // Append images from the input file
-    const images = document.getElementById("dropzone-file").files;
     for (let i = 0; i < images.length; i++) {
         formData.append("Images[]", images[i]);
     }
@@ -110,50 +214,151 @@ document.getElementById("submit-btn").addEventListener("click", function(e) {
         loadingSpinner.classList.add("hidden");
 
         // Show success or error modal
-        const modalMessage = document.getElementById("modalMessage");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalCloseButton = document.getElementById("modalCloseButton");
+        const modalMessage = data.status === 'success' 
+            ? "Product added successfully!" 
+            : data.message;
 
-        if (data.status === 'success') {
-            modalTitle.textContent = "Success";
-            modalMessage.textContent = "Product added successfully!";
-            document.getElementById("successModal").classList.remove("hidden");
+        const result = data.status === 'success' 
+            ? createConfirmationModal(modalMessage, "Success!",2) 
+            : createConfirmationModal(modalMessage, "Success!",2);
 
-            // Clear form inputs
-            document.getElementById("prodName").value = '';
-            document.getElementById("prodPrice").value = '';
-            document.getElementById("prodDescription").value = '';
-            document.getElementById("prodTags").value = '';
-            document.getElementById("prodQuantity").value = '';
-            document.getElementById("prodCategory").value = '';
-            document.getElementById("dropzone-file").value = '';  // Clear file input
-            document.getElementById("preview-container").innerHTML = '';  // Clear preview container
-        } else {
-            modalTitle.textContent = "Error";
-            modalMessage.textContent = data.message;
-            document.getElementById("errorModal").classList.remove("hidden");
-        }
-
-        modalCloseButton.addEventListener("click", function() {
-            document.getElementById("successModal").classList.add("hidden");
-            document.getElementById("errorModal").classList.add("hidden");
+        result.then((isConfirmed) => {
+            if (isConfirmed) {
+                // Clear form inputs
+                document.getElementById("prodName").value = '';
+                document.getElementById("prodPrice").value = '';
+                document.getElementById("prodDescription").value = '';
+                document.getElementById("prodTags").value = '';
+                document.getElementById("prodQuantity").value = '';
+                document.getElementById("prodCategory").value = '';
+                document.getElementById("dropzone-file").value = '';  // Clear file input
+                document.getElementById("preview-container").innerHTML = '';  // Clear preview
+                const previewCont = document.getElementById("productImagePrev");
+                previewCont.style.backgroundImage = "none";
+                previewCont.style.backgroundSize = "initial";  // Optional, reset to initial state
+                previewCont.style.backgroundPosition = "initial";
+            }
         });
     })
     .catch(error => {
-        // Hide the spinner in case of error
+        console.error('Error:', error);
+        // Hide the spinner
         loadingSpinner.classList.add("hidden");
-
-        // Show error modal
-        const modalMessage = document.getElementById("modalMessage");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalCloseButton = document.getElementById("modalCloseButton");
-
-        modalTitle.textContent = "Error";
-        modalMessage.textContent = "An error occurred while uploading. Please try again.";
-        document.getElementById("errorModal").classList.remove("hidden");
-
-        modalCloseButton.addEventListener("click", function() {
-            document.getElementById("errorModal").classList.add("hidden");
-        });
+        createConfirmationModal("An error occurred while submitting the product.", "Error!",2);
     });
 });
+
+
+function toggleDropdown(id) {
+    const dropdownMenu = document.getElementById(id);
+    //console.log(id);
+    if(id=="dropdownMenu"){
+      const arrowIcon = document.getElementById("arrowIcon");
+      
+      dropdownMenu.classList.toggle("hidden");
+
+      if (dropdownMenu.classList.contains("hidden")) {
+          arrowIcon.style.transform = "rotate(0deg)";
+      } else {
+          arrowIcon.style.transform = "rotate(180deg)";
+      }
+    
+    }
+    else{
+      dropdownMenu.classList.toggle("hidden");
+    }
+  }
+
+  
+
+  async function logout() {
+    const isConfirmed = await createConfirmationModal("Are you sure you want to logout?", "Logout!",1);
+    
+    if (isConfirmed) {
+      // Make a request to the logout PHP script
+      fetch('http://192.168.2.0/static/api/adminLogout.php', {
+        method: 'GET', // Assuming logout is a simple GET request
+      })
+      .then(response => {
+        if (response.ok) {
+          // If the logout was successful, handle the redirection
+          return response.text(); // Assuming PHP returns a message on success
+        } else {
+          throw new Error('Logout failed');
+        }
+      })
+      .then(async data => {
+        window.location.href = '/index.html'; // Change to your login page path
+
+      })
+      .catch(error => {
+        // Handle any errors during the logout process
+        console.error('Logout error:', error);
+        createConfirmationModal("Error logging out: " + error.message, "Error!",2);
+      });
+    } else {
+      console.log("Logout canceled");
+    }
+  }
+  
+
+
+// Create and append the modal to the document body
+function createConfirmationModal(message,head,type) {
+    return new Promise((resolve) => {
+        // Create the modal container
+        const modalContainer = document.createElement('div');
+        modalContainer.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50";
+
+        if(type==1){
+        // Modal content
+        modalContainer.innerHTML = `
+            <div class="bg-white rounded-lg shadow-md w-96 p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">${head}</h3>
+                <p class="text-gray-600 mb-6">${message}</p>
+                <div class="flex justify-end gap-4">
+                    <button id="cancelButton" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Cancel</button>
+                    <button id="confirmButton" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Confirm</button>
+                </div>
+            </div>
+        `;
+            // Append the modal to the body
+        document.body.appendChild(modalContainer);
+
+        // Add event listeners for buttons
+        const cancelButton = modalContainer.querySelector('#cancelButton');
+        const confirmButton = modalContainer.querySelector('#confirmButton');
+
+        cancelButton.addEventListener('click', () => {
+            resolve(false); // Return false when canceled
+            document.body.removeChild(modalContainer); // Remove the modal
+        });
+
+        confirmButton.addEventListener('click', () => {
+            resolve(true); // Return true when confirmed
+            document.body.removeChild(modalContainer); // Remove the modal
+        });
+
+        }
+        else{
+            modalContainer.innerHTML = `
+            <div class="bg-white rounded-lg shadow-md w-96 p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">${head}</h3>
+                <p class="text-gray-600 mb-6">${message}</p>
+                <div class="flex justify-end gap-4">
+                    <button id="confirmButton" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Ok</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalContainer);
+        const confirmButton = modalContainer.querySelector('#confirmButton');
+
+        confirmButton.addEventListener('click', () => {
+            resolve(false); // Return false when canceled
+            document.body.removeChild(modalContainer); // Remove the modal
+        });
+
+        }
+        
+    });
+}
