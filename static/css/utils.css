@@ -11,3 +11,9 @@ header {
 
 
 
+/* Add this to your custom CSS (optional) */
+#imageModal img {
+    max-width: 70%;
+    max-height: 60%;
+    border-radius: 15px;
+}

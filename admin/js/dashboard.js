@@ -81,7 +81,7 @@ const ctx = document.getElementById('salesChart').getContext('2d');
           }
         })
         .then(async data => {
-          window.location.href = '/index.html'; // Change to your login page path
+          window.location.href = '/home'; // This will handle the redirection
 
         })
         .catch(error => {

@@ -1,6 +1,4 @@
 const router = new Navigo("/", { hash: true });
-const viewCache = {}; // Cache for loaded views
-let cached404 = null; // Cache for 404.html
 
 // Function to load a page dynamically
 async function loadPage(view, id = null) {
@@ -8,20 +6,11 @@ async function loadPage(view, id = null) {
   const existingScripts = document.querySelectorAll(`script[data-view]`);
   existingScripts.forEach((script) => script.remove());
 
-  // Check if the view is already cached
-  if (viewCache[view]) {
-    document.getElementById("shopContent").innerHTML = viewCache[view];
-    if (view === "products" && id) loadProductDetails(id);
-    resetURL(view === "products" && id ? `/products/${id}` : `/${view}`);
-    return;
-  }
-
-  // Fetch the view
+  // Fetch the view HTML (without caching)
   try {
     const response = await fetch(`/static/views/${view}.html`);
     if (response.ok) {
       const htmlContent = await response.text();
-      viewCache[view] = htmlContent; // Cache the view
       document.getElementById("shopContent").innerHTML = htmlContent;
 
       if (view === "products" && id) {
@@ -39,7 +28,7 @@ async function loadPage(view, id = null) {
   }
 
   // Dynamically load the corresponding script
-  fetch(`/static/js/views/${view}.js`, { method: 'HEAD' })
+  fetch(`/static/js/views/${view}.js`, { method: 'POST' })
     .then((response) => {
       if (response.ok) {
         const script = document.createElement("script");
@@ -63,11 +52,6 @@ function resetURL(path) {
 
 // Function to load the 404 page
 function load404Page() {
-  if (cached404) {
-    document.getElementById("shopContent").innerHTML = cached404;
-    return;
-  }
-
   fetch(`/static/views/404.html`)
     .then((response) => {
       if (response.ok) {
@@ -77,7 +61,6 @@ function load404Page() {
       }
     })
     .then((htmlContent) => {
-      cached404 = htmlContent; // Cache the 404 page
       document.getElementById("shopContent").innerHTML = htmlContent;
     })
     .catch((error) => {
@@ -93,7 +76,7 @@ function loadProductDetails(id) {
   //   .then(response => response.json())
   //   .then(product => {
   //     const productContainer = document.getElementById('productDetails');
-  //     productContainer.innerHTML = `
+  //     productContainer.innerHTML = ` 
   //       <h1>${product.name}</h1>
   //       <img src="${product.image}" alt="${product.name}" />
   //       <p>${product.description}</p>
@@ -105,7 +88,6 @@ function loadProductDetails(id) {
 
 // Function to toggle footer visibility based on the route
 function getCurrentLocation() {
-  
   const currentPath = window.location.hash
     ? window.location.hash.replace("#", "")
     : window.location.pathname;
@@ -116,8 +98,6 @@ function getCurrentLocation() {
   const routesWithoutFooter = new Set(["/account", "/orders"]);
   footerBanner.classList.toggle("hidden", routesWithoutFooter.has(currentPath));
 }
-
-
 
 // Define routes
 router.on({

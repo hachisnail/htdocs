@@ -27,7 +27,7 @@ function loadProducts(searchQuery = '', category = '', sortOption = '') {
     const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
 
     // Fetch the products data from the API with the filters and sorting option
-    fetch(`http://192.168.2.0/static/api/adminProductsDisplay.php${queryString}`)
+    fetch(`http://192.168.2.0/static/api/productsDisplay.php${queryString}`)
         .then(response => response.json()) // Parse the JSON response
         .then(response => {
             if (response.status === "success" && Array.isArray(response.data)) {
@@ -102,16 +102,16 @@ function loadProducts(searchQuery = '', category = '', sortOption = '') {
                                             <path d="M140 128a12 12 0 1 1-12-12a12 12 0 0 1 12 12m56-12a12 12 0 1 0 12 12a12 12 0 0 0-12-12m-136 0a12 12 0 1 0 12 12a12 12 0 0 0-12-12"/>
                                         </g>
                                     </svg>
-                                    <div id="${product.ProductID}" class="hidden w-[64px] h-[102px] relative flex flex-col top-0 bg-white border-[#cccccc] border-[2px] gap-y-[3px] items-center  z-50 rounded-[5px]">
-                                        <button onclick="handleEvent('Delete','${product.ProductID}')" class="hover:border-gray-400 hover:border-[2px] w-full px-1 py-1  flex justify-start bg-transparent text-black md:text-[13px] text-[10px] font-[500]">
+                                    <div id="${product.ProductID}" class="hidden w-[64px] h-[100px] relative flex flex-col top-0  items-center  z-50 ">
+                                        <button onclick="handleEvent('Delete','${product.ProductID}')" class="bg-[#080226] hover:bg-[#eb6b72] text-white w-full px-1 py-1  flex justify-start   md:text-[13px] text-[10px] font-[500]">
                                             Delete
                                         </button>
                                         <div class="w-[95%] h-[1px]  bg-[#cccccc]"></div>
-                                        <button onclick="handleEvent('Edit','${product.ProductID}')" class="hover:border-gray-400 hover:border-[2px] w-full px-1 py-1 focus:outline-none flex justify-start bg-transparent text-black md:text-[13px] text-[10px] font-[500]">
+                                        <button onclick="handleEvent('Edit','${product.ProductID}')" class="bg-[#080226] hover:bg-[#eb6b72] text-white w-full px-1 py-1 focus:outline-none flex justify-start  md:text-[13px] text-[10px] font-[500]">
                                             Edit
                                         </button>
                                         <div class="w-[95%] h-[1px] bg-[#cccccc]"></div>
-                                        <button onclick="openContext(${product.ProductID})" class="hover:border-gray-400 hover:border-[2px] w-full px-1 py-1 flex justify-start bg-transparent text-black md:text-[13px] text-[10px] font-[500]">
+                                        <button onclick="openContext(${product.ProductID})" class="bg-[#080226] hover:bg-[#eb6b72] text-white w-full px-1 py-1 flex justify-start   md:text-[13px] text-[10px] font-[500]">
                                             Cancel
                                         </button>
                                     </div>
@@ -282,7 +282,7 @@ function toggleDropdown(id) {
         }
       })
       .then(async data => {
-        window.location.href = '/index.html'; // Change to your login page path
+        window.location.href = '/home';// Change to your login page path
 
       })
       .catch(error => {

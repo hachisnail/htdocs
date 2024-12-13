@@ -101,27 +101,25 @@
     <!-- header -->
 
     <!-- body -->
-    <div class="w-screen min-h-screen flex flex-col md:flex-row  bg-[#d1d1d1]">
+    <div class="w-screen min-h-screen flex flex-col md:flex-row  bg-[#080226]">
 
-        <div name="left" class="hidden sm:block w-[400px] flex flex-col max-h-full bg-[#080226]">
-            <a href="/admin/admin.html">
-                <button
-                    class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
+        <div name="left" class="hidden sm:block w-[179px] flex flex-col max-h-full bg-[#080226]">
+            <div class="bg-[#d1d1d1] w-full h-fit">
+                <button onclick="window.location.href='/admin/admin.html';" class="w-full h-fit flex justify-center py-4 text-[15px] rounded-br-[20px] bg-[#080226] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
                     Dashboard
                 </button>
-            </a>
-            <a href="/admin/products.html">
-                <button
-                    class="w-full h-fit flex justify-center py-4 text-[15px] hover:bg-transparent hover:text-white bg-[#EB6B72] text-[#080226] font-[500]">
+            </div>
+            <div class="bg-transparent w-full h-fit">
+                <button onclick="window.location.href='/admin/products.html';" class="w-full h-fit flex justify-center py-4 text-[15px]  bg-[#d1d1d1] text-[#080226]   rounded-l-[20px] hover:text-[#080226] font-[500]">
                     Products
                 </button>
-            </a>
-            <button
-                class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
-                Orders List
-            </button>
-            <button
-                class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
+            </div>
+            <div class="bg-[#d1d1d1] w-full h-fit">
+                <button class="w-full h-fit  flex justify-center py-4 text-[15px] text-white rounded-tr-[20px] bg-[#080226] hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
+                    Orders List
+                </button>
+            </div>
+            <button class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
                 Users
             </button>
 
@@ -130,7 +128,7 @@
 
 
 
-        <div name="right" class="w-screen flex md:w-[1172px]  flex-col h-full items-center p-3 md:px-6 gap-y-2">
+        <div name="right" class="w-screen flex md:w-full bg-[#d1d1d1] rounded-t-[20px]  flex-col max-h-full items-center p-3 md:px-6 gap-y-2">
             <div class="w-full flex justify-start">
                 <p class="text-[14px] text-[#232321] font-[600]">Product Details</p>
             </div>
@@ -168,7 +166,7 @@
 
                     <textarea placeholder="Description of the product"
                         class="resize-none w-full h-20 px-1 text-[10px] text-[#232321] font-[400] border-[1px] border-solid border-[#242424] py-2 rounded-[5px]"
-                        name="description" id="prodDescription"></textarea>
+                        name="prodDescription" id="prodDescription"></textarea>
 
                     <div class="w-full h-fit flex justify start">
                         <p class="text-[#232321] text-[12px] font-[600]">Stock Quantity</p>
@@ -190,9 +188,9 @@
                         <p class="text-[#232321] text-[12px] font-[600]">Tags</p>
                     </div>
 
-                    <textarea placeholder="tag1, tag2, tag3,..." id="prodTags"
+                    <textarea placeholder="tag1, tag2, tag3,..."
                         class="resize-none w-full h-20 px-1 text-[10px] text-[#232321] font-[400] border-[1px] border-solid border-[#242424] py-2 rounded-[5px]"
-                        name="description" id="tags"></textarea>
+                        name="prodTags" id="prodTags"></textarea>
 
                 </div>
 

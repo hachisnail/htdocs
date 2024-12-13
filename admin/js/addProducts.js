@@ -1,4 +1,3 @@
-// Function to handle the file input and preview
 document.getElementById("dropzone-file").addEventListener("change", function(event) {
     const files = event.target.files;
     const previewContainer = document.getElementById("preview-container");
@@ -10,11 +9,11 @@ document.getElementById("dropzone-file").addEventListener("change", function(eve
 
     // Limit to 4 files
     const fileLimit = 4;
-    const filesToPreview = Array.from(files).slice(0, fileLimit); // Only preview the first 4 files
+    let filesToPreview = Array.from(files).slice(0, fileLimit); // Only preview the first 4 files
 
     const previewCont = document.getElementById("productImagePrev");
 
-// Check if filesToPreview is not empty
+    // Check if filesToPreview is not empty
     if (filesToPreview.length > 0) {
         // Set the background image to the first file in the array
         const firstFile = filesToPreview[0];
@@ -51,7 +50,7 @@ document.getElementById("dropzone-file").addEventListener("change", function(eve
                 const image = document.createElement("img");
                 image.src = fileUrl;
                 image.alt = file.name;
-                image.classList.add("w-full", "h-auto");
+                image.classList.add("w-auto", "h-full");
 
                 const fileName = document.createElement("p");
                 fileName.textContent = file.name;
@@ -60,7 +59,17 @@ document.getElementById("dropzone-file").addEventListener("change", function(eve
                 const removeButton = document.createElement("button");
                 removeButton.textContent = "Remove";
                 removeButton.classList.add("absolute", "top-2", "right-2", "px-3", "py-1", "bg-red-500", "text-white", "rounded-[5px]", "text-xs");
+
+                // Store the file and its preview card in a closure
                 removeButton.addEventListener("click", function() {
+                    // Remove the file from the array
+                    filesToPreview = filesToPreview.filter(f => f.name !== file.name);
+                    const previewCont = document.getElementById("productImagePrev");
+                    previewCont.style.backgroundImage = "none";
+                    previewCont.style.backgroundSize = "initial";  // Optional, reset to initial state
+                    previewCont.style.backgroundPosition = "initial";
+
+                    // Remove the preview card
                     previewCard.remove();
                 });
 
@@ -84,6 +93,10 @@ document.getElementById("dropzone-file").addEventListener("change", function(eve
         modal.classList.add("hidden");
     });
 });
+
+
+
+
 
 // Handle product form submission
 document.getElementById("submit-btn").addEventListener("click", async function(e) {
@@ -211,32 +224,56 @@ document.getElementById("submit-btn").addEventListener("click", async function(e
     .then(response => response.json())
     .then(data => {
         // Hide the spinner
+        
         loadingSpinner.classList.add("hidden");
-
+        
         // Show success or error modal
         const modalMessage = data.status === 'success' 
             ? "Product added successfully!" 
             : data.message;
-
-        const result = data.status === 'success' 
-            ? createConfirmationModal(modalMessage, "Success!",2) 
-            : createConfirmationModal(modalMessage, "Success!",2);
-
+    
+        const result = createConfirmationModal(modalMessage, data.status === 'success' ? "Success!" : "Error!", 2);
+    
         result.then((isConfirmed) => {
-            if (isConfirmed) {
+            if (isConfirmed && data.status === 'success') {
                 // Clear form inputs
-                document.getElementById("prodName").value = '';
-                document.getElementById("prodPrice").value = '';
-                document.getElementById("prodDescription").value = '';
-                document.getElementById("prodTags").value = '';
-                document.getElementById("prodQuantity").value = '';
-                document.getElementById("prodCategory").value = '';
-                document.getElementById("dropzone-file").value = '';  // Clear file input
-                document.getElementById("preview-container").innerHTML = '';  // Clear preview
+                prodNameField.value = '';
+                prodPriceField.value = '';
+                prodDescField.value = '';
+                prodTagsField.value = '';
+                prodQuantField.value = '';
+                prodCatField.value = '';
+                imagesField.value = '';  // Clear file input
+                
+                // Clear the preview container
                 const previewCont = document.getElementById("productImagePrev");
                 previewCont.style.backgroundImage = "none";
-                previewCont.style.backgroundSize = "initial";  // Optional, reset to initial state
+                previewCont.style.backgroundSize = "initial";  // Reset to initial state
                 previewCont.style.backgroundPosition = "initial";
+    
+                // Optionally clear other fields, like dropzone preview
+                const previewContainer = document.getElementById("preview-container");
+                previewContainer.innerHTML = ''; // Clear the preview contents
+            }
+            else {
+                // Clear form inputs
+                prodNameField.value = '';
+                prodPriceField.value = '';
+                prodDescField.value = '';
+                prodTagsField.value = '';
+                prodQuantField.value = '';
+                prodCatField.value = '';
+                imagesField.value = '';  // Clear file input
+                
+                // Clear the preview container
+                const previewCont = document.getElementById("productImagePrev");
+                previewCont.style.backgroundImage = "none";
+                previewCont.style.backgroundSize = "initial";  // Reset to initial state
+                previewCont.style.backgroundPosition = "initial";
+    
+                // Optionally clear other fields, like dropzone preview
+                const previewContainer = document.getElementById("preview-container");
+                previewContainer.innerHTML = ''; // Clear the preview contents
             }
         });
     })
@@ -246,6 +283,7 @@ document.getElementById("submit-btn").addEventListener("click", async function(e
         loadingSpinner.classList.add("hidden");
         createConfirmationModal("An error occurred while submitting the product.", "Error!",2);
     });
+    resetProductForm();
 });
 
 
@@ -288,7 +326,7 @@ function toggleDropdown(id) {
         }
       })
       .then(async data => {
-        window.location.href = '/index.html'; // Change to your login page path
+        window.location.href = '/home'; // Change to your login page path
 
       })
       .catch(error => {
@@ -361,4 +399,34 @@ function createConfirmationModal(message,head,type) {
         }
         
     });
+}
+
+function resetProductForm() {
+    // Get input fields
+    const prodNameField = document.getElementById("prodName");
+    const prodPriceField = document.getElementById("prodPrice");
+    const prodDescField = document.getElementById("prodDescription");
+    const prodTagsField = document.getElementById("prodTags");
+    const prodQuantField = document.getElementById("prodQuantity");
+    const prodCatField = document.getElementById("prodCategory");
+    const imagesField = document.getElementById("dropzone-file");
+    const previewContainer = document.getElementById("productImagePrev");
+
+    // Clear input values
+    prodNameField.value = '';
+    prodPriceField.value = '';
+    prodDescField.value = '';
+    prodTagsField.value = '';
+    prodQuantField.value = '';
+    prodCatField.value = '';
+    imagesField.value = '';  // Clear file input
+
+    // Clear preview container
+    previewContainer.style.backgroundImage = "none";
+    previewContainer.style.backgroundSize = "initial";  // Reset to initial state
+    previewContainer.style.backgroundPosition = "initial";
+
+    // Clear any additional preview-related content
+    const imagePreviewContainer = document.getElementById("preview-container");
+    imagePreviewContainer.innerHTML = ''; // Clear the preview contents
 }

@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare($query);
 
         // Bind the parameters (use appropriate types: s for strings, d for decimal/numbers)
-        $stmt->bind_param("ssdsdss", $name, $price, $details, $tagsString, $stock, $categoryID, $imagesString);
+        $stmt->bind_param("sdssdss", $name, $price, $details, $tagsString, $stock, $categoryID, $imagesString);
 
         // Execute the query and return a response
         if ($stmt->execute()) {

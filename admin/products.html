@@ -101,27 +101,25 @@
     <!-- header -->
 
     <!-- body -->
-    <div class="w-screen min-h-screen flex flex-col md:flex-row  bg-[#d1d1d1]">
+    <div class="w-screen min-h-screen flex flex-col md:flex-row bg-[#080226]">
 
-        <div name="left" class="hidden sm:block w-[400px] flex flex-col max-h-full bg-[#080226]">
-            <a href="/admin/admin.html">
-                <button
-                    class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
+        <div name="left" class="hidden sm:block w-[179px] flex flex-col max-h-full bg-[#080226]">
+            <div class="bg-[#d1d1d1] w-full h-fit">
+                <button onclick="window.location.href='/admin/admin.html';" class="w-full h-fit flex justify-center py-4 text-[15px] rounded-br-[20px] bg-[#080226] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
                     Dashboard
                 </button>
-            </a>
-            <a href="/admin/products.html">
-                <button
-                    class="w-full h-fit flex justify-center py-4 text-[15px] hover:bg-transparent hover:text-white bg-[#EB6B72] text-[#080226] font-[500]">
+            </div>
+            <div class="bg-transparent w-full h-fit">
+                <button onclick="window.location.href='/admin/products.html';" class="w-full h-fit flex justify-center py-4 text-[15px]  bg-[#d1d1d1] text-[#080226]   rounded-l-[20px] hover:text-[#080226] font-[500]">
                     Products
                 </button>
-            </a>
-            <button
-                class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
-                Orders List
-            </button>
-            <button
-                class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
+            </div>
+            <div class="bg-[#d1d1d1] w-full h-fit">
+                <button class="w-full h-fit  flex justify-center py-4 text-[15px] text-white rounded-tr-[20px] bg-[#080226] hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
+                    Orders List
+                </button>
+            </div>
+            <button class="w-full h-fit flex justify-center py-4 text-[15px] text-white hover:bg-[#EB6B72] hover:text-[#080226] font-[500]">
                 Users
             </button>
 
@@ -130,7 +128,7 @@
 
 
 
-        <div name="right" class="w-screen flex md:w-full  flex-col h-full items-center p-3 md:px-6">
+        <div name="right" class="w-screen flex md:w-full bg-[#d1d1d1] rounded-t-[20px] flex-col max-h-full items-center p-3 md:px-6">
             <div class=" mb-3 md:w-[1172px] flex w-full h-fit justify-between md:justify-start items-center gap-x-4">
                 <p class="font-[600] text-[14px] h-fit md:text-[20px] text-black">Products</p>
 

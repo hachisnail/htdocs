@@ -1,4 +1,4 @@
-<div class="h-fit w-screen flex flex-col md:px-[7%] md:justify-center md:gap-x-[1%] md:flex-row items-start mt-28 pb-48">
+<div class="h-fit w-screen flex flex-col md:px-[7%] md:justify-center md:gap-x-[1%] md:flex-row items-center md:items-start  mt-28 pb-48">
 
     <div class="hidden sm:block w-[33%]">
         <div class="border-[1px] border-black  relative h-fit bg-white rounded-[10px] py-7 flex flex-col items-center ">
@@ -115,9 +115,9 @@
             </select>
         </div>
 
-        <div id="animeTable" class="w-fit p-2 md:p-6 md:w-[55em] md:gap-6 h-fit flex flex-wrap justify-center gap-3 ">
+        <div id="gameTable" class="w-fit p-2 md:p-6 md:w-[55em] md:gap-6 md:h-[600px] h-[567px] flex flex-wrap justify-center md:justify-start gap-3 ">
             
-            <a href="/products/1" data-navigo>
+            <!-- <a href="/products/1" data-navigo>
                 <div id="animeCard" class="flex flex-col justify-center">
                     <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]">
 
@@ -175,35 +175,36 @@
                     <p id="prodName" class="font-[600] text-[12px]">Product Name</p>
                     <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p>
                 </div>
-            </a>
+            </a> -->
 
         
 
-            <div class="my-6 w-full h-[1px] border border-solid border-[#08022680]">
-                <!-- line -->
-            </div>
+            
+        </div>
+        <div class="my-6 px-[5%] w-full h-[1px] border border-solid border-[#08022680]">
+            <!-- line -->
+        </div>
 
-            <div class="w-full h-fit flex justify-between items-center">
-                <button class="px-2 py-1 border-[2px] border-[#08022673] rounded-[10px] text-[10px] font-[500] flex items-center">
-                    <svg class="mr-2 w-[10.55px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
-                            <path d="M21 12h-17.5" />
-                            <path d="M3 12l7 7M3 12l7 -7" />
-                        </g>
-                    </svg>
-                    Previous
-                </button>
-                <p class="text-[10px] font-[500] text-[#828282]">Showing <span id="prodRange">6-12</span> of <span id="prodTotal">100</span> Products</p>
-                <button class="px-2 py-1 border-[2px] border-[#08022673] rounded-[10px] text-[10px] font-[500] flex items-center">
-                    Next
-                    <svg class="ml-6 w-[10.55px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
-                            <path d="M3 12h17.5" />
-                            <path d="M21 12l-7 7M21 12l-7 -7" />
-                        </g>
-                    </svg>
-                </button>
-            </div>
+        <div class="w-full px-[5%] h-fit flex justify-between items-center">
+            <button class="previous-btn px-2 py-1 border-[2px] border-[#08022673] rounded-[10px] text-[10px] font-[500] flex items-center">
+                <svg class="mr-2 w-[10.55px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+                        <path d="M21 12h-17.5" />
+                        <path d="M3 12l7 7M3 12l7 -7" />
+                    </g>
+                </svg>
+                Previous
+            </button>
+            <p class="text-[10px] font-[500] text-[#828282]">Showing <span id="prodRange">6-12</span> of <span id="prodTotal">100</span> Products</p>
+            <button class="next-btn px-2 py-1 border-[2px] border-[#08022673] rounded-[10px] text-[10px] font-[500] flex items-center">
+                Next
+                <svg class="ml-6 w-[10.55px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+                        <path d="M3 12h17.5" />
+                        <path d="M21 12l-7 7M21 12l-7 -7" />
+                    </g>
+                </svg>
+            </button>
         </div>
     </div>
 </div>
