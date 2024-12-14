@@ -1,9 +1,9 @@
 <?php
 session_set_cookie_params([
     'lifetime' => 0,        // Session cookie expires when browser is closed
-    'path' => '/',          // Path where the cookie is valid
-    'domain' => 'localhost',  // Adjust to the correct domain or IP address
-    'secure' => false,      // Set to true if using HTTPS
+    'path' => '/admin/',          // Path where the cookie is valid
+    'domain' => $_SERVER['HTTP_HOST'], // Use the server's host dynamically
+    'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on', // Set to true if using HTTPS
     'httponly' => true      // Ensures the cookie is accessible only via HTTP
 ]);
 
@@ -13,7 +13,7 @@ header('Content-Type: application/json');
 
 // Handle CORS headers for cross-origin requests
 if (isset($_SERVER['HTTP_ORIGIN'])) {
-    $allowedOrigins = ['http://localhost/','https://mediumpurple-raccoon-269311.hostingersite.com/']; // Add allowed origins here (use exact URL, e.g., 'http://example.com')
+    $allowedOrigins = ['http://localhost', 'https://mediumpurple-raccoon-269311.hostingersite.com']; // Add allowed origins here
     if (in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
         header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
         header('Access-Control-Allow-Credentials: true'); // Allow credentials (cookies)
@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0); // Exit after handling OPTIONS preflight request
 }
 
-// If session cannot be started, return an error
-if (!isset($_SESSION)) {
+// Check if the session is started properly
+if (session_status() !== PHP_SESSION_ACTIVE) {
     echo json_encode(['status' => 'error', 'message' => 'Session could not be started']);
     exit();
 }
@@ -63,12 +63,12 @@ if ($result->num_rows > 0) {
         $_SESSION['user_logged_in'] = true;
         $_SESSION['user_id'] = $admin['id']; // Store user ID in session for further use
 
-        // Respond with success and session details
+        // Ensure the session ID is sent back for JavaScript-based cookie handling
         echo json_encode([
             'status' => 'success',
             'message' => 'Login successful',
-            'session_id' => session_id(),
-            'session_data' => $_SESSION // You can see the session data here
+            'session_id' => session_id(), // Provide session ID for manual cookie creation (if needed)
+            'session_data' => $_SESSION
         ]);
     } else {
         // If password is incorrect
