@@ -1,297 +1,191 @@
-<div class="h-fit w-screen flex flex-col md:px-[7%] md:justify-center md:gap-x-[1%] md:flex-row items-center md:items-start  mt-28 pb-48">
-
+<div
+    class="h-fit w-screen flex flex-col md:px-[7%] md:justify-center md:gap-x-[1%] md:flex-row items-center md:items-start  mt-28 pb-48">
     <div class="hidden sm:block w-[33%]">
         <div class="border-[1px] border-black  relative h-fit bg-white rounded-[10px] py-7 flex flex-col items-center ">
             <div class="w-[90%] h-fit flex justify-start items-center">
                 <p class="text-[20px] font-[700]">Filters</p>
-                
             </div>
-            <div class="w-[94%] border bg-[#08022630] h-[1px] my-4">
-                <!-- line -->
-            </div>
-
+            <div class="w-[94%] border bg-[#08022630] h-[1px] my-4"> <!-- line --> </div>
             <div class="relative inline-block text-left w-[90%] ">
                 <div class="w-full h-fit flex justify-between items-center">
-                    <p>Prices</p>
-                    <svg style="transform: rotate(180deg);" onclick="toggleFilter('filter3', 'arrowIcon3')" id="arrowIcon3" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <p>Prices</p> <svg style="transform: rotate(180deg);"
+                        onclick="toggleFilter('filter3', 'arrowIcon3')" id="arrowIcon3"
+                        class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
                 </div>
                 <div id="filter3" class="transition-opacity ease-in-out delay-150 duration-300">
-                    <div class="slider-container">
-                        <input type="range" class="slider" id="slider1" min="0" max="100" value="25">
-                        <input type="range" class="slider" id="slider2" min="0" max="100" value="75">
+                    <div class="slider-container"> <input type="range" class="slider" id="slider1" min="0" max="100"
+                            value="25"> <input type="range" class="slider" id="slider2" min="0" max="100" value="75">
                         <div class="slider-track"></div>
                     </div>
-                </div> 
+                </div>
             </div>
-            <div class="w-[94%] border bg-[#08022630] h-[1px] my-4">
-                <!-- line -->
-            </div>
+            <div class="w-[94%] border bg-[#08022630] h-[1px] my-4"> <!-- line --> </div>
             <div class="relative flex flex-col text-left w-[90%] ">
                 <div class="w-full h-fit flex justify-between items-center">
-                    <p>Size</p>
-                    <svg style="transform: rotate(180deg);" onclick="toggleFilter('filter4', 'arrowIcon4')" id="arrowIcon4" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <p>Size</p> <svg style="transform: rotate(180deg);" onclick="toggleFilter('filter4', 'arrowIcon4')"
+                        id="arrowIcon4" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
                 </div>
                 <div id="filter4" class="mt-4 transition-opacity ease-in-out delay-150 duration-300">
                     <div class="w-full flex flex-col items-center">
-                        <div class="m-4 w-[375px] h-fit flex flex-wrap items-center justify-between gap-y-2">
-                            <button class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                                XX-Small
-                            </button>
-                            
-                            <button class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                                X-Small
-                            </button>
-
-                            <button class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                                Small
-                            </button>
-
-                            <button class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                                Medium
-                            </button>
-
-                            <button class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                                Large
-                            </button>
-
-                            <button class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                                X-Large
-                            </button>
-
-                            <button class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                                XX-Large
-                            </button>
-
-                            <button class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                                3XL
-                            </button>
-
-                            <button class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                                4XL
-                            </button>
-                        </div>
-                        <button class="px-28 py-4 mt-4 mb-6 bg-[#EFE391] rounded-[20px]">
-                            APPLY FILTERS
-                        </button>
+                        <div class="m-4 w-[375px] h-fit flex flex-wrap items-center justify-between gap-y-2"> <button
+                                class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                                XX-Small </button> <button
+                                class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                                X-Small </button> <button
+                                class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                                Small </button> <button
+                                class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                                Medium </button> <button
+                                class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                                Large </button> <button
+                                class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                                X-Large </button> <button
+                                class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                                XX-Large </button> <button
+                                class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                                3XL </button> <button
+                                class="w-[110px] px-6 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                                4XL </button> </div> <button class="px-28 py-4 mt-4 mb-6 bg-[#EFE391] rounded-[20px]">
+                            APPLY FILTERS </button>
                     </div>
-
-                </div> 
+                </div>
             </div>
         </div>
     </div>
-
     <div class="flex flex-col items-center">
         <div class="flex w-[90%] items-center h-10  gap-x-2 md:gap-x-4 md:mb-6">
             <p class="text-[20px] font-[500]">Movie</p>
             <!-- <input class="search-bar rounded-[20px] bg-[#D9D9D982] w-[60%] px-4 text-[10px]" placeholder="Search for products..." type="text"> -->
-            <div class="flex items-center flex-grow-1 md:w-[29em]  bg-gray-200 rounded-full px-3 py-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-                <input type="text" placeholder="Search for products..." class="bg-gray-200 outline-none ml-2 text-gray-700 placeholder-gray-500 w-full"
-                />
-            </div>
-            <div class="flex w-12 h-10 rounded-[50%] bg-gray-200 justify-center items-center md:hidden">
-                <svg onclick="toggleFilters()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17v2h6v-2zM3 5v2h10V5zm10 16v-2h8v-2h-8v-2h-2v6zM7 9v2H3v2h4v2h2V9zm14 4v-2H11v2zm-6-4h2V7h4V5h-4V3h-2z"/></svg>
-            </div>
+            <div class="flex items-center flex-grow-1 md:w-[29em]  bg-gray-200 rounded-full px-3 py-2"> <svg
+                    xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg> <input type="text" placeholder="Search for products..."
+                    class="bg-gray-200 outline-none ml-2 text-gray-700 placeholder-gray-500 w-full" /> </div>
+            <div class="flex w-12 h-10 rounded-[50%] bg-gray-200 justify-center items-center md:hidden"> <svg
+                    onclick="toggleFilters()" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M3 17v2h6v-2zM3 5v2h10V5zm10 16v-2h8v-2h-8v-2h-2v6zM7 9v2H3v2h4v2h2V9zm14 4v-2H11v2zm-6-4h2V7h4V5h-4V3h-2z" />
+                </svg> </div>
             <div class=" hidden sm:block">
                 <div class="flex gap-x-6 justify-end items-center">
-                    <p class="text-gray-700 text-[10px] font-[400]">Sort By:</p>
-                    <select class="text-[10px] font-[500]" name="" id="sortAnime">
+                    <p class="text-gray-700 text-[10px] font-[400]">Sort By:</p> <select class="text-[10px] font-[500]"
+                        name="" id="sortAnime">
                         <option class="text-[10px] font-[500] appearance-none" value="Mpopular">Most Popular</option>
                         <option class="text-[10px] font-[500] appearance-none" value="Lpopular">Least Popular</option>
                     </select>
                 </div>
             </div>
-            
         </div>
         <div class="my-6 flex justify-end items-center w-[90%] gap-x-6 md:hidden">
-            <p class="text-gray-700 text-[10px] font-[400]">Sort By:</p>
-            <select class="text-[10px] font-[500]" name="" id="sortAnime">
+            <p class="text-gray-700 text-[10px] font-[400]">Sort By:</p> <select class="text-[10px] font-[500]" name=""
+                id="sortAnime">
                 <option class="text-[10px] font-[500] appearance-none" value="Mpopular">Most Popular</option>
                 <option class="text-[10px] font-[500] appearance-none" value="Lpopular">Least Popular</option>
             </select>
         </div>
-
-        <div id="movieTable" class="w-fit md:h-[600px] h-[567px] p-2 md:p-6 md:w-[55em] md:gap-6  flex flex-wrap justify-center md:justify-start gap-3 ">
-            <!-- <a href="/products/1" data-navigo>
-                <div id="animeCard" class="flex flex-col justify-center">
-                    <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]">
-
-                    </div>
-                    <p id="prodName" class="font-[600] text-[12px]">Product Name</p>
-                    <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p>
-                </div>
-            </a>
-
-            <a href="/products/2" data-navigo>
-                <div id="animeCard" class="flex flex-col justify-center">
-                    <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]">
-
-                    </div>
-                    <p id="prodName" class="font-[600] text-[12px]">Product Name</p>
-                    <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p>
-                </div>
-            </a>
-
-            <a href="/products/3" data-navigo>
-                <div id="animeCard" class="flex flex-col justify-center">
-                    <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]">
-
-                    </div>
-                    <p id="prodName" class="font-[600] text-[12px]">Product Name</p>
-                    <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p>
-                </div>
-            </a>
-
-            <a href="/products/4" data-navigo>
-                <div id="animeCard" class="flex flex-col justify-center">
-                    <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]">
-
-                    </div>
-                    <p id="prodName" class="font-[600] text-[12px]">Product Name</p>
-                    <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p>
-                </div>
-            </a>
-
-            <a href="/products/5" data-navigo>
-                <div id="animeCard" class="flex flex-col justify-center">
-                    <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]">
-
-                    </div>
-                    <p id="prodName" class="font-[600] text-[12px]">Product Name</p>
-                    <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p>
-                </div>
-            </a>
-
-            <a href="/products/6" data-navigo>
-                <div id="animeCard" class="flex flex-col justify-center">
-                    <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]">
-
-                    </div>
-                    <p id="prodName" class="font-[600] text-[12px]">Product Name</p>
-                    <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p>
-                </div>
-            </a> -->
-
-
-        
-
-            
+        <div id="movieTable"
+            class="w-fit md:h-[600px] h-[567px] p-2 md:p-6 md:w-[55em] md:gap-6  flex flex-wrap justify-center md:justify-start gap-3 ">
+            <!-- <a href="/products/1" data-navigo> <div id="animeCard" class="flex flex-col justify-center"> <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]"> </div> <p id="prodName" class="font-[600] text-[12px]">Product Name</p> <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p> </div> </a> <a href="/products/2" data-navigo> <div id="animeCard" class="flex flex-col justify-center"> <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]"> </div> <p id="prodName" class="font-[600] text-[12px]">Product Name</p> <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p> </div> </a> <a href="/products/3" data-navigo> <div id="animeCard" class="flex flex-col justify-center"> <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]"> </div> <p id="prodName" class="font-[600] text-[12px]">Product Name</p> <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p> </div> </a> <a href="/products/4" data-navigo> <div id="animeCard" class="flex flex-col justify-center"> <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]"> </div> <p id="prodName" class="font-[600] text-[12px]">Product Name</p> <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p> </div> </a> <a href="/products/5" data-navigo> <div id="animeCard" class="flex flex-col justify-center"> <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]"> </div> <p id="prodName" class="font-[600] text-[12px]">Product Name</p> <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p> </div> </a> <a href="/products/6" data-navigo> <div id="animeCard" class="flex flex-col justify-center"> <div class="w-[158px] h-[142px] md:w-[250px] md:h-[237px] rounded-[20px] bg-[#D9D9D9]"> </div> <p id="prodName" class="font-[600] text-[12px]">Product Name</p> <p class="text-[#C83E71] font-[600] text-[14px]">₱<span id="prodPrice">500</span></p> </div> </a> -->
         </div>
-        <div class="my-6 w-full h-[1px] border border-solid border-[#08022680]">
-            <!-- line -->
-        </div>
-
-        <div class="w-full h-fit flex justify-between items-center">
-            <button class="previous-btn px-2 py-1 border-[2px] border-[#08022673] rounded-[10px] text-[10px] font-[500] flex items-center">
-                <svg class="mr-2 w-[10.55px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+        <div class="my-6 w-full h-[1px] border border-solid border-[#08022680]"> <!-- line --> </div>
+        <div class="w-full h-fit flex justify-between items-center"> <button
+                class="previous-btn px-2 py-1 border-[2px] border-[#08022673] rounded-[10px] text-[10px] font-[500] flex items-center">
+                <svg class="mr-2 w-[10.55px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="1.8">
                         <path d="M21 12h-17.5" />
                         <path d="M3 12l7 7M3 12l7 -7" />
                     </g>
-                </svg>
-                Previous
-            </button>
-            <p class="text-[10px] font-[500] text-[#828282]">Showing <span id="prodRange">6-12</span> of <span id="prodTotal">100</span> Products</p>
-            <button class="next-btn px-2 py-1 border-[2px] border-[#08022673] rounded-[10px] text-[10px] font-[500] flex items-center">
-                Next
-                <svg class="ml-6 w-[10.55px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+                </svg> Previous </button>
+            <p class="text-[10px] font-[500] text-[#828282]">Showing <span id="prodRange">6-12</span> of <span
+                    id="prodTotal">100</span> Products</p> <button
+                class="next-btn px-2 py-1 border-[2px] border-[#08022673] rounded-[10px] text-[10px] font-[500] flex items-center">
+                Next <svg class="ml-6 w-[10.55px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="1.8">
                         <path d="M3 12h17.5" />
                         <path d="M21 12l-7 7M21 12l-7 -7" />
                     </g>
-                </svg>
-            </button>
+                </svg> </button>
         </div>
     </div>
-</div>
-
-
-<!-- filter modal -->
-<div id="filters" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 z-50 flex items-end" >
-    
+</div> <!-- filter modal -->
+<div id="filters" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 z-50 flex items-end">
     <div id="content" class="w-full relative h-fit bg-white rounded-t-[30px] z-50 py-[30px] flex flex-col items-center">
         <div class="w-[90%] h-fit flex justify-between items-center">
-            <p class="text-[20px] font-[700]">Filters</p>
-            <svg onclick="hide()" class="hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z" />
+            <p class="text-[20px] font-[700]">Filters</p> <svg onclick="hide()" class="hover:cursor-pointer"
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z" />
             </svg>
         </div>
-        <div class="w-[94%] border bg-[#08022630] h-[1px] my-4">
-            <!-- line -->
-        </div>
-
+        <div class="w-[94%] border bg-[#08022630] h-[1px] my-4"> <!-- line --> </div>
         <div class="relative inline-block text-left w-[90%] ">
             <div class="w-full h-fit flex justify-between items-center">
-                <p>Prices</p>
-                <svg style="transform: rotate(180deg);" onclick="toggleFilter('filter1', 'arrowIcon1')" id="arrowIcon1" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <p>Prices</p> <svg style="transform: rotate(180deg);" onclick="toggleFilter('filter1', 'arrowIcon1')"
+                    id="arrowIcon1" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor"
+                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
             </div>
             <div id="filter1" class="transition-opacity ease-in-out delay-150 duration-300">
-                <div class="slider-container">
-                    <input type="range" class="slider" id="slider1" min="0" max="100" value="25">
-                    <input type="range" class="slider" id="slider2" min="0" max="100" value="75">
+                <div class="slider-container"> <input type="range" class="slider" id="slider1" min="0" max="100"
+                        value="25"> <input type="range" class="slider" id="slider2" min="0" max="100" value="75">
                     <div class="slider-track"></div>
-                  </div>
-            </div> 
+                </div>
+            </div>
         </div>
-        <div class="w-[94%] border bg-[#08022630] h-[1px] mt-4">
-            <!-- line -->
-        </div>
+        <div class="w-[94%] border bg-[#08022630] h-[1px] mt-4"> <!-- line --> </div>
         <div class="relative inline-block text-left w-[90%] ">
             <div class="w-full h-fit flex justify-between items-center">
-                <p>Filters</p>
-                <svg style="transform: rotate(180deg);" onclick="toggleFilter('filter2', 'arrowIcon2')" id="arrowIcon2" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <p>Filters</p> <svg style="transform: rotate(180deg);" onclick="toggleFilter('filter2', 'arrowIcon2')"
+                    id="arrowIcon2" class="ml-2 w-5 h-5 transition-transform transform" fill="currentColor"
+                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M5.293 9.707a1 1 0 011.414 0L10 13.414l3.293-3.707a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
             </div>
             <div id="filter2" class="transition-opacity ease-in-out delay-300 duration-600">
                 <div class="w-full flex flex-col items-center">
-                    <div class="my-4 w-full h-fit flex flex-wrap items-center justify-between gap-y-2">
-                        <button class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                            XX-Small
-                        </button>
-                        
-                        <button class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                            X-Small
-                        </button>
-        
-                        <button class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                            Small
-                        </button>
-        
-                        <button class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                            Medium
-                        </button>
-        
-                        <button class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                            Large
-                        </button>
-        
-                        <button class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                            X-Large
-                        </button>
-        
-                        <button class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                            XX-Large
-                        </button>
-        
-                        <button class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white"> 
-                            3XL
-                        </button>
-        
-                        <button class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226]  hover:text-white"> 
-                            4XL
-                        </button>
-                    </div>
-                    <button class="px-20 py-4 mt-2 mb-2 bg-[#EFE391] rounded-[20px]">
-                        APPLY FILTERS
-                    </button>
+                    <div class="my-4 w-full h-fit flex flex-wrap items-center justify-between gap-y-2"> <button
+                            class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                            XX-Small </button> <button
+                            class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                            X-Small </button> <button
+                            class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                            Small </button> <button
+                            class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                            Medium </button> <button
+                            class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                            Large </button> <button
+                            class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                            X-Large </button> <button
+                            class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                            XX-Large </button> <button
+                            class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226] hover:text-white">
+                            3XL </button> <button
+                            class="w-[115px] px-4 py-2 rounded-[20px] bg-[#D9D9D9] text-[12px] text-[#626262] font-[500] hover:bg-[#080226]  hover:text-white">
+                            4XL </button> </div> <button class="px-20 py-4 mt-2 mb-2 bg-[#EFE391] rounded-[20px]"> APPLY
+                        FILTERS </button>
                 </div>
-            </div> 
+            </div>
         </div>
-        
-</div>
-
+    </div>

@@ -2,7 +2,7 @@
 // Include the database connection
 
 
-include 'databaseConnnection.php';
+include '../api/databaseConnnection.php';
 
 // Set the content type to JSON
 header('Content-Type: application/json');

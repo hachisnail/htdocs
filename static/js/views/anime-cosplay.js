@@ -52,8 +52,8 @@ if (typeof totalProductsAnime === 'undefined') {
 // Function to fetch and display products
 function fetchAndDisplayProducts() {
     const category = 'Anime Cosplay'; // Default category
-
-    fetch(`http://192.168.2.0/static/api/productsDisplay.php?categoryName=${category}`)
+    fetch(`/static/api/productsDisplay.php?categoryName=${category}`)
+    //fetch(`http://192.168.2.0/static/api/productsDisplay.php?categoryName=${category}`)
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success' && data.data.length > 0) {

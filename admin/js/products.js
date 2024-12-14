@@ -27,7 +27,7 @@ function loadProducts(searchQuery = '', category = '', sortOption = '') {
     const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
 
     // Fetch the products data from the API with the filters and sorting option
-    fetch(`http://192.168.2.0/static/api/productsDisplay.php${queryString}`)
+    fetch(`/static/api/productsDisplay.php${queryString}`)
         .then(response => response.json()) // Parse the JSON response
         .then(response => {
             if (response.status === "success" && Array.isArray(response.data)) {
@@ -220,7 +220,7 @@ function deleteProduct(productId) {
     
 
     // Send the delete request
-    fetch('http://192.168.2.0/static/api/deletePeoduct.php', {
+    fetch(`/static/api/deletePeoduct.php`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -270,7 +270,7 @@ function toggleDropdown(id) {
     
     if (isConfirmed) {
       // Make a request to the logout PHP script
-      fetch('http://192.168.2.0/static/api/adminLogout.php', {
+      fetch(`/api/adminLogout.php`, {
         method: 'GET', // Assuming logout is a simple GET request
       })
       .then(response => {

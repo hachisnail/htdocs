@@ -21,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Host       = 'smtp.gmail.com'; // Replace with your SMTP host
         $mail->SMTPAuth   = true;
         $mail->Username   = 'kosupure94@gmail.com'; // Replace with your email
-        $mail->Password   = 'fujiwara000'; // Replace with your email password
+        $mail->Password = 'hheo xcoz mokl pbye';// Replace with your email password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 465;
+        $mail->Port       = 587;
 
         $mail->setFrom('kosupure94@gmail.com', 'Kosupure');
         $mail->addAddress($email);

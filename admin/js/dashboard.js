@@ -69,7 +69,7 @@ const ctx = document.getElementById('salesChart').getContext('2d');
       
       if (isConfirmed) {
         // Make a request to the logout PHP script
-        fetch('http://192.168.2.0/static/api/adminLogout.php', {
+        fetch(`/api/adminLogout.php`, {
           method: 'GET', // Assuming logout is a simple GET request
         })
         .then(response => {

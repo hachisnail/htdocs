@@ -217,7 +217,7 @@ document.getElementById("submit-btn").addEventListener("click", async function(e
     formData.append("productData", JSON.stringify(productData));
 
     // Send the data via fetch
-    fetch('http://192.168.2.0/static/api/insertProduct.php', {
+    fetch(`/static/api/insertProduct.php`, {
         method: 'POST',
         body: formData
     })
@@ -314,7 +314,7 @@ function toggleDropdown(id) {
     
     if (isConfirmed) {
       // Make a request to the logout PHP script
-      fetch('http://192.168.2.0/static/api/adminLogout.php', {
+      fetch(`/static/api/adminLogout.php`, {
         method: 'GET', // Assuming logout is a simple GET request
       })
       .then(response => {

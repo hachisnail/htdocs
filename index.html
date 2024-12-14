@@ -87,17 +87,17 @@
                     <a href="/orders"
                         class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]"
                         data-navigo>My Orders</a>
-                    <a href="#"
-                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#080226] hover:bg-[#EB6B72]">Logout</a>
+                    <div onclick="logout()"
+                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#080226] hover:bg-[#EB6B72]">Logout</div>
                 </div>
 
                 <div id="profileLogin"
                     class=" absolute -right-5 md:-right-32 mt-3 w-48 bg-white rounded-md shadow-lg hidden">
-                    <a href="#" onclick="showLogin(true)"
-                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]">Login</a>
-                    <a href="#" onclick="showLogin(false)"
+                    <div onclick="showLogin(true)"
+                        class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]">Login</div>
+                    <div onclick="showLogin(false)"
                         class="block px-4 py-2 font-[500] text-[12px] text-white bg-[#080226] hover:text-[#08022 hover:bg-[#EB6B72]">Sign
-                        Up</a>
+                        Up</div>
                 </div>
             </div>
         </div>
@@ -230,82 +230,7 @@
 
 
 
-    <!-- Shopping Bag -->
-    <div id="shoppingBag"
-        class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 z-50 flex items-end md:justify-end">
 
-        <div id="content"
-            class="w-full md:w-[24rem] relative h-[44rem] md:h-full bg-white md:rounded-l-[30px] md:rounded-tr-[0px] rounded-t-[30px] z-50 py-[30px] flex flex-col items-center">
-            <div class="w-[90%] h-fit flex justify-between items-center">
-                <!-- Header -->
-                <p class="text-[20px] font-[700]">Shopping Bag</p>
-                <svg onclick="showBag()" class="hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24"
-                    height="24" viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                        d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z" />
-                </svg>
-            </div>
-            <div class="w-[90%] h-full my-2 flex flex-col gap-y-2">
-                <!-- Shopping bag content -->
-                <div
-                    class="rounded-[20px] p-2 w-full h-fit flex justify-between  border-solid border-[2px] border-[#D9D9D9]">
-                    <!-- product in bag -->
-                    <div class="flex">
-                        <div class="rounded-[20px] w-[83px] h-[89px] flex bg-[#D9D9D9]">
-                            <!--prod imgage -->
-                        </div>
-
-                        <div class="w-fit ml-2 h-[89px] flex flex-col justify-start">
-                            <!-- prod info -->
-                            <p class="font-[700] text-[16px] text-[#080226]">PRODUCT NAME</p>
-                            <p class="text-[12px] text-[#828282] font-[400]">Size: <span id="size"
-                                    class="font-[500] text-[#080226]">Large</span></p>
-                            <div class="h-full w-fit flex flex-col justify-end">
-                                <p class="text-[#C83E71] text-[18px] font-[600]">₱500</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col items-end">
-                        <div class="h-full w-full flex justify-end">
-                            <svg class="fill-[#FF0000] cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" viewBox="0 0 24 24">
-                                <path
-                                    d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zM9 17h2V8H9zm4 0h2V8h-2zM7 6v13z" />
-                            </svg>
-                        </div>
-
-                        <div class="flex gap-x-6 px-3 py-1 rounded-[20px] bg-[#D9D9D9]">
-                            <p class="text-[15px] font-[500] cursor-pointer">+</p>
-                            <p class="text-[15px] font-[500]">1</p>
-                            <p class="text-[15px] font-[500] cursor-pointer">-</p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-
-            <div class="w-[90%] flex flex-col items-center">
-                <!-- Footer -->
-                <div class="w-full h-[1px] bg-[#08022630] ">
-                    <!-- Line -->
-                </div>
-
-                <div class="w-full my-3 px-1 flex justify-between">
-                    <p class="text-[25px] text-[#080226] font-[700]">Total</p>
-                    <p id="totalPrice" class="text-[25px] text-[#C83E71] font-[600]">₱500</p>
-                </div>
-                <a class="w-full" href="/checkout" data-navigo>
-                    <button class="w-full py-2 rounded-[20px] bg-[#EFE391] text-[18px] font-[500]">
-                        Checkout
-                    </button>
-                </a>
-            </div>
-        </div>
-
-    </div>
 
 
     <!-- Login -->
@@ -327,7 +252,7 @@
 
             <div class="w-[90%] h-fit pt-3 flex flex-col items-center">
                 <div id="loginArea" class="hidden w-full h-fit flex flex-col items-center">
-                    <input type="text" placeholder="Email Address / Username"
+                    <input id="usernameLG" type="text" placeholder="Email Address / Username"
                         class="w-full px-2 py-3  text-[12px] font-[500] bg-gray-200 text-gray-600 rounded-lg border border-gray-300 focus:outline-none " />
 
                     <div
@@ -361,7 +286,7 @@
                         <a class="text-[#C83E71] text-[12px] md:text-[15px] font-[500]" href="#">Forgot Password</a>
                     </div>
 
-                    <button class="py-2 mt-7 text-[18px] text-white font-[500] w-[96%] bg-[#080226] rounded-[10px]">
+                    <button onclick="login()" class="py-2 mt-7 text-[18px] text-white font-[500] w-[96%] bg-[#080226] rounded-[10px]">
                         Login
                     </button>
 
@@ -378,7 +303,7 @@
                     <div class="w-full flex gap-x-2 ">
                         <input id="emailPS" type="email" placeholder="Email Address"
                             class="w-full  mt-3  px-2 py-3  text-[12px] font-[500] bg-gray-200 text-gray-600 rounded-lg border border-gray-300 focus:outline-none " />
-                        <button onclick="confirmEmail()" class="py-2 mt-3 text-[12px] text-white font-[500] w-[200px] bg-[#080226] rounded-[10px]">
+                        <button id="sendCodeButton" onclick="confirmEmail()" class="py-2 mt-3 text-[12px] text-white font-[500] w-[200px] bg-[#080226] rounded-[10px]">
                             Send Code
                         </button>
                     </div>
@@ -492,66 +417,11 @@
             <div class="text-white text-[20px] font-[700]" id="message"></div>
         </form>
     </div>
+
     <script>
+        let loggedIn = false;
 
-async function confirmEmail() {
-    const email = document.getElementById("emailPS").value;
-
-    if (!email) {
-        alert("Please enter an email address");
-        return;
-    }
-
-    const response = await fetch("http://192.168.2.0/static/api/sendCode.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `email=${encodeURIComponent(email)}`,
-    });
-
-    const result = await response.json();
-    if (result.status === "success") {
-        alert("Confirmation code sent to your email");
-    } else {
-        alert("Error: " + result.message);
-    }
-}
-
-        async function signUp() {
-            const username = document.getElementById("usernamePS").value;
-            const email = document.getElementById("emailPS").value;
-            const confirmCode = document.getElementById("confirmPS").value;
-            const password = document.getElementById("passwordPS").value;
-            const passwordConf = document.getElementById("passwordRS").value;
-
-            if (!username || !email || !confirmCode || !password || !passwordConf) {
-                alert("Please fill in all fields");
-                return;
-            }
-
-            if (password !== passwordConf) {
-                alert("Passwords do not match");
-                return;
-            }
-
-            const response = await fetch("http://192.168.2.0/static/api/verifyCode.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `email=${encodeURIComponent(email)}&code=${encodeURIComponent(confirmCode)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
-            });
-
-            const result = await response.json();
-            if (result.status === "success") {
-                alert("Account created successfully!");
-            } else {
-                alert("Error: " + result.message);
-            }
-        }
-
-
-
-
-        const loggedIn = false;
-
+        
         function toggleProfile() {
             const profileMenu = document.getElementById("profileMenu");
             const profileLogin = document.getElementById("profileLogin");
@@ -573,6 +443,219 @@ async function confirmEmail() {
         }
 
 
+            // Function to create confirmation modal
+        function createConfirmationModal(message, head, type) {
+            return new Promise((resolve) => {
+                // Create the modal container
+                const modalContainer = document.createElement('div');
+                modalContainer.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50";
+
+                if (type == 1) {
+                    // Modal content for confirmation
+                    modalContainer.innerHTML = `
+                        <div class="bg-white rounded-lg shadow-md w-96 p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">${head}</h3>
+                            <p class="text-gray-600 mb-6">${message}</p>
+                            <div class="flex justify-end gap-4">
+                                <button id="cancelButton" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Cancel</button>
+                                <button id="confirmButton" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Confirm</button>
+                            </div>
+                        </div>
+                    `;
+                    // Append the modal to the body
+                    document.body.appendChild(modalContainer);
+
+                    // Add event listeners for buttons
+                    const cancelButton = modalContainer.querySelector('#cancelButton');
+                    const confirmButton = modalContainer.querySelector('#confirmButton');
+
+                    cancelButton.addEventListener('click', () => {
+                        resolve(false); // Return false when canceled
+                        document.body.removeChild(modalContainer); // Remove the modal
+                    });
+
+                    confirmButton.addEventListener('click', () => {
+                        resolve(true); // Return true when confirmed
+                        document.body.removeChild(modalContainer); // Remove the modal
+                    });
+
+                } else {
+                    // Modal content for just a confirmation message
+                    modalContainer.innerHTML = `
+                        <div class="bg-white rounded-lg shadow-md w-96 p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">${head}</h3>
+                            <p class="text-gray-600 mb-6">${message}</p>
+                            <div class="flex justify-end gap-4">
+                                <button id="confirmButton" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Ok</button>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(modalContainer);
+                    const confirmButton = modalContainer.querySelector('#confirmButton');
+
+                    confirmButton.addEventListener('click', () => {
+                        resolve(false); // Return false when canceled
+                        document.body.removeChild(modalContainer); // Remove the modal
+                    });
+                }
+            });
+        }
+        // Modified confirmEmail function with button disable and countdown
+
+        // Function to check if the email already exists in the database
+        async function checkEmailExists(email) {
+            const response = await fetch("/static/api/checkEmailExists.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `email=${encodeURIComponent(email)}`
+            });
+
+            const result = await response.json();
+            return result.exists;  // Expecting a JSON response like { exists: true } or { exists: false }
+        }
+
+        // Modified confirmEmail function with email existence check
+        async function confirmEmail() {
+            const email = document.getElementById("emailPS").value;
+            const sendCodeButton = document.getElementById("sendCodeButton");
+
+            if (!email) {
+                await createConfirmationModal("Please enter an email address", "Error", 2);
+                return;
+            }
+
+            // Check if email exists in the database
+            const emailExists = await checkEmailExists(email);
+            if (emailExists) {
+                await createConfirmationModal("This email is already in use. Please use a different email.", "Error", 2);
+                return;
+            }
+
+            // Disable the Send Code button and start the countdown
+            sendCodeButton.disabled = true;
+            let countdown = 69;
+            sendCodeButton.innerText = `Resend in ${countdown}s`;
+
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                sendCodeButton.innerText = `Resend in ${countdown}s`;
+
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    sendCodeButton.disabled = false;
+                    sendCodeButton.innerText = "Send Code"; // Reset button text
+                }
+            }, 1000); // Update every second
+
+            const response = await fetch("/static/api/sendCode.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `email=${encodeURIComponent(email)}`,
+            });
+
+            const result = await response.json();
+            if (result.status === "success") {
+                await createConfirmationModal("Confirmation code sent to your email", "Success", 2);
+            } else {
+                await createConfirmationModal("Error: " + result.message, "Error", 2);
+            }
+        }
+
+        // Modified signUp function with email existence check and input field reset after successful signup
+        async function signUp() {
+            const username = document.getElementById("usernamePS").value;
+            const email = document.getElementById("emailPS").value;
+            const confirmCode = document.getElementById("confirmPS").value;
+            const password = document.getElementById("passwordPS").value;
+            const passwordConf = document.getElementById("passwordRS").value;
+
+            if (!username || !email || !confirmCode || !password || !passwordConf) {
+                await createConfirmationModal("Please fill in all fields", "Error", 2);
+                return;
+            }
+
+            if (password !== passwordConf) {
+                await createConfirmationModal("Passwords do not match", "Error", 2);
+                return;
+            }
+
+            // Check if email already exists in the database
+            const emailExists = await checkEmailExists(email);
+            if (emailExists) {
+                await createConfirmationModal("This email is already in use. Please use a different email.", "Error", 2);
+                return;
+            }
+
+            const response = await fetch("/static/api/verifyCode.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `email=${encodeURIComponent(email)}&code=${encodeURIComponent(confirmCode)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+            });
+
+            const result = await response.json();
+            if (result.status === "success") {
+                // Show success modal
+                await createConfirmationModal("Account created successfully!", "Success", 2);
+
+                // Clear the input fields after successful signup
+                document.getElementById("usernamePS").value = '';
+                document.getElementById("emailPS").value = '';
+                document.getElementById("confirmPS").value = '';
+                document.getElementById("passwordPS").value = '';
+                document.getElementById("passwordRS").value = '';
+            } else {
+                // Show error modal
+                await createConfirmationModal("Error: " + result.message, "Error", 2);
+            }
+        }
+
+
+        // Global flag to track login status
+        
+
+                
+        async function login() {
+            const username = document.getElementById("usernameLG").value;
+            const password = document.getElementById("passwordLG").value;
+
+            if (!username || !password) {
+                // Show an error modal or alert if the fields are empty
+                await createConfirmationModal("Please enter both username and password", "Error", 2);
+                return;
+            }
+
+            
+
+            const response = await fetch('/static/api/login.php', {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+            });
+
+            const result = await response.json();
+
+            if (result.status === "success") {
+                // On successful login, create cookies with the user's name and email
+                createLoginCookie(result.username, result.email);
+
+                // Set the loggedIn flag to true
+                loggedIn = true;
+
+                // Redirect user to another page or update UI based on successful login
+                await createConfirmationModal("Login successful!", "Success", 2);
+                
+                // Refresh the page to reflect login state changes
+                window.location.reload();  // This will refresh the page and reinitialize the state
+            } else {
+                // Handle login failure (e.g., wrong credentials)
+                await createConfirmationModal("Invalid username or password", "Error", 2);
+            }
+        }
+
+
+
+
+        
 
         function toggleDropdown() {
             const dropdownMenu = document.getElementById("dropdownMenu");
@@ -633,11 +716,6 @@ async function confirmEmail() {
         }
 
 
-        function showBag() {
-            const bag = document.getElementById("shoppingBag");
-
-            bag.classList.toggle("hidden");
-        }
 
         function showLogin(type) {
             const login = document.getElementById("login");
@@ -703,51 +781,6 @@ async function confirmEmail() {
             eyeSlashIcon.classList.toggle("hidden");
         }
 
-
-        document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('contentAdmin');
-    const messageDiv = document.getElementById('message');
-
-    if (loginForm) {
-        loginForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-
-            if (!username || !password) {
-                messageDiv.textContent = 'Please enter both username and password.';
-                return;
-            }
-
-            try {
-                const response = await fetch('http://192.168.2.0/static/api/adminLogin.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password }),
-                    credentials: 'include' // Include cookies in the request
-                });
-
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    messageDiv.textContent = result.message;
-                    messageDiv.style.color = 'green';
-                    setTimeout(() => {
-                        window.location.href = '/admin/admin.html';
-                    }, 1000);
-                } else {
-                    messageDiv.textContent = result.message;
-                    messageDiv.style.color = 'red';
-                }
-            } catch (error) {
-                console.error('Error during login:', error);
-                messageDiv.textContent = 'An error occurred. Please try again later.';
-                messageDiv.style.color = 'red';
-            }
-        });
-    }
-});
 
 
 

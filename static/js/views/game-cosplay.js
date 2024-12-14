@@ -55,7 +55,7 @@ if (typeof totalProductsGame === 'undefined') {
 function fetchAndDisplayProducts() {
     const category = 'Game Cosplay'; // Default category
 
-    fetch(`http://192.168.2.0/static/api/productsDisplay.php?categoryName=${category}`)
+    fetch(`/static/api/productsDisplay.php?categoryName=${category}`)
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success' && data.data.length > 0) {

@@ -3,7 +3,7 @@
 session_set_cookie_params([
     'lifetime' => 0,        // Session cookie expires when the browser is closed
     'path' => '/',          // Path where the cookie is valid
-    'domain' => '192.168.2.0',  // Adjust to the correct domain or IP address
+    'domain' => 'localhost',  // Adjust to the correct domain or IP address
     'secure' => false,      // Set to true if using HTTPS
     'httponly' => true      // Ensures the cookie is accessible only via HTTP
 ]);

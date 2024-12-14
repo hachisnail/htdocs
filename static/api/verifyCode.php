@@ -13,12 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Hash the password
             $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
-            // Insert user into the database
-            $stmt = $pdo->prepare("INSERT INTO users (Name, Email, PasswordHash) VALUES (?, ?, ?)");
-            $stmt->execute([$username, $email, $passwordHash]);
+            // Insert user into the database using mysqli
+            $stmt = $conn->prepare("INSERT INTO users (Name, Email, PasswordHash) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $username, $email, $passwordHash); // "sss" means string types for 3 parameters
 
-            unset($_SESSION['email_confirmation']); // Clear session
-            echo json_encode(['status' => 'success', 'message' => 'Account created successfully']);
+            if ($stmt->execute()) {
+                unset($_SESSION['email_confirmation']); // Clear session
+                echo json_encode(['status' => 'success', 'message' => 'Account created successfully']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Failed to insert user into the database']);
+            }
+
+            $stmt->close();
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid confirmation code']);
         }
