@@ -1,5 +1,5 @@
 <?php
-$host = 'localhost';
+$host = 'srv1632.hstgr.io';
 $username = 'u143688490_hachisnail'; 
 $password = 'Hachisnail5000';
 $dbname = 'u143688490_kusupure';
