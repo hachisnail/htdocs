@@ -75,6 +75,7 @@ const ctx = document.getElementById('salesChart').getContext('2d');
         .then(response => {
           if (response.ok) {
             // If the logout was successful, handle the redirection
+            document.cookie = "PHPSESSID=; path=/; max-age=0"; 
             return response.text(); // Assuming PHP returns a message on success
           } else {
             throw new Error('Logout failed');
