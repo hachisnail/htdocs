@@ -13,7 +13,7 @@ header('Content-Type: application/json');
 
 // Handle CORS headers for cross-origin requests
 if (isset($_SERVER['HTTP_ORIGIN'])) {
-    $allowedOrigins = ['http://localhost']; // Add allowed origins here (use exact URL, e.g., 'http://example.com')
+    $allowedOrigins = ['http://localhost/','https://mediumpurple-raccoon-269311.hostingersite.com/']; // Add allowed origins here (use exact URL, e.g., 'http://example.com')
     if (in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
         header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
         header('Access-Control-Allow-Credentials: true'); // Allow credentials (cookies)
