@@ -76,7 +76,7 @@ const ctx = document.getElementById('salesChart').getContext('2d');
       }
     }
     
-    
+    //jhasvfjavhk
     function createConfirmationModal(message) {
       return new Promise((resolve) => {
         const modalContainer = document.createElement('div');
