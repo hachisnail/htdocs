@@ -59,46 +59,48 @@ try {
     }
 
     // Loop through the shopping bag and insert order details for each item
-    foreach ($shoppingBag as $item) {
-        if (!isset($item['ProductID']) || !isset($item['Quantity']) || !isset($item['Subtotal'])) {
-            throw new Exception("Missing necessary shopping bag item data: " . json_encode($item));
-        }
-
-        $productId = $item['ProductID'];
-        $quantity = $item['Quantity'];
-        $size = $item['size'];
-        $subtotal = $item['Subtotal'];
-
-        $stmt = $conn->prepare("INSERT INTO orderdetails (OrderID, ProductID, Quantity, sizes, Subtotal) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("iiisi", $orderId, $productId, $quantity, $size, $subtotal);
-        if (!$stmt->execute()) {
-            throw new Exception("Failed to insert order details: " . $stmt->error);
-        }
-        $stmt->close();  // Close the statement after executing
-
-        // Check product stock
-        $stmt = $conn->prepare("SELECT Stock FROM products WHERE ProductID = ?");
-        $stmt->bind_param("i", $productId);
-        $stmt->execute();
-        $stmt->bind_result($currentStock);
-        $stmt->fetch();
-        $stmt->close();  // Close the statement after fetching the result
-
-        if ($currentStock < $quantity) {
-            throw new Exception("Not enough stock for product ID " . $productId);
-        }
-
-        // Update the product stock after the order
-        $stmt = $conn->prepare("UPDATE products SET Stock = Stock - ? WHERE ProductID = ?");
-        $stmt->bind_param("ii", $quantity, $productId);
-        if (!$stmt->execute()) {
-            throw new Exception("Failed to update product stock: " . $stmt->error);
-        }
-        $stmt->close();  // Close the statement after executing the update
+foreach ($shoppingBag as $item) {
+    if (!isset($item['ProductID']) || !isset($item['Quantity']) || !isset($item['Subtotal'])) {
+        throw new Exception("Missing necessary shopping bag item data: " . json_encode($item));
     }
 
-    // Commit the transaction
-    $conn->commit();
+    $productId = $item['ProductID'];
+    $quantity = $item['Quantity'];
+    $size = $item['size'];
+    $subtotal = $item['Subtotal'];
+
+    $stmt = $conn->prepare("INSERT INTO orderdetails (OrderID, ProductID, Quantity, sizes, Subtotal) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("iiisi", $orderId, $productId, $quantity, $size, $subtotal);
+    if (!$stmt->execute()) {
+        throw new Exception("Failed to insert order details: " . $stmt->error);
+    }
+    $stmt->close();  // Close the statement after executing
+
+    // Check product stock
+    $stmt = $conn->prepare("SELECT Stock FROM products WHERE ProductID = ?");
+    $stmt->bind_param("i", $productId);
+    $stmt->execute();
+    $stmt->bind_result($currentStock);
+    $stmt->fetch();
+    $stmt->close();  // Close the statement after fetching the result
+
+    if ($currentStock < $quantity) {
+        throw new Exception("Not enough stock for product ID " . $productId);
+    }
+
+    // Update the product stock after the order
+    $stmt = $conn->prepare("UPDATE products SET Stock = Stock - ?, Sales = Sales + ? WHERE ProductID = ?");
+    $stmt->bind_param("iii", $quantity, $quantity, $productId);
+    if (!$stmt->execute()) {
+        throw new Exception("Failed to update product stock and sales: " . $stmt->error);
+    }
+    $stmt->close();  // Close the statement after executing the update
+}
+
+// Commit the transaction
+$conn->commit();
+
+
 
     // Return success response with the orderId
     echo json_encode(['orderId' => $orderId]);

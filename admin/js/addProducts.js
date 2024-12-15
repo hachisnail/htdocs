@@ -412,3 +412,27 @@ function resetProductForm() {
     const imagePreviewContainer = document.getElementById("preview-container");
     imagePreviewContainer.innerHTML = ''; // Clear the preview contents
 }
+
+
+
+function toggleBurgerMenu() {
+    const menu = document.getElementById("burgerMenu");
+
+    menu.classList.toggle("hidden");
+    if (menu.classList.contains("hidden")) {
+        document.removeEventListener("click", closeMenuOnOutsideClick);
+    } else {
+        document.addEventListener("click", closeMenuOnOutsideClick);
+    }
+
+}
+
+function closeMenuOnOutsideClick(event) {
+    const menu = document.getElementById("burgerMenu");
+    const content = document.getElementById("content");
+
+    if (menu.contains(event.target) && !content.contains(event.target)) {
+        menu.classList.add("hidden");
+        document.removeEventListener("click", closeMenuOnOutsideClick);
+    }
+}

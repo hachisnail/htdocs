@@ -55,15 +55,46 @@ if (typeof totalProductsMovie === 'undefined') {
 }
 
 
-// Function to fetch and display products
-function fetchAndDisplayProducts() {
-    const category = 'Movie Cosplay'; // Default category
+// Declare a variable to store the timeout ID
 
-    fetch(`/static/api/productsDisplay.php?categoryName=${category}`)
+// Event listener for the input field (search bar)
+document.getElementById('movieSearchBar').addEventListener('input', function() {
+    // Clear the previous timeout (if any)
+    let searchTimeout;
+    clearTimeout(searchTimeout);
+
+    // Set a new timeout to trigger the search after 500ms of no typing
+    searchTimeout = setTimeout(() => {
+        const searchTerm = this.value.trim();
+        const sortOption = document.getElementById('sortMovie').value; // Get selected sort option
+
+        // Fetch and display products based on the search term and selected sort option
+        fetchAndDisplayProducts(searchTerm, sortOption);
+    }, 500); // 500ms delay after user stops typing
+});
+
+// Event listener for the sort dropdown
+document.getElementById('sortMovie').addEventListener('change', function() {
+    const searchTerm = document.getElementById('movieSearchBar').value.trim(); // Get current search term
+    const sortOption = this.value; // Get selected sort option
+
+    // Fetch and display products based on the search term and selected sort option
+    fetchAndDisplayProducts(searchTerm, sortOption);
+});
+
+function fetchAndDisplayProducts(searchTerm = '', sortOption = '') {
+    const category = 'movie Cosplay'; // Default category
+    fetch(`/static/api/productsDisplay.php?categoryName=${category}&searchTerm=${searchTerm}`)
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success' && data.data.length > 0) {
-                const productData = data.data;
+                let productData = data.data;
+
+                // Sort the product data based on the selected sort option
+                if (sortOption) {
+                    productData = sortProducts(productData, sortOption);
+                }
+
                 totalProductsMovie = productData.length; // Update total products
                 updatePaginationInfo(); // Update pagination text
 
@@ -71,6 +102,7 @@ function fetchAndDisplayProducts() {
                 displayProducts(productData);
             } else {
                 console.log('No products found or error in response');
+                displayNoResultsMessage();
             }
         })
         .catch(error => {
@@ -78,10 +110,35 @@ function fetchAndDisplayProducts() {
         });
 }
 
+// Function to sort products based on the selected sort option
+function sortProducts(products, sortOption) {
+    switch (sortOption) {
+        case 'priceHigh':
+            return products.sort((a, b) => parseFloat(b.Price) - parseFloat(a.Price));
+        case 'priceLow':
+            return products.sort((a, b) => parseFloat(a.Price) - parseFloat(b.Price));
+        case 'stockHigh':
+            return products.sort((a, b) => b.Stock - a.Stock);
+        case 'stockLow':
+            return products.sort((a, b) => a.Stock - b.Stock);
+        case 'nameAZ':
+            return products.sort((a, b) => a.ProductName.localeCompare(b.ProductName));
+        case 'nameXS':
+            return products.sort((a, b) => b.ProductName.localeCompare(a.ProductName));
+        default:
+            return products; // Return the original order if no sort is selected
+    }
+}
+
+function displayNoResultsMessage() {
+    const movieTable = document.getElementById("movieTable");
+    movieTable.innerHTML = '<p class="text-center text-gray-500">No products found.</p>';
+}
+
 // Function to display products for the current page
 function displayProducts(productData) {
-    const animeTable = document.getElementById("movieTable");
-    animeTable.innerHTML = ''; // Clear existing products
+    const movieTable = document.getElementById("movieTable");
+    movieTable.innerHTML = ''; // Clear existing products
 
     const startIndex = (currentPageMovie - 1) * productsPerPageMovie;
     const endIndex = Math.min(startIndex + productsPerPageMovie, productData.length);
@@ -90,7 +147,7 @@ function displayProducts(productData) {
 
     visibleProducts.forEach(product => {
         const productCard = createProductCard(product);
-        animeTable.appendChild(productCard);
+        movieTable.appendChild(productCard);
     });
 }
 
@@ -116,6 +173,7 @@ function createProductCard(product) {
     anchor.innerHTML = cardHTML;
     return anchor;
 }
+
 
 // Function to update pagination text
 function updatePaginationInfo() {

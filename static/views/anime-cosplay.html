@@ -112,7 +112,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                <input type="text" placeholder="Search for products..."
+                <input id="animeSearchBar" type="text" placeholder="Search for products..."
                     class="bg-gray-200 outline-none ml-2 text-gray-700 placeholder-gray-500 w-full" />
             </div>
             <div class="flex w-12 h-10 rounded-[50%] bg-gray-200 justify-center items-center md:hidden">
@@ -125,9 +125,14 @@
             <div class=" hidden sm:block">
                 <div class="flex gap-x-6 justify-end items-center">
                     <p class="text-gray-700 text-[10px] font-[400]">Sort By:</p>
-                    <select class="text-[10px] font-[500]" name="" id="sortAnime">
-                        <option class="text-[10px] font-[500] appearance-none" value="Mpopular">Most Popular</option>
-                        <option class="text-[10px] font-[500] appearance-none" value="Lpopular">Least Popular</option>
+                    <select itemid="animeSortOpt" class="text-[10px] font-[500]" name="" id="sortAnime">
+                        <option class="text-[10px] font-[500] appearance-none" value="">All Products</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="priceHigh">Price Highest to Lowest</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="priceLow">Price Lowest to Highest</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="stockHigh">Stock Highest to Lowest</option>
+                        <option class="text-[10px] font-[500] appearance-none"  value="stockLow">Stock Lowest to Highest</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="nameAZ">Name A to Z</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="nameXS">Stock Z to A</option>
                     </select>
                 </div>
             </div>
@@ -135,9 +140,14 @@
         </div>
         <div class="my-6 flex justify-end items-center w-[90%] gap-x-6 md:hidden">
             <p class="text-gray-700 text-[10px] font-[400]">Sort By:</p>
-            <select class="text-[10px] font-[500]" name="" id="sortAnime">
-                <option class="text-[10px] font-[500] appearance-none" value="Mpopular">Most Popular</option>
-                <option class="text-[10px] font-[500] appearance-none" value="Lpopular">Least Popular</option>
+            <select id="animeSortOpt" class="text-[10px] font-[500]" name="" id="sortAnime">
+                        <option class="text-[10px] font-[500] appearance-none" value="">All Products</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="priceHigh">Price Highest to Lowest</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="priceLow">Price Lowest to Highest</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="stockHigh">Stock Highest to Lowest</option>
+                        <option class="text-[10px] font-[500] appearance-none"  value="stockLow">Stock Lowest to Highest</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="nameAZ">Name A to Z</option>
+                        <option class="text-[10px] font-[500] appearance-none" value="nameXS">Stock Z to A</option>
             </select>
         </div>
 

@@ -60,54 +60,64 @@ function getCookie(name) {
     }
     return null;
 }
-async function loadOrders() {
+
+let searchTimeout;
+
+document.getElementById('search-bar').addEventListener('input', function() {
+    // Clear the previous timeout if any
+    clearTimeout(searchTimeout);
+
+    // Set a new timeout to wait for the user to stop typing
+    searchTimeout = setTimeout(async function() {
+        const query = document.getElementById('search-bar').value.trim();
+
+        // Handle when there is no search query
+        if (query.length === 0) {
+            // If no search term, pass an empty string or handle accordingly
+            await searchOrders(""); // Call with empty string for no search
+        } else {
+            // Otherwise, pass the query entered
+            await searchOrders(query);
+        }
+    }, 500); // Trigger the search after 500ms of no input
+});
+searchOrders("");async function searchOrders(query) {
     const encodedUsername = getCookie('username');
     const decodedUsername = atob(encodedUsername);
     try {
-        // Fetch data from the API
-        const response = await fetch(`/static/api/fetchOrders.php?username=${encodeURIComponent(decodedUsername)}`);
+        const response = await fetch(`/static/api/fetchOrders.php?username=${encodeURIComponent(decodedUsername)}&query=${encodeURIComponent(query)}`);
 
-        // Check if response is ok (status 200-299)
         if (!response.ok) {
-            throw new Error(`Failed to fetch orders. Status: ${response.status}`);
+            throw new Error(`Failed to search orders. Status: ${response.status}`);
         }
 
         const data = await response.json();
 
-        // Handle case where no orders are found
         if (data.message && data.message === "No orders found") {
-            console.log('No orders found for this user');
-            document.querySelector('.table-content').innerHTML = '<p class="error-message">No orders found.</p>';
-            return; // Exit early if no orders are found
+            console.log('No orders found for this search');
+            document.querySelector('.table-content').innerHTML = '<p class="error-message">No orders found for this search.</p>';
+            return;
         }
 
-        // Check if orders is present and is an array
         let orders = data.orders;
-
-        // If orders is not an array, log the error and handle it
         if (!Array.isArray(orders)) {
             console.error('Expected orders array, but received:', data);
             throw new Error('Fetched data is not in the expected format');
         }
 
-        console.log('Fetched orders:', orders); // Log the fetched data for debugging
+        console.log('Fetched orders:', orders);
 
-        // Clear existing tables
-        document.querySelectorAll('.table-content').forEach(table => {
-            table.innerHTML = ''; // Clear previous table rows
-        });
+        // Clear previous search results
+        clearSearchResults();
 
-        // Map orders to their respective tables
+        // Render each order into its respective table based on status
         orders.forEach(order => {
             const orderTotal = order.items.reduce((total, item) => total + parseFloat(item.product_total_price), 0);
 
-            // Create order card
             const orderCard = `
                 <div class="pl-3 w-[395px] md:w-full pr-3 pb-3 pt-4 flex justify-between bg-white">
-                    <!-- Product details -->
                     <div class="flex w-fit h-fit">
                         <div class="mt-2 rounded-[20px] bg-[#D9D9D9] w-[95px] h-[92px] md:w-[150px] md:h-[141px]">
-                            <!-- Image placeholder -->
                             <img src="/static/assets/productsImages/${order.items[0].product_images || 'default_image.jpg'}" alt="${order.items[0].product_name}" class="w-full h-full object-cover rounded-[20px]" />
                         </div>
                         <div class="w-fit h-fit mt-3 pt-3 pb-2 px-2 flex flex-col">
@@ -122,7 +132,6 @@ async function loadOrders() {
                         </div>
                     </div>
 
-                    <!-- Order status and actions -->
                     <div class="w-fit h-fit flex flex-col items-end">
                         <p class="mb-6 ${getStatusClass(order.status)} md:text-[15px] text-[12px] font-[600]">${order.status}</p>
                         <p class="text-black md:text-[12px] text-[8px] font-[700]">ORDER TOTAL</p>
@@ -132,19 +141,21 @@ async function loadOrders() {
                 </div>
             `;
 
-            // Append order card to the "all" table
-            const allTable = document.getElementById('allTable');
-            allTable.innerHTML += orderCard;
 
-            // Also append order to its specific status table
-            const statusTableId = mapStatusToTable(order.status);
-            const statusTable = document.getElementById(statusTableId);
-            statusTable.innerHTML += orderCard;
+            const allTable = document.getElementById('allTable');
+            allTable.innerHTML += orderCard; // Append to the 'allTable' table
+            // Get the table ID based on order status and append the order card
+            const tableId = mapStatusToTable(order.status);
+            const resultsTable = document.getElementById(tableId);
+            if (resultsTable) {
+                resultsTable.innerHTML = '';
+                resultsTable.innerHTML += orderCard; // Append to the correct table
+            }
         });
+
     } catch (error) {
-        console.error('Error fetching orders:', error);
-        // Optionally display an error message to the user
-        document.querySelector('.table-content').innerHTML = '<p class="error-message">An error occurred while fetching your orders. Please try again later.</p>';
+        console.error('Error searching orders:', error);
+        document.querySelector('.table-content').innerHTML = '<p class="error-message">An error occurred while searching for your orders. Please try again later.</p>';
     }
 }
 
@@ -155,7 +166,7 @@ function mapStatusToTable(status) {
         case 'PROCESSING': return 'onprocessTable';
         case 'CONFIRMED': return 'completedTable';
         case 'CANCELLED': return 'cancelledTable';
-        default: return 'allTable';
+        default: return 'allTable'; // Default to 'allTable' for unrecognized statuses
     }
 }
 
@@ -188,9 +199,18 @@ function getActionButton(status, orderId) {
                         Confirm Delivery
                     </button>`;
         default:
-            return ''; // No action button for COMPLETED or CANCELLED
+            return ''; // No action button for CONFIRMED or CANCELLED
     }
 }
+
+
+function clearSearchResults() {
+    // Clear the results section when no search results or when the search query is cleared
+    const resultsTable = document.getElementById('allTable');
+    resultsTable.innerHTML = '';
+}
+
+
 
 
 // Handle the Cancel Order action
@@ -221,7 +241,7 @@ async function handleConfirmDelivery(orderId) {
                     'Delivery Confirmed',
                     2 // Type 2 indicates a simple confirmation message
                 );
-                loadOrders(); // Reload the orders to reflect the confirmation
+                searchOrders(""); // Reload the orders to reflect the confirmation
             } else {
                 // Notify the user about the confirmation failure
                 await createConfirmationModal(
@@ -270,7 +290,7 @@ async function handleCancelOrder(orderId) {
                     'Order Cancelled',
                     2 // Type 2 indicates a simple confirmation message
                 );
-                loadOrders(); // Reload the orders to reflect the cancellation
+                searchOrders(""); // Reload the orders to reflect the cancellation
             } else {
                 // Notify the user about the cancellation failure
                 await createConfirmationModal(
