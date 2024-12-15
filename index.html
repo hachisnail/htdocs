@@ -228,7 +228,34 @@
 
     <!-- Burger Menu -->
 
-
+    <div id="shoppingBag" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 z-50 flex items-end md:justify-end transform translate-y-full transition-transform duration-300 ease-in-out">
+        <div id="content" class="w-full md:w-[24rem] relative h-[44rem] md:h-full bg-white md:rounded-l-[30px] md:rounded-tr-[0px] rounded-t-[30px] z-50 py-[30px] flex flex-col items-center">
+          <div class="w-[90%] h-fit flex justify-between items-center">
+            <!-- Header -->
+            <p class="text-[20px] font-[700]">Shopping Bag</p>
+            <svg onclick="showBag()" class="hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z" />
+            </svg>
+          </div>
+          <div id="shoppingBagContent" class="w-[90%] h-[493px] md:h-[607px] overflow-y-auto my-2 flex flex-col gap-y-2">
+            <!-- Shopping bag content will be dynamically inserted here -->
+          </div>
+          <div class="w-[90%] flex flex-col items-center">
+            <!-- Footer -->
+            <div class="w-full h-[1px] bg-[#08022630]"></div>
+            <div class="w-full my-3 px-1 flex justify-between">
+              <p class="text-[25px] text-[#080226] font-[700]">Total</p>
+              <p id="totalPrice" class="text-[25px] text-[#C83E71] font-[600]">₱${totalPrice}</p>
+            </div>
+            <a class="w-full" href="/checkout" data-navigo>
+              <button class="w-full py-2 rounded-[20px] bg-[#EFE391] text-[18px] font-[500]">
+                Checkout
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+      
 
 
 
@@ -420,6 +447,8 @@
 
     <script>
         let loggedIn = false;
+        
+
 
         
         function toggleProfile() {
@@ -442,6 +471,8 @@
 
         }
 
+
+        
 
             // Function to create confirmation modal
         function createConfirmationModal(message, head, type) {

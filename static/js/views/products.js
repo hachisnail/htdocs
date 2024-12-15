@@ -109,7 +109,7 @@ let itemCountProd = 0;
 function toggleSizeButton(sizeId) {
   // Get all size buttons
   const sizeButtons = document.querySelectorAll(
-    'button[id^="xx"], button[id^="x"], button[id^="small"], button[id^="medium"], button[id^="large"], button[id^="3xl"], button[id^="4xl"]'
+    'button[id^="XXS"], button[id^="XS"], button[id^="S"], button[id^="M"], button[id^="L"], button[id^="3XL"], button[id^="4XL"]'
   );
 
   // Reset all buttons to normal state
@@ -267,6 +267,7 @@ async function addToBag() {
   // Get the image cover from the element with ID "prodImg0"
   const imgSrc = document.getElementById("prodImg0").src;
   const prodName = document.getElementById("prodName").textContent;
+  const prodStock = document.getElementById("prodStock").textContent;
   // Create a new item object to store the selected size, item count, price, and image source
   const bagItem = {
     name: prodName,
@@ -275,6 +276,7 @@ async function addToBag() {
     id: itemId, // Using itemId as the ID (could be a unique product ID if needed)
     price: price, // Store the price of the item
     img: imgSrc, // Store the image source
+    stock: prodStock
   };
 
   // Retrieve existing bag from cookies (or initialize an empty array if it doesn't exist)
@@ -327,7 +329,7 @@ async function addToBag() {
 // Event Listeners
 document
   .querySelectorAll(
-    'button[id^="xx"], button[id^="x"], button[id^="small"], button[id^="medium"], button[id^="large"], button[id^="3xl"], button[id^="4xl"]'
+    'button[id^="XXS"], button[id^="XS"], button[id^="S"], button[id^="M"], button[id^="L"], button[id^="3XL"], button[id^="4XL"]'
   )
   .forEach((button) => {
     button.addEventListener("click", (e) => {

@@ -11,28 +11,28 @@
                 <div class="w-full flex justify-start">
                     <p class="text-[#080226] text-[17px] font-[700] ">Shipping Information</p>
                 </div>
-                <textarea class="resize-none w-full h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Full Name"></textarea>
+                <textarea id="Fname" class="resize-none w-full h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Full Name"></textarea>
 
-                <textarea class="resize-none w-full h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Full Address"></textarea>
+                <textarea id="Faddress" class="resize-none w-full h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Full Address"></textarea>
 
                 <div class="flex w-full h-fit justify-between">
-                    <textarea class="resize-none w-[32%] h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="City/Municipality"></textarea>
+                    <textarea id="Fcity" class="resize-none w-[32%] h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="City/Municipality"></textarea>
 
-                    <textarea class="resize-none w-[32%] h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Province"></textarea>
+                    <textarea id="Fprovince" class="resize-none w-[32%] h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Province"></textarea>
 
-                    <textarea class="resize-none w-[32%] h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Zip Code"></textarea>
+                    <textarea id="Fzip" class="resize-none w-[32%] h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Zip Code"></textarea>
                 </div>
 
-                <textarea class="resize-none w-full h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Phone Number"></textarea>
+                <textarea id="Fphone" class="resize-none w-full h-[40px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text" placeholder="Phone Number"></textarea>
 
                 <div class="resize-none w-full flex justify-start">
                     <p class="text-[#080226] text-[13px] font-[700]">Delivery Instructions</p>
                 </div>
 
-                <textarea class="resize-none w-full h-[75px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text"></textarea>
+                <textarea id="Finstructions" class="resize-none w-full h-[75px] text-[10px] p-2 rounded-[10px] border-solid border-black border-[2px] border-opacity-[65%]" type="text"></textarea>
                 
-                <div class="hidden sm:block w-full flex justify-start">
-                    <button class="w-fit h-fit py-2 px-20 text-[18px] font-[500] rounded-[20px] bg-[#EFE391]">
+                <div  class="hidden sm:block w-full flex justify-start">
+                    <button onclick="submitOrder();"  class="w-fit h-fit py-2 px-20 text-[18px] font-[500] rounded-[20px] bg-[#EFE391]">
                         Confirm Order
                     </button>
                 </div>
@@ -48,9 +48,9 @@
                         <path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z" />
                     </svg>
                 </div>
-                <div class="w-[90%] h-full my-8 flex flex-col gap-y-2">
+                <div  class="w-[90%] h-full my-8 flex flex-col gap-y-2">
                     <!-- Shopping bag content -->
-                    <div class="rounded-[20px] p-2 w-full h-fit flex justify-between bg-white  border-solid border-[2px] border-[#D9D9D9]">
+                    <div id="order-Summary" class="rounded-[20px] p-2 w-full h-[370px] flex  flex-col justify-between bg-white  border-solid border-[2px] border-[#D9D9D9] overflow-y-auto gap-y-2">
                         <!-- product in bag -->
                         <div class="flex">
                             <div class="rounded-[20px] w-[83px] h-[89px] flex bg-[#D9D9D9]">
