@@ -265,34 +265,16 @@ function toggleDropdown(id) {
 
   
 
-  async function logout() {
+  async function adminlogout() {
     const isConfirmed = await createConfirmationModal("Are you sure you want to logout?");
     
     if (isConfirmed) {
-      // Make a request to the logout PHP script
-      fetch(`/api/adminLogout.php`, {
-        method: 'GET', // Assuming logout is a simple GET request
-      })
-      .then(response => {
-        if (response.ok) {
-          // If the logout was successful, handle the redirection
-          return response.text(); // Assuming PHP returns a message on success
-        } else {
-          throw new Error('Logout failed');
-        }
-      })
-      .then(async data => {
-        window.location.href = '/home';// Change to your login page path
-
-      })
-      .catch(error => {
-        // Handle any errors during the logout process
-        console.error('Logout error:', error);
-        createConfirmationModal("Error logging out: " + error.message);
-      });
-    } else {
-      console.log("Logout canceled");
-    }
+        document.cookie = "PHPSESSID=;Path=/cv;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        window.location.href = '/admin/admin.php'; 
+        
+      } else {
+        console.log("Logout canceled");
+      }
   }
   
 

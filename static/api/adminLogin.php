@@ -1,15 +1,21 @@
 <?php
 session_set_cookie_params([
-    'lifetime' => 0,        // Session cookie expires when browser is closed
-    'path' => '/admin/',          // Path where the cookie is valid
+    'lifetime' => 0, // Session cookie expires when browser is closed
+    'path' => '/admin/', // Path where the cookie is valid
     'domain' => $_SERVER['HTTP_HOST'], // Use the server's host dynamically
     'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on', // Set to true if using HTTPS
-    'httponly' => true      // Ensures the cookie is accessible only via HTTP
+    'httponly' => true // Ensures the cookie is accessible only via HTTP
 ]);
 
-// Start the session
 session_start();
+
+// Set response type
 header('Content-Type: application/json');
+
+// Add cache-control headers
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
 // Handle CORS headers for cross-origin requests
 if (isset($_SERVER['HTTP_ORIGIN'])) {
@@ -25,10 +31,10 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, Authorization');
-    exit(0); // Exit after handling OPTIONS preflight request
+    exit(0);
 }
 
-// Check if the session is started properly
+// Check if session is started properly
 if (session_status() !== PHP_SESSION_ACTIVE) {
     echo json_encode(['status' => 'error', 'message' => 'Session could not be started']);
     exit();
@@ -61,21 +67,19 @@ if ($result->num_rows > 0) {
     if (password_verify($pass, $admin['password'])) {
         // Set session variables for the logged-in user
         $_SESSION['user_logged_in'] = true;
-        $_SESSION['user_id'] = $admin['id']; // Store user ID in session for further use
+        $_SESSION['user_id'] = $admin['id'];
 
         // Ensure the session ID is sent back for JavaScript-based cookie handling
         echo json_encode([
             'status' => 'success',
             'message' => 'Login successful',
-            'session_id' => session_id(), // Provide session ID for manual cookie creation (if needed)
+            'session_id' => session_id(),
             'session_data' => $_SESSION
         ]);
     } else {
-        // If password is incorrect
         echo json_encode(['status' => 'error', 'message' => 'Invalid username or password']);
     }
 } else {
-    // If no matching username was found
     echo json_encode(['status' => 'error', 'message' => 'Invalid username or password']);
 }
 
