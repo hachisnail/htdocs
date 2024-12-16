@@ -22,6 +22,8 @@ function fetchProductDetails(productId) {
     .then(response => response.json())
     .then(({ status, data }) => {
       if (status === "success") {
+        const screen = document.getElementById("loadingscreen");
+        screen.classList.add("hidden");
         const { Name, Price, Details, Images, Stock } = data;
         productStock = Stock;
         const imageUrl = Images.split(",");

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+</head>
+<body class="bg-[#d1d1d1]">
+    
+    <div class="w-screen h-screen flex flex-col items-start p-4 gap-y-6">
+        <div class="cursor-pointer">
+            <svg onclick="window.location.href = '/admin/orders.html'" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M10 22L0 12L10 2l1.775 1.775L3.55 12l8.225 8.225z" />
+            </svg>
+        </div>
+
+        <div class="w-full h-fit flex justify-start">
+            <p class=" font-[700] text-[14px] h-fit text-black">Order Details</p>
+        </div>
+
+        <div class="w-full shadow-md h-fit flex flex-col bg-white rounded-[20px] p-5">
+            <div class="w-full h-fit flex justify-between">
+                <p class="text-[13px] font-[700] text-black">
+                    Order ID: #<span id="orderId" class="text-[#C83E71]"></span>
+                </p>
+
+                <p id="orderStatus" class="text-[13px] font-[800] text-black">
+                    
+                </p>
+            </div>
+            <div class="w-full h-fit mb-4">
+                <p class="text-[13px] font-[700] text-black">
+                    Customer: #<span id="customer" class="text-[#C83E71]"></span>
+                </p>
+            </div>
+
+            <div class="w-full h-full rounded-[20px] border-black border-solid border-[2px] border-opacity-20 p-4 gap-x-2 flex">
+                <svg width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill="none" stroke="currentColor" stroke-linejoin="round" d="M5 3.5h6m-7.5-2h9v13L8 12l-4.5 2.5z" />
+                </svg>
+                <div class="w-full h-full flex flex-col">
+                    <p class="text-[13px] font-[700] text-black">Shipping Info</p>
+                    <p class="text-[12px] font-[400] text-[#636363]">Full Name: <span id="name"></span></p>
+                    <p class="text-[12px] font-[400] text-[#636363]">City/ Municipality: <span id="city"></span></p>
+                    <p class="text-[12px] font-[400] text-[#636363]">Province: <span id="province"></span></p>
+                    <p class="text-[12px] font-[400] text-[#636363]">Zip Code: <span id="zip"></span></p>
+                    <p class="text-[12px] font-[400] text-[#636363]">Phone Number: <span id="phone"></span></p>
+                    <p class="text-[12px] font-[400] text-[#636363]">Notes: <span id="notes"></span></p>
+                    <div class="w-full h-fit flex justify-end">
+                        <button id="downloadButton" class="px-4 py-2 rounded-[10px] bg-[#EFE391] text-[12px] text-black">
+                            Download Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="w-full h-full flex shadow-md flex-col bg-white rounded-[20px] p-4">
+            <div class="w-full h-fit">
+                <p class=" font-[700] text-[14px] h-fit text-black">Products</p>
+            </div>
+            <div class="w-full h-fit flex">
+                <!-- headers -->
+                 <div class="basis-[20%] h-fit flex justify-center items-center">
+                    <p class="text-[#727271] font-[17px font-[600]">Product</p>
+                 </div>
+                 <div class="basis-[20%] h-fit flex justify-center items-center">
+                    <p class="text-[#727271] font-[17px font-[600]">Product ID</p>
+                 </div>
+                 <div class="basis-[20%] h-fit flex justify-center items-center">
+                    <p class="text-[#727271] font-[17px font-[600]">size</p>
+                 </div>
+                 <div class="basis-[20%] h-fit flex justify-center items-center">
+                    <p class="text-[#727271] font-[17px font-[600]">Quantity</p>
+                 </div>
+                 <div class="basis-[20%] h-fit flex justify-center items-center">
+                    <p class="text-[#727271] font-[17px font-[600]">Total</p>
+                 </div>
+
+                 
+            </div>
+            <div id="detailsTable" class="w-full h-full flex flex-col overflow-y-auto items-center justify-start  space-y-2 py-2">
+                <!-- items -->
+                <!-- <a class="w-full h-fit" href="/admin/orderDetails.html?Id=10"> 
+                    <div class="w-full h-fit flex border-black border-opacity-15 border-solid border-t-[2px] border-b-[2px] py-3">
+                        <div class="basis-[20%] h-[20px] flex justify-center items-center">
+                            <p class="text-black text-[13px] font-[500] truncate text-center">product name</p>
+                        </div>
+                        <div class="basis-[20%] h-[20px] flex justify-center items-center">
+                            <p class="text-black text-[13px] font-[500] truncate text-center">20</p>
+                        </div>
+                        <div class="basis-[20%] h-[20px] flex justify-center items-center">
+                            <p class="text-black text-[13px] font-[500] truncate text-center">Large</p>
+                        </div>
+                        <div class="basis-[20%] h-[20px] flex justify-center items-center">
+                            <p class="text-black text-[13px] font-[500] truncate text-center">1</p>
+                        </div>
+                        <div class="basis-[20%] h-[20px] flex justify-center items-center">
+                            <p class="text-black text-[13px] font-[500] truncate text-center">P200</p>
+                        </div>
+                    </div>
+                </a> -->
+
+
+                
+
+            </div>
+        </div>
+        <div class="w-full h-fit flex justify-end">
+            <button id="confirmOrderButton" class="px-4 py-2 rounded-[10px] bg-[#EFE391] text-[12px] text-black">
+                Confirm Order
+            </button>
+        </div>
+    </div>
+
+    <div id="loadingscreen" class=" absolute top-0 left-0 w-full h-full flex justify-center items-center bg-white">
+        <div role="status">
+            <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+            </svg>
+            <span class="sr-only">Loading...</span>
+        </div>
+
+    </div> 
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/admin/js/orderDetails.js"></script>
+</body> 
+</html>
+
+
+

@@ -327,6 +327,9 @@ async function submitOrder() {
 
   // Send the data to the server using the API endpoint
   try {
+      const screen = document.getElementById("loadingscreen");
+      screen.classList.toggle("hidden");
+      
       const response = await fetch("/static/api/submitOrder.php", {
           method: "POST",
           headers: {
@@ -340,6 +343,7 @@ async function submitOrder() {
       console.log(result); // Log the result to see what is being returned
 
       if (response.ok && result.orderId) {
+        screen.classList.toggle("hidden");
           await createConfirmationModal(
               `Order successfully placed! Order ID: ${result.orderId}`,
               "Success",
@@ -347,8 +351,9 @@ async function submitOrder() {
           );
           // Clear shopping bag and redirect user
           document.cookie = "shoppingBag=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          window.location.href = "/order-success.html"; // Redirect to a success page
+          window.location.href = "/home"; // Redirect to a success page
       } else {
+        screen.classList.toggle("hidden");
           await createConfirmationModal(
               `Failed to place order: ${result.message || "Unknown error"}`,
               "Error",
@@ -356,6 +361,7 @@ async function submitOrder() {
           );
       }
   } catch (error) {
+     
       console.error("Error submitting order:", error);
       await createConfirmationModal(
           "An error occurred while submitting your order. Please try again.",

@@ -5,11 +5,8 @@ function checkLoginStatus() {
   if (username) {
       // User is logged in, update the global flag
       loggedIn = true;
-      console.log("User is logged in as " + username);
-  } else {
-      
-      console.log("User is not logged in");
-  }
+ 
+  } 
 }
 
 
