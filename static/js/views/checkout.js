@@ -248,7 +248,6 @@ function prepareShoppingBag(shoppingBag) {
     };
   });
 }
-
 async function submitOrder() {
   // Retrieve shipping information from input fields
   const fullName = document.getElementById("Fname").value.trim();
@@ -261,8 +260,12 @@ async function submitOrder() {
 
   // Validate shipping information
   if (!fullName || !fullAddress || !city || !province || !zipCode || !phoneNumber) {
-    alert("Please fill in all required shipping information.");
-    return;
+      await createConfirmationModal(
+          "Please fill in all required shipping information.",
+          "Missing Information",
+          0
+      );
+      return;
   }
 
   // Retrieve shopping bag from cookies
@@ -270,65 +273,95 @@ async function submitOrder() {
   let shoppingBag = [];
 
   if (shoppingBagCookie) {
-    try {
-      shoppingBag = JSON.parse(decodeURIComponent(shoppingBagCookie));
-    } catch (error) {
-      console.error("Failed to parse shopping bag cookie:", error);
-      alert("Invalid shopping bag data. Please try again.");
-      return;
-    }
+      try {
+          shoppingBag = JSON.parse(decodeURIComponent(shoppingBagCookie));
+      } catch (error) {
+          console.error("Failed to parse shopping bag cookie:", error);
+          await createConfirmationModal(
+              "Invalid shopping bag data. Please try again.",
+              "Error",
+              0
+          );
+          return;
+      }
   }
 
   // Validate shopping bag contents
   if (!Array.isArray(shoppingBag) || shoppingBag.length === 0) {
-    alert("Your shopping bag is empty. Add items to proceed.");
-    return;
+      await createConfirmationModal(
+          "Your shopping bag is empty. Add items to proceed.",
+          "Empty Bag",
+          0
+      );
+      return;
   }
 
   // Ensure all necessary fields (ProductID, Quantity, Subtotal) are present
-  shoppingBag = prepareShoppingBag(shoppingBag);  // Process the shopping bag
+  shoppingBag = prepareShoppingBag(shoppingBag); // Process the shopping bag
 
   const usernameCookie = getCookieO("username");
-  const userId = usernameCookie ? atob(usernameCookie) : "guest"; 
+  const userId = usernameCookie ? atob(usernameCookie) : "guest";
 
   // Prepare the data payload
   const payload = {
-    fullName,
-    fullAddress,
-    city,
-    province,
-    zipCode,
-    phoneNumber,
-    deliveryInstructions,
-    userId,
-    shoppingBag
+      fullName,
+      fullAddress,
+      city,
+      province,
+      zipCode,
+      phoneNumber,
+      deliveryInstructions,
+      userId,
+      shoppingBag,
   };
+
+  // Confirm submission
+  const confirmSubmission = await createConfirmationModal(
+      "Are you sure you want to place this order?",
+      "Confirm Order",
+      1
+  );
+  if (!confirmSubmission) {
+      return;
+  }
 
   // Send the data to the server using the API endpoint
   try {
-    const response = await fetch("/static/api/submitOrder.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+      const response = await fetch("/static/api/submitOrder.php", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    console.log(result);  // Log the result to see what is being returned
+      console.log(result); // Log the result to see what is being returned
 
-    if (response.ok && result.orderId) {
-      alert(`Order successfully placed! Order ID: ${result.orderId}`);
-      // Clear shopping bag and redirect user
-      document.cookie = "shoppingBag=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      window.location.href = "/order-success.html"; // Redirect to a success page
-    } else {
-      alert(`Failed to place order: ${result.message || 'Unknown error'}`);
-    }
+      if (response.ok && result.orderId) {
+          await createConfirmationModal(
+              `Order successfully placed! Order ID: ${result.orderId}`,
+              "Success",
+              0
+          );
+          // Clear shopping bag and redirect user
+          document.cookie = "shoppingBag=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          window.location.href = "/order-success.html"; // Redirect to a success page
+      } else {
+          await createConfirmationModal(
+              `Failed to place order: ${result.message || "Unknown error"}`,
+              "Error",
+              0
+          );
+      }
   } catch (error) {
-    console.error("Error submitting order:", error);
-    alert("An error occurred while submitting your order. Please try again.");
+      console.error("Error submitting order:", error);
+      await createConfirmationModal(
+          "An error occurred while submitting your order. Please try again.",
+          "Error",
+          0
+      );
   }
 }
 
@@ -338,5 +371,63 @@ if (confirmOrderButton) {
   confirmOrderButton.addEventListener("click", submitOrder);
 }
 
-
 fillOrderSummary();
+
+
+
+function createConfirmationModal(message, head, type) {
+  return new Promise((resolve) => {
+      // Create the modal container
+      const modalContainer = document.createElement('div');
+      modalContainer.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50";
+
+      if (type == 1) {
+          // Modal content for confirmation
+          modalContainer.innerHTML = `
+              <div class="bg-white rounded-lg shadow-md w-96 p-6">
+                  <h3 class="text-lg font-semibold text-gray-800 mb-4">${head}</h3>
+                  <p class="text-gray-600 mb-6">${message}</p>
+                  <div class="flex justify-end gap-4">
+                      <button id="cancelButton" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Cancel</button>
+                      <button id="confirmButton" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Confirm</button>
+                  </div>
+              </div>
+          `;
+          // Append the modal to the body
+          document.body.appendChild(modalContainer);
+
+          // Add event listeners for buttons
+          const cancelButton = modalContainer.querySelector('#cancelButton');
+          const confirmButton = modalContainer.querySelector('#confirmButton');
+
+          cancelButton.addEventListener('click', () => {
+              resolve(false); // Return false when canceled
+              document.body.removeChild(modalContainer); // Remove the modal
+          });
+
+          confirmButton.addEventListener('click', () => {
+              resolve(true); // Return true when confirmed
+              document.body.removeChild(modalContainer); // Remove the modal
+          });
+
+      } else {
+          // Modal content for just a confirmation message
+          modalContainer.innerHTML = `
+              <div class="bg-white rounded-lg shadow-md w-96 p-6">
+                  <h3 class="text-lg font-semibold text-gray-800 mb-4">${head}</h3>
+                  <p class="text-gray-600 mb-6">${message}</p>
+                  <div class="flex justify-end gap-4">
+                      <button id="confirmButton" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Ok</button>
+                  </div>
+              </div>
+          `;
+          document.body.appendChild(modalContainer);
+          const confirmButton = modalContainer.querySelector('#confirmButton');
+
+          confirmButton.addEventListener('click', () => {
+              resolve(false); // Return false when canceled
+              document.body.removeChild(modalContainer); // Remove the modal
+          });
+      }
+  });
+}

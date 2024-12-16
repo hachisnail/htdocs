@@ -61,10 +61,10 @@ function getCookie(name) {
     return null;
 }
 
-let searchTimeout;
+
 
 document.getElementById('search-bar').addEventListener('input', function () {
-    // Clear the previous timeout if any
+    let searchTimeout;
     clearTimeout(searchTimeout);
 
     // Set a new timeout to wait for the user to stop typing
