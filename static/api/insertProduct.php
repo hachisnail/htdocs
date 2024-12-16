@@ -1,12 +1,5 @@
 <?php
-// Include your database connection file
-session_set_cookie_params([
-    'lifetime' => 0,        // Session cookie expires when the browser is closed
-    'path' => '/',          // Path where the cookie is valid
-    'domain' => 'localhost',  // Adjust to the correct domain or IP address
-    'secure' => false,      // Set to true if using HTTPS
-    'httponly' => true      // Ensures the cookie is accessible only via HTTP
-]);
+
 
 session_start();
 
@@ -17,15 +10,7 @@ include '../api/databaseConnnection.php'; // Adjust path if necessary
 // Set the content type to JSON for the response
 header('Content-Type: application/json');
 
-// Check if the user is logged in by verifying the session variable 'user_logged_in'
-if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Unauthorized access. Please log in.",
-        "data" => []
-    ]);
-    exit; // Stop further script execution if not authenticated
-}
+
 
 
 include '../api/databaseConnnection.php'; // Adjusted path since db_connect.php is inside the 'api' folder

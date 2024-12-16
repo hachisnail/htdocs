@@ -19,60 +19,32 @@ function fetchProductDetails(productId) {
 
   // Make the API call
   fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.status === "success") {
-        const product = data.data;
-        console.log("Product details:", product);
-
-        // Destructure the product data
-        const { Name, Price, Details, Images, Stock } = product;
-
-        // Store the stock value
+    .then(response => response.json())
+    .then(({ status, data }) => {
+      if (status === "success") {
+        const { Name, Price, Details, Images, Stock } = data;
         productStock = Stock;
-
-        // Split the images into an array
         const imageUrl = Images.split(",");
-
-        // Update the DOM with product data
         document.getElementById("prodName").textContent = Name;
         document.getElementById("prodPrice").textContent = Price;
         document.getElementById("prodDets").textContent = Details || "No description available";
         document.getElementById("prodStock").textContent = Stock;
-
-        const expectedImageCount = 4;
-        // Populate the product images
-        for (let i = 0; i < expectedImageCount; i++) {
-          const imgElement = document.getElementById(`prodImg${i}`);
-          if (imgElement) {
-            // Check if there is an image URL for this index
-            if (i < imageUrl.length && imageUrl[i]) {
-              // If a valid image URL exists, set the image source
-              imgElement.src = `/static/assets/productsImages/${imageUrl[i]}`;
-              
-            } else {
-              // If there's no image or the index exceeds the available images, hide it
-              imgElement.src = `/static/assets/no image.png`;
-            }
+        const imgs = document.querySelectorAll('[id^="prodImg"]');
+        for (let i = 0; i < imgs.length; i++) {
+          const img = imgs[i];
+          if (i < imageUrl.length) {
+            img.src = `/static/assets/productsImages/${imageUrl[i]}`;
+          } else {
+            img.src = `/static/assets/no image.png`;
           }
         }
-
-        // Event listeners for product images (moved here inside the function)
-        for (let i = 0; i < imageUrl.length; i++) {
-          const imgElement = document.getElementById(`prodImg${i}`);
-          if (imgElement) {
-            imgElement.addEventListener("click", function () {
-              openImageGallery(`/static/assets/productsImages/${imageUrl[i]}`);
-            });
-          }
-        }
+        // Add event listeners to product images
+        imgs.forEach(img => img.addEventListener('click', () => openImageGallery(`/static/assets/productsImages/${img.src.split('/').pop()}`)));
       } else {
         console.error("Error fetching product details:", data.message);
       }
     })
-    .catch((error) => {
-      console.error("API request failed:", error);
-    });
+    .catch(error => console.error("API request failed:", error));
 }
 
 // Function to open the modal and display the clicked image
@@ -102,7 +74,7 @@ document
   });
 
 // Variable to store the selected size and item count
-let selectedSize = null;
+let selectedSize = "";
 let itemCountProd = 0;
 
 // Toggle the active size button
@@ -114,18 +86,16 @@ function toggleSizeButton(sizeId) {
 
   // Reset all buttons to normal state
   sizeButtons.forEach((button) => {
-    button.classList.remove("bg-[#080226]");
-    button.classList.add("bg-[#D9D9D9]");
-    button.classList.remove("text-white");
-    button.classList.add("text-[#626262]");
+    if (button.id === sizeId) {
+      // Set the selected button to the active state
+      button.classList.add("bg-[#080226]", "text-white");
+      button.classList.remove("bg-[#D9D9D9]", "text-[#626262]");
+    } else {
+      // Reset button to normal state
+      button.classList.add("bg-[#D9D9D9]", "text-[#626262]");
+      button.classList.remove("bg-[#080226]", "text-white");
+    }
   });
-
-  // Set the selected button to the active state
-  const selectedButton = document.getElementById(sizeId);
-  selectedButton.classList.remove("bg-[#D9D9D9]");
-  selectedButton.classList.add("bg-[#080226]");
-  selectedButton.classList.remove("text-[#626262]");
-  selectedButton.classList.add("text-white");
 
   // Store the selected size
   selectedSize = sizeId;
