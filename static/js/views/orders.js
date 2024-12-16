@@ -63,12 +63,12 @@ function getCookie(name) {
 
 let searchTimeout;
 
-document.getElementById('search-bar').addEventListener('input', function() {
+document.getElementById('search-bar').addEventListener('input', function () {
     // Clear the previous timeout if any
     clearTimeout(searchTimeout);
 
     // Set a new timeout to wait for the user to stop typing
-    searchTimeout = setTimeout(async function() {
+    searchTimeout = setTimeout(async function () {
         const query = document.getElementById('search-bar').value.trim();
 
         // Handle when there is no search query
@@ -81,7 +81,7 @@ document.getElementById('search-bar').addEventListener('input', function() {
         }
     }, 500); // Trigger the search after 500ms of no input
 });
-searchOrders("");async function searchOrders(query) {
+searchOrders(""); async function searchOrders(query) {
     const encodedUsername = getCookie('username');
     const decodedUsername = atob(encodedUsername);
     try {
@@ -148,9 +148,9 @@ searchOrders("");async function searchOrders(query) {
             const tableId = mapStatusToTable(order.status);
             const resultsTable = document.getElementById(tableId);
             if (resultsTable) {
-                resultsTable.innerHTML = '';
                 resultsTable.innerHTML += orderCard; // Append to the correct table
             }
+
         });
 
     } catch (error) {
@@ -309,11 +309,6 @@ async function handleCancelOrder(orderId) {
         }
     }
 }
-
-
-
-// Initialize the orders when the page loads
-loadOrders();
 
 
 
