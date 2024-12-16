@@ -21,7 +21,7 @@ $userId = $data['userId']; // If userId is "guest", it can be NULL
 $shoppingBag = $data['shoppingBag'];
 
 if ($userId == "guest") {
-    $userId = NULL;  // Treat guest as NULL in the database
+    $userId = 0;  // Treat guest as NULL in the database
 }
 
 // Start a database transaction
