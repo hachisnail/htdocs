@@ -107,7 +107,7 @@ function getCurrentLocation() {
   const footerBanner = document.getElementById("footerBanner");
   if (!footerBanner) return;
 
-  const routesWithoutFooter = new Set(["/account", "/orders"]);
+  const routesWithoutFooter = new Set(["/account", "/orders", "/aboutUS", "/developers"]);
   footerBanner.classList.toggle("hidden", routesWithoutFooter.has(currentPath));
 }
 
@@ -121,6 +121,9 @@ router.on({
   "/checkout": () => loadPage("checkout"),
   "/account": () => loadPage("account"),
   "/orders": () => loadPage("orders"),
+  "/aboutUS": () => loadPage("aboutUS"),
+  "developers": () => loadPage("developers"),
+
   "/products/:id": ({ data }) => {
     if (data && data.id) {
      

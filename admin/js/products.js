@@ -209,6 +209,12 @@ async function handleEvent(type, id){
             openContext(id);
         break;
         case "Edit":
+            const productData = await fetchProductData(id);
+            if (productData) {
+                openEditModal(productData);
+            } else {
+                console.error('Product data not found.');
+            }
             //alert("edit for "+id +" triggered");
             openContext(id);
         break;
@@ -342,4 +348,103 @@ function closeMenuOnOutsideClick(event) {
     }
 }
 
+
+
+
+async function fetchProductData(id) {
+    try {
+        const response = await fetch(`/static/api/getProduct.php?id=${id}`);
+        const data = await response.json();
+        return data;  // Assuming response has {ProductID, Name, Price, Stock, etc.}
+    } catch (error) {
+        console.error('Error fetching product data:', error);
+        return null;
+    }
+}
+
+function openEditModal(product) {
+    return new Promise((resolve) => {
+        const modalContainer = document.createElement('div');
+        modalContainer.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50";
+
+        // Modal content with all editable fields
+        modalContainer.innerHTML = `
+            <div class="bg-white rounded-lg shadow-md w-96 p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Edit Product</h3>
+                <form id="editProductForm">
+                    <div class="mb-4">
+                        <label for="productName" class="block text-sm font-medium text-gray-700">Product Name</label>
+                        <input type="text" id="productName" value="${product.Name}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="productPrice" class="block text-sm font-medium text-gray-700">Price</label>
+                        <input type="number" id="productPrice" value="${product.Price}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" step="0.01">
+                    </div>
+                    <div class="mb-4">
+                        <label for="productStock" class="block text-sm font-medium text-gray-700">Stock</label>
+                        <input type="number" id="productStock" value="${product.Stock}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="productDetails" class="block text-sm font-medium text-gray-700">Details</label>
+                        <textarea id="productDetails" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">${product.Details}</textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="productTags" class="block text-sm font-medium text-gray-700">Tags</label>
+                        <textarea id="productTags" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">${product.Tags || ''}</textarea>
+                    </div>
+                    <div class="flex justify-end gap-4">
+                        <button type="button" id="cancelEditButton" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Cancel</button>
+                        <button type="submit" id="confirmEditButton" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        `;
+
+        // Append the modal to the body
+        document.body.appendChild(modalContainer);
+
+        // Cancel button
+        modalContainer.querySelector('#cancelEditButton').addEventListener('click', () => {
+            document.body.removeChild(modalContainer); // Close the modal
+        });
+
+        // Form submit button
+        modalContainer.querySelector('#editProductForm').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent form submission
+            const updatedProduct = {
+                ProductID: product.ProductID,
+                Name: document.getElementById('productName').value,
+                Price: parseFloat(document.getElementById('productPrice').value),
+                Stock: parseInt(document.getElementById('productStock').value, 10),
+                Details: document.getElementById('productDetails').value,
+                Tags: document.getElementById('productTags').value
+            };
+            const success = await updateProduct(updatedProduct);
+            if (success) {
+                console.log('Product updated successfully.');
+                document.body.removeChild(modalContainer); // Close the modal
+            } else {
+                console.error('Failed to update product.');
+            }
+        });
+    });
+}
+
+async function updateProduct(product) {
+    try {
+        const response = await fetch(`/static/api/updateProduct.php`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(product)
+        });
+        window.location.reload();
+
+        const result = await response.json();
+        return result.success;
+    } catch (error) {
+        console.error('Error updating product:', error);
+        return false;
+    }
+}
 
